@@ -1,0 +1,438 @@
+[
+    {
+      "id": 1,
+      "name": "Tiếng Ả Rập"
+    },
+    {
+      "id": 2,
+      "name": "Tiếng Afrikaans"
+    },
+    {
+      "id": 3,
+      "name": "Tiếng Albania"
+    },
+    {
+      "id": 4,
+      "name": "Tiếng Amharic"
+    },
+    {
+      "id": 5,
+      "name": "Tiếng Anh"
+    },
+    {
+      "id": 6,
+      "name": "Tiếng Armenia"
+    },
+    {
+      "id": 7,
+      "name": "Tiếng Azerbaijan"
+    },
+    {
+      "id": 8,
+      "name": "Tiếng Ba Lan"
+    },
+    {
+      "id": 9,
+      "name": "Tiếng Ba Tư"
+    },
+    {
+      "id": 10,
+      "name": "Tiếng Bangla"
+    },
+    {
+      "id": 11,
+      "name": "Tiếng Basque"
+    },
+    {
+      "id": 12,
+      "name": "Tiếng Belarus"
+    },
+    {
+      "id": 13,
+      "name": "Tiếng Bosnia"
+    },
+    {
+      "id": 14,
+      "name": "Tiếng Bồ Đào Nha"
+    },
+    {
+      "id": 15,
+      "name": "Tiếng Bulgaria"
+    },
+    {
+      "id": 16,
+      "name": "Tiếng Catalan"
+    },
+    {
+      "id": 17,
+      "name": "Tiếng Cebuano"
+    },
+    {
+      "id": 18,
+      "name": "Tiếng Corsica"
+    },
+    {
+      "id": 19,
+      "name": "Tiếng Croatia"
+    },
+    {
+      "id": 20,
+      "name": "Tiếng Do Thái"
+    },
+    {
+      "id": 21,
+      "name": "Tiếng Đan Mạch"
+    },
+    {
+      "id": 22,
+      "name": "Tiếng Đức"
+    },
+    {
+      "id": 23,
+      "name": "Tiếng Estonia"
+    },
+    {
+      "id": 24,
+      "name": "Tiếng Filipino"
+    },
+    {
+      "id": 25,
+      "name": "Tiếng Frisia"
+    },
+    {
+      "id": 26,
+      "name": "Tiếng Gael Scotland"
+    },
+    {
+      "id": 27,
+      "name": "Tiếng Galician"
+    },
+    {
+      "id": 28,
+      "name": "Tiếng Georgia"
+    },
+    {
+      "id": 29,
+      "name": "Tiếng Gujarati"
+    },
+    {
+      "id": 30,
+      "name": "Tiếng Hà Lan"
+    },
+    {
+      "id": 31,
+      "name": "Tiếng Haiti"
+    },
+    {
+      "id": 32,
+      "name": "Tiếng Hàn"
+    },
+    {
+      "id": 33,
+      "name": "Tiếng Hausa"
+    },
+    {
+      "id": 34,
+      "name": "Tiếng Hawaii"
+    },
+    {
+      "id": 35,
+      "name": "Tiếng Hindi"
+    },
+    {
+      "id": 36,
+      "name": "Tiếng Hmong"
+    },
+    {
+      "id": 37,
+      "name": "Tiếng Hungary"
+    },
+    {
+      "id": 38,
+      "name": "Tiếng Hy Lạp"
+    },
+    {
+      "id": 39,
+      "name": "Tiếng Iceland"
+    },
+    {
+      "id": 40,
+      "name": "Tiếng Igbo"
+    },
+    {
+      "id": 41,
+      "name": "Tiếng Indonesia"
+    },
+    {
+      "id": 42,
+      "name": "Tiếng Ireland"
+    },
+    {
+      "id": 43,
+      "name": "Tiếng Italy"
+    },
+    {
+      "id": 44,
+      "name": "Tiếng Java"
+    },
+    {
+      "id": 45,
+      "name": "Tiếng Kannada"
+    },
+    {
+      "id": 46,
+      "name": "Tiếng Kazakh"
+    },
+    {
+      "id": 47,
+      "name": "Tiếng Khmer"
+    },
+    {
+      "id": 48,
+      "name": "Tiếng Kinyarwanda"
+    },
+    {
+      "id": 49,
+      "name": "Tiếng Kurd"
+    },
+    {
+      "id": 50,
+      "name": "Tiếng Kyrgyz"
+    },
+    {
+      "id": 51,
+      "name": "Tiếng La-tinh"
+    },
+    {
+      "id": 52,
+      "name": "Tiếng Lào"
+    },
+    {
+      "id": 53,
+      "name": "Tiếng Latvia"
+    },
+    {
+      "id": 54,
+      "name": "Tiếng Litva"
+    },
+    {
+      "id": 55,
+      "name": "Tiếng Luxembourg"
+    },
+    {
+      "id": 56,
+      "name": "Tiếng Mã Lai"
+    },
+    {
+      "id": 57,
+      "name": "Tiếng Macedonia"
+    },
+    {
+      "id": 58,
+      "name": "Tiếng Malagasy"
+    },
+    {
+      "id": 59,
+      "name": "Tiếng Malayalam"
+    },
+    {
+      "id": 60,
+      "name": "Tiếng Malta"
+    },
+    {
+      "id": 61,
+      "name": "Tiếng Māori"
+    },
+    {
+      "id": 62,
+      "name": "Tiếng Marathi"
+    },
+    {
+      "id": 63,
+      "name": "Tiếng Miến Điện"
+    },
+    {
+      "id": 64,
+      "name": "Tiếng Mông Cổ"
+    },
+    {
+      "id": 65,
+      "name": "Tiếng Na Uy"
+    },
+    {
+      "id": 66,
+      "name": "Tiếng Nepal"
+    },
+    {
+      "id": 67,
+      "name": "Tiếng Nga"
+    },
+    {
+      "id": 68,
+      "name": "Tiếng Nhật"
+    },
+    {
+      "id": 69,
+      "name": "Tiếng Nyanja"
+    },
+    {
+      "id": 70,
+      "name": "Tiếng Odia"
+    },
+    {
+      "id": 71,
+      "name": "Tiếng Pashto"
+    },
+    {
+      "id": 72,
+      "name": "Tiếng Pháp"
+    },
+    {
+      "id": 73,
+      "name": "Tiếng Phần Lan"
+    },
+    {
+      "id": 74,
+      "name": "Tiếng Punjab"
+    },
+    {
+      "id": 75,
+      "name": "Tiếng Quốc Tế Ngữ"
+    },
+    {
+      "id": 76,
+      "name": "Tiếng Romania"
+    },
+    {
+      "id": 77,
+      "name": "Tiếng Samoa"
+    },
+    {
+      "id": 78,
+      "name": "Tiếng Séc"
+    },
+    {
+      "id": 79,
+      "name": "Tiếng Serbia"
+    },
+    {
+      "id": 80,
+      "name": "Tiếng Shona"
+    },
+    {
+      "id": 81,
+      "name": "Tiếng Sindhi"
+    },
+    {
+      "id": 82,
+      "name": "Tiếng Sinhala"
+    },
+    {
+      "id": 83,
+      "name": "Tiếng Slovak"
+    },
+    {
+      "id": 84,
+      "name": "Tiếng Slovenia"
+    },
+    {
+      "id": 85,
+      "name": "Tiếng Somali"
+    },
+    {
+      "id": 86,
+      "name": "Tiếng Sotho Miền Nam"
+    },
+    {
+      "id": 87,
+      "name": "Tiếng Sunda"
+    },
+    {
+      "id": 88,
+      "name": "Tiếng Swahili"
+    },
+    {
+      "id": 89,
+      "name": "Tiếng Tajik"
+    },
+    {
+      "id": 90,
+      "name": "Tiếng Tamil"
+    },
+    {
+      "id": 91,
+      "name": "Tiếng Tatar"
+    },
+    {
+      "id": 92,
+      "name": "Tiếng Tây Ban Nha"
+    },
+    {
+      "id": 93,
+      "name": "Tiếng Telugu"
+    },
+    {
+      "id": 94,
+      "name": "Tiếng Thái"
+    },
+    {
+      "id": 95,
+      "name": "Tiếng Thổ Nhĩ Kỳ"
+    },
+    {
+      "id": 96,
+      "name": "Tiếng Thụy Điển"
+    },
+    {
+      "id": 97,
+      "name": "Tiếng Trung (Giản Thể)"
+    },
+    {
+      "id": 98,
+      "name": "Tiếng Trung (Phồn thể)"
+    },
+    {
+      "id": 99,
+      "name": "Tiếng Turkmen"
+    },
+    {
+      "id": 100,
+      "name": "Tiếng Ukraina"
+    },
+    {
+      "id": 101,
+      "name": "Tiếng Urdu"
+    },
+    {
+      "id": 102,
+      "name": "Tiếng Uyghur"
+    },
+    {
+      "id": 103,
+      "name": "Tiếng Uzbek"
+    },
+    {
+      "id": 104,
+      "name": "Tiếng Việt"
+    },
+    {
+      "id": 105,
+      "name": "Tiếng Wales"
+    },
+    {
+      "id": 106,
+      "name": "Tiếng Xhosa"
+    },
+    {
+      "id": 107,
+      "name": "Tiếng Yiddish"
+    },
+    {
+      "id": 108,
+      "name": "Tiếng Yoruba"
+    },
+    {
+      "id": 109,
+      "name": "Tiếng Zulu"
+    }
+]

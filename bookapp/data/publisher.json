@@ -1,0 +1,262 @@
+ [
+    {
+      "id": 1,
+      "name": "BÁCH KHOA HÀ NỘI"
+    },
+    {
+      "id": 2,
+      "name": "CHÍNH TRỊ QUỐC GIA SỰ THẬT"
+    },
+    {
+      "id": 3,
+      "name": "CÔNG THƯƠNG"
+    },
+    {
+      "id": 4,
+      "name": "CÔNG AN NHÂN DÂN"
+    },
+    {
+      "id": 5,
+      "name": "DÂN TRÍ"
+    },
+    {
+      "id": 6,
+      "name": "GIAO THÔNG VẬN TẢI"
+    },
+    {
+      "id": 7,
+      "name": "GIÁO DỤC VIỆT NAM"
+    },
+    {
+      "id": 8,
+      "name": "HÀNG HẢI"
+    },
+    {
+      "id": 9,
+      "name": "HỌC VIỆN NÔNG NGHIỆP"
+    },
+    {
+      "id": 10,
+      "name": "HỒNG ĐỨC"
+    },
+    {
+      "id": 11,
+      "name": "HỘI NHÀ VĂN"
+    },
+    {
+      "id": 12,
+      "name": "KHOA HỌC TỰ NHIÊN VÀ CÔNG NGHỆ"
+    },
+    {
+      "id": 13,
+      "name": "KHOA HỌC VÀ KỸ THUẬT"
+    },
+    {
+      "id": 14,
+      "name": "KHOA HỌC XÃ HỘI"
+    },
+    {
+      "id": 15,
+      "name": "KIM ĐỒNG"
+    },
+    {
+      "id": 16,
+      "name": "KINH TẾ THÀNH PHỐ HỒ CHÍ MINH"
+    },
+    {
+      "id": 17,
+      "name": "LAO ĐỘNG"
+    },
+    {
+      "id": 18,
+      "name": "NÔNG NGHIỆP"
+    },
+    {
+      "id": 19,
+      "name": "PHỤ NỮ"
+    },
+    {
+      "id": 20,
+      "name": "QUÂN ĐỘI NHÂN DÂN"
+    },
+    {
+      "id": 21,
+      "name": "THÔNG TIN VÀ TRUYỀN THÔNG"
+    },
+    {
+      "id": 22,
+      "name": "THÔNG TẤN"
+    },
+    {
+      "id": 23,
+      "name": "THỐNG KÊ"
+    },
+    {
+      "id": 24,
+      "name": "THỜI ĐẠI"
+    },
+    {
+      "id": 25,
+      "name": "TRI THỨC"
+    },
+    {
+      "id": 26,
+      "name": "TÀI CHÍNH"
+    },
+    {
+      "id": 27,
+      "name": "TÀI NGUYÊN - MÔI TRƯỜNG VÀ BẢN ĐỒ VIỆT NAM"
+    },
+    {
+      "id": 28,
+      "name": "TƯ PHÁP"
+    },
+    {
+      "id": 29,
+      "name": "VĂN HÓA - VĂN NGHỆ"
+    },
+    {
+      "id": 30,
+      "name": "XÂY DỰNG"
+    },
+    {
+      "id": 31,
+      "name": "Y HỌC"
+    },
+    {
+      "id": 32,
+      "name": "ĐẠI HỌC CÔNG NGHIỆP THÀNH PHỐ HỒ CHÍ MINH"
+    },
+    {
+      "id": 33,
+      "name": "ĐẠI HỌC HUẾ"
+    },
+    {
+      "id": 34,
+      "name": "ĐẠI HỌC KINH TẾ QUỐC DÂN"
+    },
+    {
+      "id": 35,
+      "name": "ĐẠI HỌC QUỐC GIA HÀ NỘI"
+    },
+    {
+      "id": 36,
+      "name": "ĐẠI HỌC QUỐC GIA THÀNH PHỐ HỒ CHÍ MINH"
+    },
+    {
+      "id": 37,
+      "name": "ĐẠI HỌC SƯ PHẠM"
+    },
+    {
+      "id": 38,
+      "name": "ĐẠI HỌC THÁI NGUYÊN"
+    },
+    {
+      "id": 39,
+      "name": "ĐẠI HỌC VINH"
+    },
+    {
+      "id": 40,
+      "name": "HÀ NỘI"
+    },
+    {
+      "id": 41,
+      "name": "NGHỆ AN"
+    },
+    {
+      "id": 42,
+      "name": "THANH HÓA"
+    },
+    {
+      "id": 43,
+      "name": "TRẺ"
+    },
+    {
+      "id": 44,
+      "name": "TỔNG HỢP THÀNH PHỐ HỒ CHÍ MINH"
+    },
+    {
+      "id": 45,
+      "name": "VĂN HÓA- VĂN NGHỆ THÀNH PHỐ HỒ CHÍ MINH"
+    },
+    {
+      "id": 46,
+      "name": "ĐÀ NẴNG"
+    },
+    {
+      "id": 47,
+      "name": "ĐỒNG NAI"
+    },
+    {
+      "id": 48,
+      "name": "HARPER COLLINS"
+    },
+    {
+      "id": 49,
+      "name": "STERLING PUBLISHING CO INC"
+    },
+    {
+      "id": 50,
+      "name": "RANDOM HOUSE"
+    },
+    {
+      "id": 51,
+      "name": "EMBER"
+    },
+    {
+      "id": 52,
+      "name": "PENGUIN GROUP"
+    },
+    {
+      "id": 53,
+      "name": "PEARSON"
+    },
+    {
+      "id": 54,
+      "name": "LAKE PRESS"
+    },
+    {
+      "id": 55,
+      "name": "OXFORD UNIVERSITY PRESS"
+    },
+    {
+      "id": 56,
+      "name": "MACMILLAN"
+    },
+    {
+      "id": 57,
+      "name": "MCGRAW-HILL"
+    },
+    {
+      "id": 58,
+      "name": "JIMMY PATTERSON"
+    },
+    {
+      "id": 59,
+      "name": "DISNEY-HYPERION"
+    },
+    {
+      "id": 60,
+      "name": "NATIONAL GEOGRAPHIC"
+    },
+    {
+      "id": 61,
+      "name": "MARVEL"
+    },
+    {
+      "id": 62,
+      "name": "SCHOLASTIC"
+    },
+    {
+      "id": 63,
+      "name": "POINT"
+    },
+    {
+      "id": 64,
+      "name": "CENGAGE "
+    },
+    {
+      "id": 65,
+      "name": "CAMBRIDGE"
+    }
+  ]

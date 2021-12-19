@@ -1,0 +1,70 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+{{ super() }}
+
+{% if current_user.is_authenticated %}
+
+<!-- Content Header (Page header) -->
+
+<section class="content">
+  <!-- Small boxes (Stat box) -->
+  {% if err_msg %}
+  <div class="alert alert-danger">
+      {{ err_msg }}
+  </div>
+  {% endif %}
+  <form action="">
+    <div class="form-group" style="display:flex;">
+        <input type="text" class="form-control" name="kw" placeholder="Import book" style="width: 340px;
+        margin-right: 15px;"/>
+        <input type="submit" value="Search" class="btn btn-info" style="width:99px" />
+    </div>
+  </form> 
+  <form>
+    <label for="cars" style="width:100px;">Book:</label>
+    <select name="book" id="cars" style="max-width:617px; height: 30px;">
+      {% for b in book %}
+      <option value="{{b.id}}">{{ b.name }}</option>
+      {% endfor %}
+    </select>
+    <br><br>
+    <div>
+      <label for="count" style="width:100px;">Quantity:</label>
+      <input type="text" placeholder="Import quantity" id="count" name="count" style="width:235px; height: 30px; margin-right: 15px;">
+      <input type="submit" value="Add Book" class="btn btn-danger">
+    </div>
+    <br>
+  </form>
+  <table class="table">
+      <tr>
+          <th>Book name</th>
+          <th>Category</th>
+          <th>Author</th>
+          <th>Quantity</th>
+          <th>Date update</th>
+      </tr>
+      {% for i in imports -%}
+      {% for b in books %}
+        <tr>
+          {% if b.id == i.book_id %}
+            <td style="max-width: 370px;">{{ b.name }}</td>
+            <td>{{ b.category }}</td>
+            <td>{{ b.author }}</td>
+            <td>{{ i.quantities }}</td>
+            <td>{{ i.update_date }}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+      {% endfor %}
+  </table>
+</section>
+<!-- /.content -->
+{% else %}
+
+{% include 'admin/login-admin.html' %}
+
+
+{% endif %}
+
+
+{% endblock body %}

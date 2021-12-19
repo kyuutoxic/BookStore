@@ -1,0 +1,218 @@
+ [
+    {
+      "id": 1,
+      "name": "THIẾU NHI"
+    },
+    {
+      "id": 2,
+      "name": "GIÁO KHOA - THAM KHẢO"
+    },
+    {
+      "id": 3,
+      "name": "VĂN HỌC"
+    },
+    {
+      "id": 4,
+      "name": "TÂM LÝ - KỸ NĂNG SỐNG"
+    },
+    {
+      "id": 5,
+      "name": "MANGA - COMIC"
+    },
+    {
+      "id": 6,
+      "name": "SÁCH HỌC NGOẠI NGỮ"
+    },
+    {
+      "id": 7,
+      "name": "KINH TẾ"
+    },
+    {
+      "id": 8,
+      "name": "KHOA HỌC KỸ THUẬT"
+    },
+    {
+      "id": 9,
+      "name": "LỊCH SỬ - ĐỊA LÝ - TÔN GIÁO"
+    },
+    {
+      "id": 10,
+      "name": "NUÔI DẠY CON"
+    },
+    {
+      "id": 11,
+      "name": "CHÍNH TRỊ - PHÁP LÝ - TRIẾT HỌC"
+    },
+    {
+      "id": 12,
+      "name": "NỮ CÔNG GIA CHÁNH"
+    },
+    {
+      "id": 13,
+      "name": "TIỂU SỬ HỒI KÝ"
+    },
+    {
+      "id": 14,
+      "name": "PHONG THỦY - KINH DỊCH"
+    },
+    {
+      "id": 15,
+      "name": "VĂN HÓA - NGHỆ THUẬT - DU LỊCH"
+    },
+    {
+      "id": 16,
+      "name": "TỪ ĐIỂN"
+    },
+    {
+      "id": 17,
+      "name": "ÂM NHẠC - MỸ THUẬT - THỜI TRANG"
+    },
+    {
+      "id": 18,
+      "name": "THỂ DỤC THỂ THAO - GIẢI TRÍ"
+    },
+    {
+      "id": 19,
+      "name": "BÁO - TẠP CHÍ"
+    },
+    {
+      "id": 20,
+      "name": "GIÁO TRÌNH"
+    },
+    {
+      "id": 21,
+      "name": "CHILDREN'S BOOKS"
+    },
+    {
+      "id": 22,
+      "name": "DICTIONARIES & LANGUAGES"
+    },
+    {
+      "id": 23,
+      "name": "OTHER LANGUAGES"
+    },
+    {
+      "id": 24,
+      "name": "FICTION"
+    },
+    {
+      "id": 25,
+      "name": "BUSINESS, FINANCE & MANAGEMENT"
+    },
+    {
+      "id": 26,
+      "name": "PERSONAL DEVELOPMENT"
+    },
+    {
+      "id": 27,
+      "name": "BIOGRAPHY"
+    },
+    {
+      "id": 28,
+      "name": "EDUCATION & REFERENCE"
+    },
+    {
+      "id": 29,
+      "name": "SOCIETY & SOCIAL SCIENCES"
+    },
+    {
+      "id": 30,
+      "name": "HEALTH"
+    },
+    {
+      "id": 31,
+      "name": "FOOD & DRINK"
+    },
+    {
+      "id": 32,
+      "name": "SCIENCE & GEOGRAPHY"
+    },
+    {
+      "id": 33,
+      "name": "MIND, BODY & SPIRIT"
+    },
+    {
+      "id": 34,
+      "name": "TRAVEL & HOLIDAY GUIDES"
+    },
+    {
+      "id": 35,
+      "name": "ART & PHOTOGRAPHY"
+    },
+    {
+      "id": 36,
+      "name": "POETRY & DRAMA"
+    },
+    {
+      "id": 37,
+      "name": "MEDICAL"
+    },
+    {
+      "id": 38,
+      "name": "HISTORY & ARCHAEOLOGY"
+    },
+    {
+      "id": 39,
+      "name": "CRAFTS AND HOBBIES"
+    },
+    {
+      "id": 40,
+      "name": "HOME & GARDEN"
+    },
+    {
+      "id": 41,
+      "name": "RELIGION"
+    },
+    {
+      "id": 42,
+      "name": "COMPUTING"
+    },
+    {
+      "id": 43,
+      "name": "TECHNOLOGY & ENGINEERING"
+    },
+    {
+      "id": 44,
+      "name": "NATURAL HISTORY"
+    },
+    {
+      "id": 45,
+      "name": "SPORT"
+    },
+    {
+      "id": 46,
+      "name": "ENTERTAINMENT"
+    },
+    {
+      "id": 47,
+      "name": "STATIONERY"
+    },
+    {
+      "id": 48,
+      "name": "REFERENCE"
+    },
+    {
+      "id": 49,
+      "name": "GRAPHIC NOVELS, ANIME & MANGA"
+    },
+    {
+      "id": 50,
+      "name": "CRIME & THRILLER"
+    },
+    {
+      "id": 51,
+      "name": "ROMANCE"
+    },
+    {
+      "id": 52,
+      "name": "HUMOUR"
+    },
+    {
+      "id": 53,
+      "name": "SCIENCE FICTION, FANTASY & HORROR"
+    },
+    {
+      "id": 54,
+      "name": "TRANSPORT"
+    }
+  ]

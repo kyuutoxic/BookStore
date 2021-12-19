@@ -1,0 +1,16 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+{{ super() }}
+
+{% if current_user.is_authenticated %}
+
+<!-- Content Header (Page header) -->
+<h1>STATS VIEW</h1>
+<!-- /.content -->
+{% else %}
+
+{% include 'admin/login-admin.html' %}
+
+{% endif %}
+
+{% endblock body %}

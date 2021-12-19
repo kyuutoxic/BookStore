@@ -1,0 +1,1407 @@
+ [
+    {
+      "id": 1,
+      "name": "TRUYỆN THIẾU NHI",
+      "parent_id": 1
+    },
+    {
+      "id": 2,
+      "name": "KIẾN THỨC BÁCH KHOA",
+      "parent_id": 1
+    },
+    {
+      "id": 3,
+      "name": "KIẾN THỨC - KỸ NĂNG SỐNG CHO TRẺ",
+      "parent_id": 1
+    },
+    {
+      "id": 4,
+      "name": "TÔ MÀU, LUYỆN CHỮ",
+      "parent_id": 1
+    },
+    {
+      "id": 5,
+      "name": "TỪ ĐIỂN THIẾU NHI",
+      "parent_id": 1
+    },
+    {
+      "id": 6,
+      "name": "FLASHCARD - THẺ HỌC THÔNG MINH",
+      "parent_id": 1
+    },
+    {
+      "id": 7,
+      "name": "TẠP CHÍ THIẾU NHI",
+      "parent_id": 1
+    },
+    {
+      "id": 8,
+      "name": "SÁCH NÓI",
+      "parent_id": 1
+    },
+    {
+      "id": 9,
+      "name": "SÁCH THAM KHẢO",
+      "parent_id": 2
+    },
+    {
+      "id": 10,
+      "name": "SÁCH GIÁO KHOA",
+      "parent_id": 2
+    },
+    {
+      "id": 11,
+      "name": "MẪU GIÁO",
+      "parent_id": 2
+    },
+    {
+      "id": 12,
+      "name": "SÁCH GIÁO VIÊN",
+      "parent_id": 2
+    },
+    {
+      "id": 13,
+      "name": "ĐẠI HỌC",
+      "parent_id": 2
+    },
+    {
+      "id": 14,
+      "name": "TIỂU THUYẾT",
+      "parent_id": 3
+    },
+    {
+      "id": 15,
+      "name": "TRUYỆN NGẮN - TẢN VĂN",
+      "parent_id": 3
+    },
+    {
+      "id": 16,
+      "name": "LIGHT NOVEL",
+      "parent_id": 3
+    },
+    {
+      "id": 17,
+      "name": "NGÔN TÌNH",
+      "parent_id": 3
+    },
+    {
+      "id": 18,
+      "name": "TRUYỆN TRINH THÁM - KIẾM HIỆP",
+      "parent_id": 3
+    },
+    {
+      "id": 19,
+      "name": "TÁC PHẨM KINH ĐIỂN",
+      "parent_id": 3
+    },
+    {
+      "id": 20,
+      "name": "HUYỀN BÍ - GIẢ TƯỞNG - KINH DỊ",
+      "parent_id": 3
+    },
+    {
+      "id": 21,
+      "name": "THƠ CA, TỤC NGỮ, CA DAO, THÀNH NGỮ",
+      "parent_id": 3
+    },
+    {
+      "id": 22,
+      "name": "PHÓNG SỰ - KÝ SỰ - PHÊ BÌNH VĂN HỌC",
+      "parent_id": 3
+    },
+    {
+      "id": 23,
+      "name": "TÁC GIẢ - TÁC PHẨM",
+      "parent_id": 3
+    },
+    {
+      "id": 24,
+      "name": "12 CUNG HOÀNG ĐẠO",
+      "parent_id": 3
+    },
+    {
+      "id": 25,
+      "name": "DU KÝ",
+      "parent_id": 3
+    },
+    {
+      "id": 26,
+      "name": "TUỔI TEEN",
+      "parent_id": 3
+    },
+    {
+      "id": 27,
+      "name": "HÀI HƯỚC - TRUYỆN CƯỜI",
+      "parent_id": 3
+    },
+    {
+      "id": 28,
+      "name": "SÁCH ẢNH",
+      "parent_id": 3
+    },
+    {
+      "id": 29,
+      "name": "THỂ LOẠI KHÁC",
+      "parent_id": 3
+    },
+    {
+      "id": 30,
+      "name": "SÁCH TÔ MÀU DÀNH CHO NGƯỜI LỚN",
+      "parent_id": 3
+    },
+    {
+      "id": 31,
+      "name": "KỸ NĂNG SỐNG",
+      "parent_id": 4
+    },
+    {
+      "id": 32,
+      "name": "SÁCH CHO TUỔI MỚI LỚN",
+      "parent_id": 4
+    },
+    {
+      "id": 33,
+      "name": "TÂM LÝ",
+      "parent_id": 4
+    },
+    {
+      "id": 34,
+      "name": "RÈN LUYỆN NHÂN CÁCH",
+      "parent_id": 4
+    },
+    {
+      "id": 35,
+      "name": "CHICKEN SOUP - HẠT GIỐNG TÂM HỒN",
+      "parent_id": 4
+    },
+    {
+      "id": 36,
+      "name": "MANGA",
+      "parent_id": 5
+    },
+    {
+      "id": 37,
+      "name": "COMIC - TRUYỆN TRANH",
+      "parent_id": 5
+    },
+    {
+      "id": 38,
+      "name": "TIẾNG ANH",
+      "parent_id": 6
+    },
+    {
+      "id": 39,
+      "name": "TIẾNG NHẬT",
+      "parent_id": 6
+    },
+    {
+      "id": 40,
+      "name": "TIẾNG HOA",
+      "parent_id": 6
+    },
+    {
+      "id": 41,
+      "name": "TIẾNG HÀN",
+      "parent_id": 6
+    },
+    {
+      "id": 42,
+      "name": "TIẾNG VIỆT CHO NGƯỜI NƯỚC NGOÀI",
+      "parent_id": 6
+    },
+    {
+      "id": 43,
+      "name": "TIẾNG PHÁP",
+      "parent_id": 6
+    },
+    {
+      "id": 44,
+      "name": "TIẾNG ĐỨC",
+      "parent_id": 6
+    },
+    {
+      "id": 45,
+      "name": "NGOẠI NGỮ KHÁC",
+      "parent_id": 6
+    },
+    {
+      "id": 46,
+      "name": "FLASHCARD",
+      "parent_id": 6
+    },
+    {
+      "id": 47,
+      "name": "QUẢN TRỊ - LÃNH ĐẠO",
+      "parent_id": 7
+    },
+    {
+      "id": 48,
+      "name": "NHÂN VẬT - BÀI HỌC KINH DOANH",
+      "parent_id": 7
+    },
+    {
+      "id": 49,
+      "name": "MARKETING - BÁN HÀNG",
+      "parent_id": 7
+    },
+    {
+      "id": 50,
+      "name": "PHÂN TÍCH KINH TẾ",
+      "parent_id": 7
+    },
+    {
+      "id": 51,
+      "name": "KHỞI NGHIỆP - LÀM GIÀU",
+      "parent_id": 7
+    },
+    {
+      "id": 52,
+      "name": "TÀI CHÍNH - NGÂN HÀNG",
+      "parent_id": 7
+    },
+    {
+      "id": 53,
+      "name": "CHỨNG KHOÁN - BẤT ĐỘNG SẢN - ĐẦU TƯ",
+      "parent_id": 7
+    },
+    {
+      "id": 54,
+      "name": "KẾ TOÁN - KIỂM TOÁN - THUẾ",
+      "parent_id": 7
+    },
+    {
+      "id": 55,
+      "name": "NHÂN SỰ - VIỆC LÀM",
+      "parent_id": 7
+    },
+    {
+      "id": 56,
+      "name": "COMBO KINH TẾ",
+      "parent_id": 7
+    },
+    {
+      "id": 57,
+      "name": "Y HỌC",
+      "parent_id": 8
+    },
+    {
+      "id": 58,
+      "name": "KHOA HỌC KHÁC",
+      "parent_id": 8
+    },
+    {
+      "id": 59,
+      "name": "TIN HỌC",
+      "parent_id": 8
+    },
+    {
+      "id": 60,
+      "name": "NÔNG, LÂM, NGƯ NGHIỆP",
+      "parent_id": 8
+    },
+    {
+      "id": 61,
+      "name": "GIÁO DỤC",
+      "parent_id": 8
+    },
+    {
+      "id": 62,
+      "name": "KHOA HỌC VŨ TRỤ",
+      "parent_id": 8
+    },
+    {
+      "id": 63,
+      "name": "ĐIỆN, ĐIỆN TỬ",
+      "parent_id": 8
+    },
+    {
+      "id": 64,
+      "name": "KIẾN TRÚC, XÂY DỰNG",
+      "parent_id": 8
+    },
+    {
+      "id": 65,
+      "name": "TOÁN HỌC",
+      "parent_id": 8
+    },
+    {
+      "id": 66,
+      "name": "MÔI TRƯỜNG, KHOÁNG SẢN, HÓA CHẤT",
+      "parent_id": 8
+    },
+    {
+      "id": 67,
+      "name": "CƠ KHÍ",
+      "parent_id": 8
+    },
+    {
+      "id": 68,
+      "name": "LỊCH SỬ",
+      "parent_id": 9
+    },
+    {
+      "id": 69,
+      "name": "TÔN GIÁO",
+      "parent_id": 9
+    },
+    {
+      "id": 70,
+      "name": "ĐỊA LÝ",
+      "parent_id": 9
+    },
+    {
+      "id": 71,
+      "name": "CẨM NANG LÀM CHA MẸ",
+      "parent_id": 10
+    },
+    {
+      "id": 72,
+      "name": "PHÁT TRIỂN KỸ NĂNG - TRÍ TUỆ CHO TRẺ",
+      "parent_id": 10
+    },
+    {
+      "id": 73,
+      "name": "PHƯƠNG PHÁP GIÁO DỤC TRẺ CÁC NƯỚC",
+      "parent_id": 10
+    },
+    {
+      "id": 74,
+      "name": "DINH DƯỠNG - SỨC KHỎE CHO TRẺ",
+      "parent_id": 10
+    },
+    {
+      "id": 75,
+      "name": "DÀNH CHO MẸ BẦU",
+      "parent_id": 10
+    },
+    {
+      "id": 76,
+      "name": "GIÁO DỤC TRẺ TUỔI TEEN",
+      "parent_id": 10
+    },
+    {
+      "id": 77,
+      "name": "LUẬT - VĂN BẢN DƯỚI LUẬT",
+      "parent_id": 11
+    },
+    {
+      "id": 78,
+      "name": "TRIẾT HỌC- LÝ LUẬN CHÍNH TRỊ",
+      "parent_id": 11
+    },
+    {
+      "id": 79,
+      "name": "NHÂN VẬT VÀ SỰ KIỆN",
+      "parent_id": 11
+    },
+    {
+      "id": 80,
+      "name": "ĐỘI - ĐOÀN - ĐẢNG",
+      "parent_id": 11
+    },
+    {
+      "id": 81,
+      "name": "VĂN KIỆN",
+      "parent_id": 11
+    },
+    {
+      "id": 82,
+      "name": "NẤU ĂN",
+      "parent_id": 12
+    },
+    {
+      "id": 83,
+      "name": "MÓN ĂN BÀI THUỐC",
+      "parent_id": 12
+    },
+    {
+      "id": 84,
+      "name": "KHÉO TAY",
+      "parent_id": 12
+    },
+    {
+      "id": 85,
+      "name": "LÀM ĐẸP",
+      "parent_id": 12
+    },
+    {
+      "id": 86,
+      "name": "MẸO VẶT - CẨM NANG",
+      "parent_id": 12
+    },
+    {
+      "id": 87,
+      "name": "CÂU CHUYỆN CUỘC ĐỜI",
+      "parent_id": 13
+    },
+    {
+      "id": 88,
+      "name": "NGHỆ THUẬT - GIẢI TRÍ",
+      "parent_id": 13
+    },
+    {
+      "id": 89,
+      "name": "LỊCH SỬ",
+      "parent_id": 13
+    },
+    {
+      "id": 90,
+      "name": "CHÍNH TRỊ",
+      "parent_id": 13
+    },
+    {
+      "id": 91,
+      "name": "KINH TẾ",
+      "parent_id": 13
+    },
+    {
+      "id": 92,
+      "name": "THỂ THAO",
+      "parent_id": 13
+    },
+    {
+      "id": 93,
+      "name": "TỪ ĐIỂN TIẾNG ANH-ANH, ANH-VIỆT, VIỆT ANH",
+      "parent_id": 16
+    },
+    {
+      "id": 94,
+      "name": "TỪ ĐIỂN TIẾNG VIỆT",
+      "parent_id": 16
+    },
+    {
+      "id": 95,
+      "name": "TỪ ĐIỂN TIẾNG NHẬT - VIỆT, VIỆT - NHẬT",
+      "parent_id": 16
+    },
+    {
+      "id": 96,
+      "name": "TỪ ĐIỂN HÁN - VIỆT",
+      "parent_id": 16
+    },
+    {
+      "id": 97,
+      "name": "TỪ ĐIỂN CHUYÊN NGÀNH",
+      "parent_id": 16
+    },
+    {
+      "id": 98,
+      "name": "TỪ ĐIỂN TIẾNG HÀN - VIỆT, VIỆT - HÀN",
+      "parent_id": 16
+    },
+    {
+      "id": 99,
+      "name": "TỪ ĐIỂN TIẾNG PHÁP - VIỆT, VIỆT - PHÁP",
+      "parent_id": 16
+    },
+    {
+      "id": 100,
+      "name": "TỪ ĐIỂN TIẾNG ĐỨC - VIỆT, VIỆT - ĐỨC",
+      "parent_id": 16
+    },
+    {
+      "id": 101,
+      "name": "TỪ ĐIỂN KHÁC",
+      "parent_id": 16
+    },
+    {
+      "id": 102,
+      "name": "ÂM NHẠC",
+      "parent_id": 17
+    },
+    {
+      "id": 103,
+      "name": "MỸ THUẬT",
+      "parent_id": 17
+    },
+    {
+      "id": 104,
+      "name": "THỜI TRANG",
+      "parent_id": 17
+    },
+    {
+      "id": 105,
+      "name": "THỦ CÔNG - TẠO HÌNH",
+      "parent_id": 17
+    },
+    {
+      "id": 106,
+      "name": "GIÁO TRÌNH ĐH, CĐ, THCN",
+      "parent_id": 20
+    },
+    {
+      "id": 107,
+      "name": "DẠY NGHỀ",
+      "parent_id": 20
+    },
+    {
+      "id": 108,
+      "name": "PICTURE & ACTIVITY BOOKS",
+      "parent_id": 21
+    },
+    {
+      "id": 109,
+      "name": "FICTION FOR TEEN",
+      "parent_id": 21
+    },
+    {
+      "id": 110,
+      "name": "NON-FICTION",
+      "parent_id": 21
+    },
+    {
+      "id": 111,
+      "name": "EDUCATION",
+      "parent_id": 21
+    },
+    {
+      "id": 112,
+      "name": "REFERENCE",
+      "parent_id": 21
+    },
+    {
+      "id": 113,
+      "name": "SOCIETY & SOCIAL ISSUES",
+      "parent_id": 21
+    },
+    {
+      "id": 114,
+      "name": "ANNUALS, ANTHOLOGIES & POETRY",
+      "parent_id": 21
+    },
+    {
+      "id": 115,
+      "name": "CHILDREN'S STATIONERY",
+      "parent_id": 21
+    },
+    {
+      "id": 116,
+      "name": "ELT: LEARNING MATERIAL & COURSEWORK",
+      "parent_id": 22
+    },
+    {
+      "id": 117,
+      "name": "LANGUAGE TEACHING & LEARNING (OTHER THAN ELT)",
+      "parent_id": 22
+    },
+    {
+      "id": 118,
+      "name": "ELT BACKGROUND & REFERENCE MATERIAL",
+      "parent_id": 22
+    },
+    {
+      "id": 119,
+      "name": "THESAURI",
+      "parent_id": 22
+    },
+    {
+      "id": 120,
+      "name": "ELT: ENGLISH FOR SPECIFIC PURPOSES",
+      "parent_id": 22
+    },
+    {
+      "id": 121,
+      "name": "DICTIONARIES",
+      "parent_id": 22
+    },
+    {
+      "id": 122,
+      "name": "LINGUISTICS",
+      "parent_id": 22
+    },
+    {
+      "id": 123,
+      "name": "LANGUAGE: REFERENCE & GENERAL",
+      "parent_id": 22
+    },
+    {
+      "id": 124,
+      "name": "USAGE & GRAMMAR GUIDES",
+      "parent_id": 22
+    },
+    {
+      "id": 125,
+      "name": "PUBLIC SPEAKING GUIDES",
+      "parent_id": 22
+    },
+    {
+      "id": 126,
+      "name": "LANGUAGE PHRASEBOOKS",
+      "parent_id": 22
+    },
+    {
+      "id": 127,
+      "name": "JAPANESE BOOKS",
+      "parent_id": 23
+    },
+    {
+      "id": 128,
+      "name": "FRENCH BOOKS",
+      "parent_id": 23
+    },
+    {
+      "id": 129,
+      "name": "GERMAN BOOKS",
+      "parent_id": 23
+    },
+    {
+      "id": 130,
+      "name": "KOREAN BOOKS",
+      "parent_id": 23
+    },
+    {
+      "id": 131,
+      "name": "SPAIN BOOKS",
+      "parent_id": 23
+    },
+    {
+      "id": 132,
+      "name": "ROMANCE",
+      "parent_id": 24
+    },
+    {
+      "id": 133,
+      "name": "CONTEMPORARY FICTION",
+      "parent_id": 24
+    },
+    {
+      "id": 134,
+      "name": "FANTASY",
+      "parent_id": 24
+    },
+    {
+      "id": 135,
+      "name": "THRILLERS",
+      "parent_id": 24
+    },
+    {
+      "id": 136,
+      "name": "SCIENCE FICTION",
+      "parent_id": 24
+    },
+    {
+      "id": 137,
+      "name": "CRIME",
+      "parent_id": 24
+    },
+    {
+      "id": 138,
+      "name": "CLASSICS",
+      "parent_id": 24
+    },
+    {
+      "id": 139,
+      "name": "HISTORICAL FICTION",
+      "parent_id": 24
+    },
+    {
+      "id": 140,
+      "name": "GRAPHIC NOVELS, ANIME & MANGA",
+      "parent_id": 24
+    },
+    {
+      "id": 141,
+      "name": "ADVENTURE",
+      "parent_id": 24
+    },
+    {
+      "id": 142,
+      "name": "HORROR",
+      "parent_id": 24
+    },
+    {
+      "id": 143,
+      "name": "FICTION: SPECIAL FEATURES",
+      "parent_id": 24
+    },
+    {
+      "id": 144,
+      "name": "SAGAS",
+      "parent_id": 24
+    },
+    {
+      "id": 145,
+      "name": "RELIGIOUS & SPIRITUAL FICTION",
+      "parent_id": 24
+    },
+    {
+      "id": 146,
+      "name": "EROTIC FICTION",
+      "parent_id": 24
+    },
+    {
+      "id": 147,
+      "name": "MYTH & LEGEND TOLD AS FICTION",
+      "parent_id": 24
+    },
+    {
+      "id": 148,
+      "name": "BUSINESS & MANAGEMENT",
+      "parent_id": 25
+    },
+    {
+      "id": 149,
+      "name": "ECONOMICS",
+      "parent_id": 25
+    },
+    {
+      "id": 150,
+      "name": "INDUSTRY & INDUSTRIAL STUDIES",
+      "parent_id": 25
+    },
+    {
+      "id": 151,
+      "name": "FINANCE & ACCOUNTING",
+      "parent_id": 25
+    },
+    {
+      "id": 152,
+      "name": "LAW",
+      "parent_id": 25
+    },
+    {
+      "id": 153,
+      "name": "POPULAR PSYCHOLOGY",
+      "parent_id": 26
+    },
+    {
+      "id": 154,
+      "name": "ADVICE ON CAREERS & ACHIEVING SUCCESS",
+      "parent_id": 26
+    },
+    {
+      "id": 155,
+      "name": "PERSONAL FINANCE",
+      "parent_id": 26
+    },
+    {
+      "id": 156,
+      "name": "ADULT LITERACY GUIDES & HANDBOOKS",
+      "parent_id": 26
+    },
+    {
+      "id": 157,
+      "name": "ADVICE ON EDUCATION",
+      "parent_id": 26
+    },
+    {
+      "id": 158,
+      "name": "CONSUMER ADVICE",
+      "parent_id": 26
+    },
+    {
+      "id": 159,
+      "name": "SELF-SUFFICIENCY",
+      "parent_id": 26
+    },
+    {
+      "id": 160,
+      "name": "ADULT NUMERACY GUIDES & HANDBOOKS",
+      "parent_id": 26
+    },
+    {
+      "id": 161,
+      "name": "BIOGRAPHY: GENERAL",
+      "parent_id": 27
+    },
+    {
+      "id": 162,
+      "name": "MEMOIRS",
+      "parent_id": 27
+    },
+    {
+      "id": 163,
+      "name": "TRUE STORIES",
+      "parent_id": 27
+    },
+    {
+      "id": 164,
+      "name": "SCHOOLS",
+      "parent_id": 28
+    },
+    {
+      "id": 165,
+      "name": "HIGHER & FURTHER EDUCATION, TERTIARY EDUCATION",
+      "parent_id": 28
+    },
+    {
+      "id": 166,
+      "name": "TEACHING RESOURCES & EDUCATION",
+      "parent_id": 28
+    },
+    {
+      "id": 167,
+      "name": "FOREIGN LANGUAGES",
+      "parent_id": 28
+    },
+    {
+      "id": 168,
+      "name": "PHILOSOPHY",
+      "parent_id": 29
+    },
+    {
+      "id": 169,
+      "name": "ECONOMICS",
+      "parent_id": 29
+    },
+    {
+      "id": 170,
+      "name": "INTERDISCIPLINARY STUDIES",
+      "parent_id": 29
+    },
+    {
+      "id": 171,
+      "name": "ADVICE ON PARENTING",
+      "parent_id": 30
+    },
+    {
+      "id": 172,
+      "name": "FITNESS & DIET",
+      "parent_id": 30
+    },
+    {
+      "id": 173,
+      "name": "COPING WITH PERSONAL PROBLEMS",
+      "parent_id": 30
+    },
+    {
+      "id": 174,
+      "name": "FAMILY & RELATIONSHIPS",
+      "parent_id": 30
+    },
+    {
+      "id": 175,
+      "name": "POPULAR MEDICINE & HEALTH",
+      "parent_id": 30
+    },
+    {
+      "id": 176,
+      "name": "HEALTH & WHOLEFOOD COOKERY",
+      "parent_id": 31
+    },
+    {
+      "id": 177,
+      "name": "COOKERY DISHES & COURSES",
+      "parent_id": 31
+    },
+    {
+      "id": 178,
+      "name": "NATIONAL & REGIONAL CUISINE",
+      "parent_id": 31
+    },
+    {
+      "id": 179,
+      "name": "GENERAL COOKERY",
+      "parent_id": 31
+    },
+    {
+      "id": 180,
+      "name": "COOKERY BY INGREDIENT",
+      "parent_id": 31
+    },
+    {
+      "id": 181,
+      "name": "BEVERAGES",
+      "parent_id": 31
+    },
+    {
+      "id": 182,
+      "name": "COOKING WITH SPECIFIC GADGETS",
+      "parent_id": 31
+    },
+    {
+      "id": 183,
+      "name": "QUICK & EASY COOKING",
+      "parent_id": 31
+    },
+    {
+      "id": 184,
+      "name": "VEGETARIAN COOKERY",
+      "parent_id": 31
+    },
+    {
+      "id": 185,
+      "name": "COOKING FOR-WITH CHILDREN",
+      "parent_id": 31
+    },
+    {
+      "id": 186,
+      "name": "CELEBRITY CHEFS",
+      "parent_id": 31
+    },
+    {
+      "id": 187,
+      "name": "SCIENCE: GENERAL ISSUES",
+      "parent_id": 32
+    },
+    {
+      "id": 188,
+      "name": "BIOLOGY, LIFE SCIENCES",
+      "parent_id": 32
+    },
+    {
+      "id": 189,
+      "name": "EARTH SCIENCES, GEOGRAPHY, ENVIRONMENT, PLANNING",
+      "parent_id": 32
+    },
+    {
+      "id": 190,
+      "name": "ASTRONOMY, SPACE & TIME",
+      "parent_id": 32
+    },
+    {
+      "id": 191,
+      "name": "MATHEMATICS",
+      "parent_id": 32
+    },
+    {
+      "id": 192,
+      "name": "CHEMISTRY",
+      "parent_id": 32
+    },
+    {
+      "id": 193,
+      "name": "PHYSICS",
+      "parent_id": 32
+    },
+    {
+      "id": 194,
+      "name": "MIND, BODY, SPIRIT: THOUGHT & PRACTICE",
+      "parent_id": 33
+    },
+    {
+      "id": 195,
+      "name": "MIND, BODY, SPIRIT: MEDITATION & VISUALISATION",
+      "parent_id": 33
+    },
+    {
+      "id": 196,
+      "name": "COMPLEMENTARY THERAPIES, HEALING & HEALTH",
+      "parent_id": 33
+    },
+    {
+      "id": 197,
+      "name": "UNEXPLAINED PHENOMENA - THE PARANORMAL",
+      "parent_id": 33
+    },
+    {
+      "id": 198,
+      "name": "PSYCHIC POWERS & PSYCHIC PHENOMENA",
+      "parent_id": 33
+    },
+    {
+      "id": 199,
+      "name": "MYSTICISM, MAGIC & RITUAL",
+      "parent_id": 33
+    },
+    {
+      "id": 200,
+      "name": "GUIDEBOOKS",
+      "parent_id": 34
+    },
+    {
+      "id": 201,
+      "name": "TRAVEL MAPS & ATLASES",
+      "parent_id": 34
+    },
+    {
+      "id": 202,
+      "name": "TRAVEL WRITING",
+      "parent_id": 34
+    },
+    {
+      "id": 203,
+      "name": "TIPS & ADVICE",
+      "parent_id": 34
+    },
+    {
+      "id": 204,
+      "name": "LANGUAGE PHRASEBOOKS",
+      "parent_id": 34
+    },
+    {
+      "id": 205,
+      "name": "ARCHITECTURE",
+      "parent_id": 35
+    },
+    {
+      "id": 206,
+      "name": "PHOTOGRAPHY",
+      "parent_id": 35
+    },
+    {
+      "id": 207,
+      "name": "ENTERTAINMENT",
+      "parent_id": 35
+    },
+    {
+      "id": 208,
+      "name": "MUSIC",
+      "parent_id": 35
+    },
+    {
+      "id": 209,
+      "name": "INDUSTRIAL - COMMERCIAL ART & DESIGN",
+      "parent_id": 35
+    },
+    {
+      "id": 210,
+      "name": "ART TREATMENTS & SUBJECTS",
+      "parent_id": 35
+    },
+    {
+      "id": 211,
+      "name": "ART HISTORY",
+      "parent_id": 35
+    },
+    {
+      "id": 212,
+      "name": "ART FORMS",
+      "parent_id": 35
+    },
+    {
+      "id": 213,
+      "name": "PLAYS, PLAYSCRIPTS",
+      "parent_id": 36
+    },
+    {
+      "id": 214,
+      "name": "POETRY",
+      "parent_id": 36
+    },
+    {
+      "id": 215,
+      "name": "LITERATURE: HISTORY & CRITICISM",
+      "parent_id": 36
+    },
+    {
+      "id": 216,
+      "name": "OTHER BRANCHES OF MEDICINE",
+      "parent_id": 37
+    },
+    {
+      "id": 217,
+      "name": "CLINICAL & INTERNAL MEDICINE",
+      "parent_id": 37
+    },
+    {
+      "id": 218,
+      "name": "NURSING & ANCILLARY SERVICES",
+      "parent_id": 37
+    },
+    {
+      "id": 219,
+      "name": "MEDICAL STUDY & REVISION GUIDES & REFERENCE MATERIAL",
+      "parent_id": 37
+    },
+    {
+      "id": 220,
+      "name": "MEDICINE",
+      "parent_id": 37
+    },
+    {
+      "id": 221,
+      "name": "SURGERY",
+      "parent_id": 37
+    },
+    {
+      "id": 222,
+      "name": "HISTORY: SPECIFIC EVENTS & TOPICS",
+      "parent_id": 38
+    },
+    {
+      "id": 223,
+      "name": "HOBBIEAS & GAMES",
+      "parent_id": 39
+    },
+    {
+      "id": 224,
+      "name": "BOOK & PAPER CRAFTS",
+      "parent_id": 39
+    },
+    {
+      "id": 225,
+      "name": "TOYS: MAKING & DECORATING",
+      "parent_id": 39
+    },
+    {
+      "id": 226,
+      "name": "NEEDLEWORK & FABRIC CRAFTS",
+      "parent_id": 39
+    },
+    {
+      "id": 227,
+      "name": "JEWELLERY & BEADCRAFT",
+      "parent_id": 39
+    },
+    {
+      "id": 228,
+      "name": "DECORATIVE FINISHES & SURFACES",
+      "parent_id": 39
+    },
+    {
+      "id": 229,
+      "name": "STYLE GUIDES",
+      "parent_id": 40
+    },
+    {
+      "id": 230,
+      "name": "GARDENING",
+      "parent_id": 40
+    },
+    {
+      "id": 231,
+      "name": "ANTIQUES & COLLECTABLES",
+      "parent_id": 40
+    },
+    {
+      "id": 232,
+      "name": "DIY: GENERAL",
+      "parent_id": 40
+    },
+    {
+      "id": 233,
+      "name": "CHRISTIANITY",
+      "parent_id": 41
+    },
+    {
+      "id": 234,
+      "name": "ALTERNATIVE BELIEF SYSTEMS",
+      "parent_id": 41
+    },
+    {
+      "id": 235,
+      "name": "ASPECTS OF RELIGION (NON-CHRISTIAN)",
+      "parent_id": 41
+    },
+    {
+      "id": 236,
+      "name": "OTHER NON-CHRISTIAN RELIGIONS",
+      "parent_id": 41
+    },
+    {
+      "id": 237,
+      "name": "RELIGION: GENERAL",
+      "parent_id": 41
+    },
+    {
+      "id": 238,
+      "name": "BUDDHISM",
+      "parent_id": 41
+    },
+    {
+      "id": 239,
+      "name": "DIGITAL LIFESTYLE",
+      "parent_id": 42
+    },
+    {
+      "id": 240,
+      "name": "COMPUTER SCIENCE",
+      "parent_id": 42
+    },
+    {
+      "id": 241,
+      "name": "COMPUTER PROGRAMMING - SOFTWARE DEVELOPMENT",
+      "parent_id": 42
+    },
+    {
+      "id": 242,
+      "name": "COMPUTER NETWORKING & COMMUNICATIONS",
+      "parent_id": 42
+    },
+    {
+      "id": 243,
+      "name": "COMPUTING: GENERAL",
+      "parent_id": 42
+    },
+    {
+      "id": 244,
+      "name": "GAMES STRATEGY GUIDES",
+      "parent_id": 42
+    },
+    {
+      "id": 245,
+      "name": "GRAPHICAL & DIGITAL MEDIA APPLICATIONS",
+      "parent_id": 42
+    },
+    {
+      "id": 246,
+      "name": "TECHNOLOGY: GENERAL ISSUES",
+      "parent_id": 43
+    },
+    {
+      "id": 247,
+      "name": "ENVIRONMENTAL SCIENCE, ENGINEERING & TECHNOLOGY",
+      "parent_id": 43
+    },
+    {
+      "id": 248,
+      "name": "OTHER TECHNOLOGIES & APPLIED SCIENCES",
+      "parent_id": 43
+    },
+    {
+      "id": 249,
+      "name": "ENERGY TECHNOLOGY & ENGINEERING",
+      "parent_id": 43
+    },
+    {
+      "id": 250,
+      "name": "INDUSTRIAL CHEMISTRY & MANUFACTURING TECHNOLOGIES",
+      "parent_id": 43
+    },
+    {
+      "id": 251,
+      "name": "TRANSPORT TECHNOLOGY & TRADES",
+      "parent_id": 43
+    },
+    {
+      "id": 252,
+      "name": "ELECTRONICS & COMMUNICATIONS ENGINEERING",
+      "parent_id": 43
+    },
+    {
+      "id": 253,
+      "name": "BIOCHEMICAL ENGINEERING",
+      "parent_id": 43
+    },
+    {
+      "id": 254,
+      "name": "WILDLIFE: GENERAL INTEREST",
+      "parent_id": 44
+    },
+    {
+      "id": 255,
+      "name": "DOMESTIC ANIMALS & PETS",
+      "parent_id": 44
+    },
+    {
+      "id": 256,
+      "name": "EARTH: NATURAL HISTORY GENERAL",
+      "parent_id": 44
+    },
+    {
+      "id": 257,
+      "name": "POPULAR ASTRONOMY & SPACE",
+      "parent_id": 44
+    },
+    {
+      "id": 258,
+      "name": "TREES, WILDFLOWERS & PLANTS",
+      "parent_id": 44
+    },
+    {
+      "id": 259,
+      "name": "BALL GAMES",
+      "parent_id": 45
+    },
+    {
+      "id": 260,
+      "name": "ACTIVE OUTDOOR PURSUITS",
+      "parent_id": 45
+    },
+    {
+      "id": 261,
+      "name": "COMBAT SPORTS & SELF-DEFENCE",
+      "parent_id": 45
+    },
+    {
+      "id": 262,
+      "name": "WINTER SPORTS",
+      "parent_id": 45
+    },
+    {
+      "id": 263,
+      "name": "TRAINING & COACHING",
+      "parent_id": 45
+    },
+    {
+      "id": 264,
+      "name": "FIELD SPORTS: FISHING, HUNTING, SHOOTING",
+      "parent_id": 45
+    },
+    {
+      "id": 265,
+      "name": "FILMS, CINEMA",
+      "parent_id": 46
+    },
+    {
+      "id": 266,
+      "name": "TELEVISION",
+      "parent_id": 46
+    },
+    {
+      "id": 267,
+      "name": "MUSIC",
+      "parent_id": 46
+    },
+    {
+      "id": 268,
+      "name": "INDIVIDUAL ACTORS & PERFORMERS",
+      "parent_id": 46
+    },
+    {
+      "id": 269,
+      "name": "MISCELLANEOUS ITEMS",
+      "parent_id": 47
+    },
+    {
+      "id": 270,
+      "name": "ENCYCLOPAEDIAS & REFERENCE WORKS",
+      "parent_id": 48
+    },
+    {
+      "id": 271,
+      "name": "RESEARCH & INFORMATION: GENERAL",
+      "parent_id": 48
+    },
+    {
+      "id": 272,
+      "name": "GRAPHIC NOVELS: SUPERHEROES",
+      "parent_id": 49
+    },
+    {
+      "id": 273,
+      "name": "GRAPHIC NOVELS: LITERARY & MEMOIRS",
+      "parent_id": 49
+    },
+    {
+      "id": 274,
+      "name": "GRAPHIC NOVELS: TRUE STORIES & NON-FICTION",
+      "parent_id": 49
+    },
+    {
+      "id": 275,
+      "name": "THRILLERS",
+      "parent_id": 50
+    },
+    {
+      "id": 276,
+      "name": "ADULT & CONTEMPORARY ROMANCE",
+      "parent_id": 51
+    },
+    {
+      "id": 277,
+      "name": "JOKES & RIDDLES",
+      "parent_id": 52
+    },
+    {
+      "id": 278,
+      "name": "CARTOONS & COMIC STRIPS",
+      "parent_id": 52
+    },
+    {
+      "id": 279,
+      "name": "TV TIE-IN HUMOUR",
+      "parent_id": 52
+    },
+    {
+      "id": 280,
+      "name": "SCIENCE FICTION",
+      "parent_id": 53
+    },
+    {
+      "id": 281,
+      "name": "ROAD & MOTOR VEHICLES",
+      "parent_id": 54
+    }
+  ]
