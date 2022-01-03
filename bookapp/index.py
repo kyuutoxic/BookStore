@@ -7,6 +7,14 @@ import utils
 import cloudinary
 
 
+@app.context_processor
+def common_response():
+    return {
+        'categories': utils.read_parent_category(),
+        'books': utils.read_books(),
+        'cart_stats': utils.cart_stats(session.get('cart'))
+    }
+
 
 @app.route('/admin-login', methods=['post'])
 def admin_login():
@@ -26,18 +34,23 @@ def user_load(user_id):
     return utils.get_user_by_id(user_id=user_id)
 
 
-@app.context_processor
-def common_response():
-    return {
-        'categories': utils.read_parent_category(),
-        'books': utils.read_books(),
-        'cart_stats': utils.cart_stats(session.get('cart'))
-    }
-
 
 @app.route("/")
 def index():
     return render_template("index.html")
+
+
+@app.route("/products")
+def product_list():
+    # kw = request.args.get('keyword')
+    # from_price = request.args.get('from_price')
+    # to_price = request.args.get('to_price')
+    # cate_id = request.args.get('category_id')
+
+    products = utils.load_products()
+
+    return render_template('products.html',
+                           products=products)
 
 
 @app.route('/books/<int:book_id>')

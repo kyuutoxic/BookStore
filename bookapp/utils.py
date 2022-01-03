@@ -193,5 +193,9 @@ def add_receipts(cart):
         db.session.commit()
 
 
+def load_products():
+    return Book.query.all()
+
+
 
 
