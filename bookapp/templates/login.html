@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="{{ url_for('static', filename='css/register.css') }}" rel="stylesheet" />
+
+</head>
+<body>
+  {% if err_msg %}
+  <div class="alert alert-danger">
+    <h4>{{ err_msg }}</h4>
+  </div>
+  {% endif %} 
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-xl-9 mx-auto">
+          <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+            <div class="card-img-left d-none d-md-flex">
+              <!-- Background image for card set in CSS! -->
+            </div>
+            <div class="card-body p-4 p-sm-5">
+              <h5 class="card-title text-center mb-5 fw-light fs-5">Login</h5>
+              <form method="post">
+                <div class="form-floating mb-3">
+                  <label for="floatingInputUsername">User name</label>
+                  <input type="text" class="form-control" id="floatingInputUsername" placeholder="myusername" name="username" required autofocus>
+                </div>
+                <hr>
+                <div class="form-floating mb-3">
+                  <label for="floatingPassword">Password</label>
+                  <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+                </div>
+                <hr>
+                <div class="d-grid mb-2">
+                  <input type="submit" class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" value="Login">
+                </div>
+  
+                <a class="d-block text-center mt-2 small" href="{{ url_for('user_register') }}">No account? Register</a>
+  
+                <hr class="my-4">
+  
+                <div class="d-grid mb-2">
+                  <button class="btn btn-lg btn-google btn-login fw-bold text-uppercase" type="submit">
+                    <i class="fab fa-google me-2"></i> Sign up with Google
+                  </button>
+                </div>
+  
+                <div class="d-grid">
+                  <button class="btn btn-lg btn-facebook btn-login fw-bold text-uppercase" type="submit">
+                    <i class="fab fa-facebook-f me-2"></i> Sign up with Facebook
+                  </button>
+                </div>
+  
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+</html>

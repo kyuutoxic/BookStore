@@ -1,0 +1,90 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Chi tiet san pham{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/book-detail.css') }}">
+{% endblock %}
+
+{% block header %}
+{% include 'layout/header.html' %}   
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- product -->
+    <div class="product-content product-wrap clearfix product-deatil">
+        <div class="row">
+            <div class="col-md-5 col-sm-12 col-xs-12">
+                <div class="product-image item-detail">
+                    <div id="myCarousel-2" class="carousel slide">                         
+                        <div class="carousel-inner">
+                            <!-- Slide 1 -->
+                            <div class="item active">
+                                <img src="{{book.image}}" class="img-responsive" alt="{{book.image}}" />
+                            </div>                               
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
+                <h2 class="name">
+                    {{book.name}}
+                    <!-- <i class="fa fa-star fa-2x text-primary"></i>
+                    <i class="fa fa-star fa-2x text-primary"></i>
+                    <i class="fa fa-star fa-2x text-primary"></i>
+                    <i class="fa fa-star fa-2x text-primary"></i>
+                    <i class="fa fa-star fa-2x text-muted"></i> -->
+                    <!-- <span class="fa fa-2x"><h5>(109) Votes</h5></span>
+                    <a href="javascript:void(0);">109 customer reviews</a> -->
+                </h2>
+                <hr />
+                <h3 class="price-container">
+                    {{"{:,.1f}".format(book.price)}} VND
+                    <small>*includes tax</small>
+                </h3>
+                <div class="certified">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);">Delivery time<span>7 Working Days</span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Certified<span>Quality Assured</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <hr />
+                <div class="description description-tabs">
+                    <ul id="myTab">
+                        <li>Author: {{book.author}}</li>
+                        <li>Publisher: {{book.publisher}}</li>
+                        <li>Language: {{language}}</li>
+                        <li>Pages: {{book.num_pages}}</li>
+                        <li>Quantity: {{book.quantity}}</li>
+                    </ul>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ({{"{:,.1f}".format(book.price)}} VND)</a>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="btn-group pull-right">
+                            <button class="btn btn-white btn-default"><i class="fa fa-star"></i> Add to wishlist</button>
+                            <button class="btn btn-white btn-default"><i class="fa fa-envelope"></i> Contact Seller</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end product -->
+    <!-- <div>
+        <form method="post">
+            <input type="text" placeholder="Viet gi do di...." class="form-control">
+            <input type="submit" class="btn btn-danger btn-primary right" value="Gui binh luan">
+        </form>
+    </div> -->
+</div>
+{% endblock %}

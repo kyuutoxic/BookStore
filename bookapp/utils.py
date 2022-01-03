@@ -1,9 +1,10 @@
 from models import User
-from flask import request
+from flask import request, session
 import hashlib
-from models import Category, Book, ParentCategory, Import, Receipt, ReceiptDetail, Rule
+from models import Category, Book, ParentCategory, Import, Receipt, ReceiptDetail, Rule, BookLanguage
 from sqlalchemy import func
 from __init__ import db
+from flask_login import current_user
 
 
 def get_user_by_id(user_id):
@@ -112,6 +113,84 @@ def update_stock(book_id, quantity):
     book.quantity = book.quantity - quantity
     db.session.commit()
 
+
+# Client func
+def read_parent_category():
+    return ParentCategory.query.all()
+
+
+def read_books():
+    return Book.query.all()
+
+
+def get_book_by_id(book_id):
+    book = Book.query
+
+    for b in book:
+        if b.id == book_id:
+            return b
+
+
+def get_language_by_id(language_id):
+    return BookLanguage.query.get(language_id)
+
+
+def check_login(username, password):
+    if username and password:
+        password = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
+
+        return User.query.filter(User.username.__eq__(username.strip()),
+                                 User.password.__eq__(password)).first()
+
+
+def check_username(username):
+    user = User.query.all()
+    for u in user:
+        if u.username == username:
+            return False
+    return True
+    
+
+def add_user(firstname, lastname,email, username, password, **kwargs):
+    password = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
+    user = User(first_name=firstname.strip(),
+                last_name=lastname.strip(),
+                email=email.strip(),
+                username=username.strip(),
+                password=password,
+                avatar=kwargs.get('avatar'))
+
+    db.session.add(user)
+    db.session.commit()
+
+
+def cart_stats(cart):
+    total_quantity, total_amount = 0, 0
+
+    if cart:
+        for c in cart.values():
+            total_quantity += c['quantity']
+            total_amount += c['quantity'] * c['price']
+
+    return {
+        'total_quantity': total_quantity,
+        'total_amount': total_amount
+    }
+
+
+def add_receipts(cart):
+    if cart:
+        receipt = Receipt(user=current_user)
+        db.session.add(receipt)
+        db.session.commit()
+
+        for c in cart.values():
+            detail = ReceiptDetail(receipt_id=receipt.id,
+                                   book_id=c['id'],
+                                   quantity=c['quantity'])
+            db.session.add(detail)
+
+        db.session.commit()
 
 
 

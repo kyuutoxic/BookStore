@@ -1,0 +1,129 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Chi tiet san pham{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/book-detail.css') }}">
+{% endblock %}
+
+{% block header %}
+{% include 'layout/header.html' %}   
+{% endblock %}
+
+{% block content %}
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bread-inner">
+                    <ul class="bread-list">
+                        <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href="blog-single.html">Cart</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
+<!-- Shopping Cart -->
+{% if 'cart' in session and session['cart'] %}
+<div class="shopping-cart section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Shopping Summery -->
+                <table class="table shopping-summery">
+                    <thead>
+                        <tr class="main-hading">
+                            <th>PRODUCT</th>
+                            <th>NAME</th>
+                            <th class="text-center">QUANTITY</th>
+                            <th class="text-center">UNIT PRICE</th> 
+                            <th class="text-center"><i class="ti-trash remove-icon"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in session['cart'].values() %}
+                        <tr id="book{{ c.id }}" class="text-center">
+                            <td class="image" data-title="No"><img src="{{ c.image }}" alt="{{ c.name }}"></td>
+                            <td class="product-des" data-title="Description">
+                                <p class="product-name"><a href="#">{{ c.name }}</a></p>
+                            </td>
+                            <td class="qty" data-title="Qty"><!-- Input Order -->
+                                <div class="input-group">
+                                    <div class="button minus">
+                                        <button type="button" class="btn btn-primary btn-number" data-type="minus" data-field="{{ c.id }}" onclick="updateCartByButton({{ c.id }}, getValueMinus('{{ c.id }}'))">
+                                            <i class="ti-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" name="{{ c.id }}" class="input-number"  data-min="1" data-max="100" value="{{ c.quantity }}" onblur="updateCartByInput({{ c.id }}, this)" id="{{ c.id }}">
+                                    <div class="button plus">
+                                        <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="{{ c.id }}" onclick="updateCartByButton({{ c.id }}, getValuePlus('{{ c.id }}'))" >
+                                            <i class="ti-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!--/ End Input Order -->
+                            </td>
+                            <td class="total-amount" data-title="Total"><span class="total-book-amount">{{ "{:,.0f}".format(c.price) }} VND</span></td>
+                            <td class="action" data-title="Remove"><a href="#" onclick="deleteCart({{ c.id }})"><i class="ti-trash remove-icon"></i></a></td>
+                        </tr>
+                        {% endfor %}                      
+                    </tbody>
+                </table>
+                <!--/ End Shopping Summery -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <!-- Total Amount -->
+                <div class="total-amount">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-5 col-12">
+                            <div class="left">
+                                <div class="coupon">
+                                    <form action="#" target="_blank">
+                                        <input name="Coupon" placeholder="Enter Your Coupon">
+                                        <button class="btn">Apply</button>
+                                    </form>
+                                </div>
+                                <div class="checkbox">
+                                    <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Checkout with MOMO</label>
+                                </div>
+                                <div>
+                                    <i>Neu ban khong thanh toan bang momo ban se phai toi cua hang de lay sach va thanh toan tai quay</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-7 col-12">
+                            <div class="right">
+                                <ul>
+                                    <li>Total quantity<span class="cart-info">{{ cart_stats.total_quantity }}</span></li>
+                                    <li>Cart Subtotal<span id="amountId">{{ "{:,.0f}".format(cart_stats.total_amount) }} VND</span></li>
+                                    <!-- <li>You Save<span>$20.00</span></li> -->
+                                    <li class="last">You Pay<span id="amountIds">{{ "{:,.0f}".format(cart_stats.total_amount) }} VND</span></li>
+                                </ul>
+                                {% if current_user.is_authenticated %}
+                                    <div class="button5">
+                                        <a href="#" class="btn" onclick="pay()">Checkout</a>
+                                        <a href="#" class="btn">Continue shopping</a>
+                                    </div>
+                                {% else %}
+                                <a href="{{ url_for('user_login', next='cart') }}" class="text-danger">Vui long dang nhap de thanh toan</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ End Total Amount -->
+            </div>
+        </div>
+    </div>
+</div>
+<!--/ End Shopping Cart -->
+{% else %}
+<p><i>Khong co san pham trong gio!!!</i></p>
+{% endif %}
+{% endblock %}

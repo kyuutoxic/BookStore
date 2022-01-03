@@ -109,10 +109,10 @@ class Import(BaseModel):
 class Receipt(BaseModel):
     __tablename__ = 'receipt'
 
-    cus_name = Column(String(50))
+    cus_name = Column(String(50), default=None)
     created_date = Column(DateTime, default=datetime.now())
     user_id = Column(Integer, ForeignKey(User.id), nullable=False)
-    details = relationship('ReceiptDetail', backref='receipt', lazy=True)
+    # details = relationship('ReceiptDetail', backref='receipt', lazy=True)
     active = Column(Boolean, default=False)
 
 
