@@ -697,11 +697,11 @@ Version:1.0
 }
 .header.shop .search-bar form {
 	display: inline-block;
-	float: left;
-	width: 260px;
+	width: 70%;
 }
 .header.shop .search-bar input {
-	height: 48px;
+	height: 50px;
+	float: left;
 	background: transparent;
 	color: #666;
 	border-radius: 0;
@@ -709,19 +709,19 @@ Version:1.0
 	font-size: 14px;
 	font-weight: 400;
 	padding: 0 25px 0 20px;
-	width: 328px;
+	width: 87%;
 }
 .header.shop .search-bar .btnn {
 	height: 50px;
 	line-height: 53px;
-	width: 62px;
+	width: 10.3%;
 	text-align: center;
 	font-size: 18px;
 	color: #fff;
 	background: #333333;
 	position: absolute;
 	right: -2px;
-	top: -1px;
+	top: 0px;
 	border: none;
 	border-radius: 0 5px 5px 0;
 	-webkit-transition: all 0.4s ease;
@@ -1144,7 +1144,7 @@ Version:1.0
 	border-color:transparent;
 }
 /* Header Sticky */
-.header .header-inner{
+.header .middle-inner{
 	width:100%;
 	z-index:999;
 }
@@ -1188,7 +1188,7 @@ Version:1.0
 .header.sticky .header-inner .nav li.active a {
 	color: #fff;
 }
-.header.sticky .header-inner{
+.header.sticky .middle-inner{
 	position:fixed;
 	top:0;
 	left:0;
@@ -1199,7 +1199,7 @@ Version:1.0
 	box-shadow:0px 0px 10px rgba(0, 0, 0, 0.3);
 	z-index:999;
 }
-.header.sticky.v3 .header-inner{
+.header.sticky.v3 .middle-inner{
 	box-shadow:none;
 }
 .header.sticky.v3 .navbar-expand-lg .navbar-collapse{
