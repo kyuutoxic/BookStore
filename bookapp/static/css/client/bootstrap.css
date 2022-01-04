@@ -38,8 +38,8 @@
 
 @media print {
     *,
-    ::after,
-    ::before {
+     ::after,
+     ::before {
         text-shadow: none!important;
         box-shadow: none!important
     }
@@ -1162,7 +1162,7 @@ pre code {
     }
 }
 
-@media (min-width:768px) {
+@media (min-width:819px) {
     .col-md {
         -ms-flex-preferred-size: 0;
         flex-basis: 0;

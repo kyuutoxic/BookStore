@@ -46,7 +46,7 @@ class BookView(ManagerView):
     create_modal = True
     details_modal = True
     column_filters = ['name', 'price', 'category']
-    form_excluded_columns = ['imports','receipt_details']
+    form_excluded_columns = ['imports','receipt_details', 'comments']
     column_exclude_list = ['image']
 
 

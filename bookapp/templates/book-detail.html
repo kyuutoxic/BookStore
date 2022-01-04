@@ -1,28 +1,17 @@
-{% extends 'layout/base.html' %}
-
-{% block title %}Chi tiet san pham{% endblock %}
-
-{% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/book-detail.css') }}">
-{% endblock %}
-
-{% block header %}
-{% include 'layout/header.html' %}   
-{% endblock %}
-
-{% block content %}
+{% extends 'layout/base.html' %} {% block title %}Chi tiet san pham{% endblock %} {% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/book-detail.css') }}"> {% endblock %} {% block header %} {% include 'layout/header.html' %} {% endblock %} {% block content %}
 <div class="container">
     <!-- product -->
     <div class="product-content product-wrap clearfix product-deatil">
         <div class="row">
             <div class="col-md-5 col-sm-12 col-xs-12">
                 <div class="product-image item-detail">
-                    <div id="myCarousel-2" class="carousel slide">                         
+                    <div id="myCarousel-2" class="carousel slide">
                         <div class="carousel-inner">
                             <!-- Slide 1 -->
                             <div class="item active">
                                 <img src="{{book.image}}" class="img-responsive" alt="{{book.image}}" />
-                            </div>                               
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -41,7 +30,7 @@
                 </h2>
                 <hr />
                 <h3 class="price-container">
-                    {{"{:,.1f}".format(book.price)}} VND
+                    {{"{:,.0f}".format(book.price)}} VND
                     <small>*includes tax</small>
                 </h3>
                 <div class="certified">
@@ -66,11 +55,11 @@
                 </div>
                 <hr />
                 <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-6">
-                        <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ({{"{:,.1f}".format(book.price)}} VND)</a>
+                    <div class="col-sm-12 col-md-6 col-lg-6 btn-group pull-right">
+                        <button class="btn btn-white btn-default " onclick="addToCart({{ book.id }}, '{{ book.name }}', {{ book.price }}, '{{ book.image }}')">Add to cart ({{"{:,.0f}".format(book.price)}} VND)</button>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-6">
-                        <div class="btn-group pull-right">
+                        <div class="btn-group ">
                             <button class="btn btn-white btn-default"><i class="fa fa-star"></i> Add to wishlist</button>
                             <button class="btn btn-white btn-default"><i class="fa fa-envelope"></i> Contact Seller</button>
                         </div>
@@ -90,18 +79,18 @@
 
 <!-- Start Blog Single -->
 <section class="blog-single section">
-    <div class="container">         
+    <div class="container">
         <div class="blog-single-main">
             <div class="row">
                 {% if current_user.is_authenticated %}
 
-                <div class="col-12">			
+                <div class="col-12">
                     <div class="reply">
                         <div class="reply-head">
                             <h2 class="reply-title">Leave a Comment</h2>
                             <!-- Comment Form -->
                             <form class="form" action="#">
-                                <div class="row">                                                                                
+                                <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label>Your Message<span>*</span></label>
@@ -115,11 +104,10 @@
                             </form>
                             <!-- End Comment Form -->
                         </div>
-                    </div>			
+                    </div>
                 </div>
                 {% else %}
-                <a href="{{ url_for('user_login', next='book_detail', book_id=book.id) }}"> Dang nhap de binh luan </a>
-                {% endif %}
+                <a href="{{ url_for('user_login', next='book_detail', book_id=book.id) }}"> Dang nhap de binh luan </a> {% endif %}
                 <div class="col-12">
                     <div class="comments">
                         <h3 class="comment-title">Comments ({{counter}})</h3>
@@ -129,13 +117,13 @@
                                 <img src="https://via.placeholder.com/80x80" alt="#">
                                 <div class="content">
                                     <h4>Alisa harm <span>At 8:59 pm On Feb 28, 2018</span></h4>
-                                    <p>Enthusiastically leverage existing premium quality vectors with enterprise-wide innovation collaboration Phosfluorescently leverage others enterprisee  Phosfluorescently leverage.</p>
-                                    
+                                    <p>Enthusiastically leverage existing premium quality vectors with enterprise-wide innovation collaboration Phosfluorescently leverage others enterprisee Phosfluorescently leverage.</p>
+
                                 </div>
                             </div>
-                            <!-- End Single Comment -->                            
-                        </div>                           
-                    </div>							
+                            <!-- End Single Comment -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -144,8 +132,12 @@
 
 
 <script>
-    window.onload = function(){
-        loadComments({{book.id}})
+    window.onload = function() {
+        loadComments({
+            {
+                book.id
+            }
+        })
     }
 </script>
 
