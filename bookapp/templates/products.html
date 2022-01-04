@@ -1,16 +1,4 @@
-{% extends 'layout/base.html' %}
-
-{% block title %}Products{% endblock %}
-
-{% block css %}
-
-{% endblock %}
-
-{% block header %}
-{% include 'layout/header.html' %}   
-{% endblock %}
-
-{% block content %}
+{% extends 'layout/base.html' %} {% block title %}Products{% endblock %} {% block css %} {% endblock %} {% block header %} {% include 'layout/header.html' %} {% endblock %} {% block content %}
 <div class="product-area section">
     <div class="container">
         <div class="row">
@@ -35,7 +23,6 @@
                                             <div class="product-img">
                                                 <a href="{{ url_for('book_detail', book_id=b.id) }}">
                                                     <img class="default-img" src="{{ b.image }}" alt="{{ b.name }}" style="max-height: 262px;">
-                                                    <img class="hover-img" src="{{ b.image }}" alt="{{ b.name }}">
                                                 </a>
                                                 <div class="button-head">
                                                     <div class="product-action">
