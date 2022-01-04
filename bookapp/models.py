@@ -36,6 +36,7 @@ class User(BaseModel, UserMixin):
     active = Column(Boolean, default=True)
     join_date = Column(DateTime, default=datetime.now())
     receipts = relationship('Receipt', backref='user', lazy=True)
+    comments = relationship('Comment', backref='user', lazy=True)
 
     def __str__(self):
         return self.first_name
@@ -92,6 +93,7 @@ class Book(BaseModel):
 
     imports = relationship("Import", backref="book", lazy=True)
     receipt_details = relationship('ReceiptDetail', backref='book', lazy=True)
+    comments = relationship('Comment', backref='book', lazy=True)
     # parent_book = relationship('ParentCategory',secondary='parent_book',lazy='subquery',backref=backref('book', lazy=True))
     # children_book = relationship('ChildrenCategory',secondary='children_book',lazy='subquery',backref=backref('book', lazy=True))
 
@@ -128,7 +130,20 @@ class Rule(BaseModel):
     __tablename__ = 'rule'
 
     name = Column(String(50), nullable=False)
-    value = Column(Integer, nullable=False)   
+    value = Column(Integer, nullable=False)
+
+
+class Comment(BaseModel):
+    __tablename__ = 'comment'
+
+    content = Column(String(255), nullable=False)
+    book_id = Column(Integer, ForeignKey(Book.id), nullable=False)
+    user_id = Column(Integer, ForeignKey(User.id), nullable=False)
+    created_date = Column(DateTime, default=datetime.now())
+    update_date = Column(DateTime, default=datetime.now())
+
+    def __str__(self):
+        return self.content
 
 
 if __name__ == '__main__':

@@ -24,7 +24,7 @@
                     {% for b in books %}
                     <div class="single-product">
                         <div class="product-img">
-                            <a href="product-details.html">
+                            <a href="{{ url_for('book_detail', book_id=b.id) }}">
                                 <img class="default-img" src="{{ b.image }}" alt="{{ b.name }}">
                                 <img class="hover-img" src="{{ b.image }}" alt="{{ b.name }}">
                                 <span class="out-of-stock">Hot</span>
@@ -74,7 +74,7 @@
                     {% for b in books %}
                     <div class="single-product">
                         <div class="product-img">
-                            <a href="product-details.html">
+                            <a href="{{ url_for('book_detail', book_id=b.id) }}">
                                 <img class="default-img" src="{{ b.image }}" alt="{{ b.name }}">
                                 <img class="hover-img" src="{{ b.image }}" alt="{{ b.name }}">
                                 <span class="new">New</span>
@@ -123,7 +123,7 @@
                     {% for b in books %}
                     <div class="single-product">
                         <div class="product-img">
-                            <a href="product-details.html">
+                            <a href="{{ url_for('book_detail', book_id=b.id) }}">
                                 <img class="default-img" src="{{ b.image }}" alt="{{ b.name }}">
                                 <img class="hover-img" src="{{ b.image }}" alt="{{ b.name }}">
                             </a>

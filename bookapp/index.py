@@ -5,6 +5,8 @@ from models import *
 from flask_login import login_user, logout_user, login_required
 import utils
 import cloudinary
+import math
+
 
 
 @app.context_processor
@@ -57,7 +59,8 @@ def product_list():
 def book_detail(book_id): 
     book = utils.get_book_by_id(book_id=book_id)
     language = utils.get_language_by_id(book.language_id)
-    return render_template('book-detail.html', book = book, language=language)
+    counter = utils.count_comments(book_id=book_id)
+    return render_template('book-detail.html', book = book, language=language,  page=math.ceil(counter/app.config['COMMENT_SIZE']), counter=counter)
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -70,8 +73,11 @@ def user_login():
         user = utils.check_login(username=username, password=password)
         if user:
             login_user(user=user)
-            next = request.args.get('next', 'index')
-            return redirect(url_for(next))
+
+            if 'book_id' in  request.args:
+                return redirect(url_for(request.args.get('next', 'index'), book_id=request.args['book_id']))
+                
+            return redirect(url_for(request.args.get('next', 'index')))
         else:
             err_msg = 'User name or password is not precision'
     return render_template('login.html', err_msg=err_msg)
@@ -113,8 +119,8 @@ def user_register():
 def user_signout():
     logout_user()
     cart = session.get('cart')
-
-    del session['cart']
+    if cart:
+        del session['cart']
     return redirect(url_for('user_login'))
 
 
@@ -189,6 +195,53 @@ def delete_cart(book_id):
             session['cart'] = cart
 
     return jsonify(utils.cart_stats(cart))
+
+
+@app.route('/api/comments', methods=['post'])
+@login_required
+def add_comment():
+    data = request.json
+    content = data.get('content')
+    book_id = data.get('book_id')
+
+    try:
+        c = utils.add_comment(content=content, book_id=book_id)
+
+        return jsonify({
+            "status":200,
+            "data": {
+                "id": c.id,
+                "content": c.content,
+                'created_date': str(c.created_date),
+                'user': {
+                    'id': c.user.id,
+                    'username': c.user.username,
+                    'avatar': c.user.avatar
+                }
+            }        
+        })
+    except:
+        return jsonify({"status":404})
+
+
+@app.route('/api/books/<int:book_id>/comments')
+def get_comments(book_id):
+    page = int(request.args.get('page', 1))
+    comments = utils.get_comment(book_id=book_id, page=int(page))
+    results = []
+    for c in comments:
+        results.append({
+            'id': c.id,
+            'content': c.content,
+            'created_date': str(c.created_date),
+            'user': {
+                'id': c.user.id,
+                'username': c.user.username,
+                'avatar': c.user.avatar
+            }
+        })
+
+    return jsonify(results)
 
 
 if __name__ == '__main__':

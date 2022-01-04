@@ -87,4 +87,66 @@
         </form>
     </div> -->
 </div>
+
+<!-- Start Blog Single -->
+<section class="blog-single section">
+    <div class="container">         
+        <div class="blog-single-main">
+            <div class="row">
+                {% if current_user.is_authenticated %}
+
+                <div class="col-12">			
+                    <div class="reply">
+                        <div class="reply-head">
+                            <h2 class="reply-title">Leave a Comment</h2>
+                            <!-- Comment Form -->
+                            <form class="form" action="#">
+                                <div class="row">                                                                                
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Your Message<span>*</span></label>
+                                            <textarea name="content" placeholder="" id="commentContent"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="button" value="Post comment" class="btn" onclick="addComment({{book.id}})" style="color: #fff; background: #333;">
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- End Comment Form -->
+                        </div>
+                    </div>			
+                </div>
+                {% else %}
+                <a href="{{ url_for('user_login', next='book_detail', book_id=book.id) }}"> Dang nhap de binh luan </a>
+                {% endif %}
+                <div class="col-12">
+                    <div class="comments">
+                        <h3 class="comment-title">Comments ({{counter}})</h3>
+                        <div id="comment">
+                            <!-- Single Comment -->
+                            <div class="single-comment">
+                                <img src="https://via.placeholder.com/80x80" alt="#">
+                                <div class="content">
+                                    <h4>Alisa harm <span>At 8:59 pm On Feb 28, 2018</span></h4>
+                                    <p>Enthusiastically leverage existing premium quality vectors with enterprise-wide innovation collaboration Phosfluorescently leverage others enterprisee  Phosfluorescently leverage.</p>
+                                    
+                                </div>
+                            </div>
+                            <!-- End Single Comment -->                            
+                        </div>                           
+                    </div>							
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    window.onload = function(){
+        loadComments({{book.id}})
+    }
+</script>
+
 {% endblock %}

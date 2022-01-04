@@ -1,9 +1,9 @@
 from models import User
 from flask import request, session
 import hashlib
-from models import Category, Book, ParentCategory, Import, Receipt, ReceiptDetail, Rule, BookLanguage
+from models import Category, Book, ParentCategory, Import, Receipt, ReceiptDetail, Rule, BookLanguage, Comment
 from sqlalchemy import func
-from __init__ import db
+from __init__ import db, app
 from flask_login import current_user
 
 
@@ -195,6 +195,27 @@ def add_receipts(cart):
 
 def load_products():
     return Book.query.all()
+
+
+def add_comment(content, book_id):
+    c = Comment(content=content, book_id=book_id, user=current_user)
+
+    db.session.add(c)
+    db.session.commit()
+    
+    return c
+
+
+def get_comment(book_id, page):
+    page_size = app.config['COMMENT_SIZE']
+    start = (page - 1) * page_size
+    end = start + page_size
+    
+    return Comment.query.filter(Comment.book_id.__eq__(book_id) ).order_by(-Comment.id).slice(start, end).all()
+
+
+def count_comments(book_id):
+    return Comment.query.filter(Comment.book_id.__eq__(book_id)).count()
 
 
 

@@ -15,6 +15,8 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 # app.config['FLASK_ADMIN_FLUID_LAYOUT'] = True
 # app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite: ///dbappbook.db'
+app.config['COMMENT_SIZE'] = 20 
+
 
 db = SQLAlchemy(app=app)
 
