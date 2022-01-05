@@ -59,8 +59,9 @@ def product_list():
 def book_detail(book_id): 
     book = utils.get_book_by_id(book_id=book_id)
     language = utils.get_language_by_id(book.language_id)
+
     counter = utils.count_comments(book_id=book_id)
-    return render_template('book-detail.html', book = book, language=language, counter=counter, pages=math.ceil(counter/app.config['COMMENT_SIZE']))
+    return render_template('book-detail.html', book = book, language=language, counter=counter)
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -224,9 +225,9 @@ def add_comment():
         return jsonify({"status":404})
 
 
-@app.route('/api/books/<int:book_id>/comments/page=<page>')
-def get_comments(book_id, page):
-    comments = utils.get_comment(book_id=book_id, page=int(page))
+@app.route('/api/books/<int:book_id>/comments/<int:qttcomment>')
+def get_comments(book_id, qttcomment):
+    comments = utils.get_comment(book_id=book_id, qttcomment=qttcomment)
     results = []
     for c in comments:
         results.append({

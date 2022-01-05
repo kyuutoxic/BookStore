@@ -231,8 +231,11 @@ function addComment(bookId) {
 }
 
 
-function loadComments(bookId, page=1) {
-    fetch(`/api/books/${bookId}/comments/page=${page}`).then(res => res.json()).then(data => {
+
+let qttcomment = 0
+function loadComments(bookId) {
+    qttcomment+=5
+    fetch(`/api/books/${bookId}/comments/${qttcomment}`).then(res => res.json()).then(data => {
         console.info(data)
         let comments = document.getElementById('comment')
         comments.innerHTML = ""

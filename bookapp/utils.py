@@ -212,12 +212,8 @@ def add_comment(content, book_id):
     return c
 
 
-def get_comment(book_id, page = 1):
-    page_size = app.config['COMMENT_SIZE']
-    start = (page - 1) * page_size
-    end = start + page_size
-    
-    return Comment.query.filter(Comment.book_id.__eq__(book_id) ).order_by(-Comment.id).slice(start, end).all()
+def get_comment(book_id, qttcomment):
+    return Comment.query.filter(Comment.book_id.__eq__(book_id) ).order_by(-Comment.id).slice(0, qttcomment).all()
 
 
 def count_comments(book_id):
