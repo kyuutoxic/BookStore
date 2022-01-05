@@ -1,30 +1,20 @@
 {% extends 'layout/base.html' %} {% block title %}Products{% endblock %} {% block css %} {% endblock %} {% block header %} {% include 'layout/header.html' %} {% endblock %} {% block content %}
-<div class="product-area section">
+<div class="product-area section" onload="addActive()">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="section-title">
-                    <h2>Trending Item</h2>
+                    <h2>All Products</h2>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <div class="product-info">
-
                     <div class="tab-content" id="myTabContent">
                         <!-- Start Single Tab -->
                         <div class="tab-pane fade show active" id="man" role="tabpanel">
                             <div class="tab-single">
-                                {% if pages > 1 %}
-                                <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="{{ url_for('product_list', page=page-1) }}">Previous</a></li>
-                                    {% for idx in range(1, pages+1) %}
-                                    <li class="page-item"><a class="page-link" href="{{ url_for('product_list', page=idx) }}">{{ idx }}</a></li>
-                                    {% endfor %}
-                                    <li class="page-item"><a class="page-link" href="{{ url_for('product_list', page=page+1) }}">Next</a></li>
-                                </ul>
-                                {% endif %}
                                 <div class="row">
                                     {% for b in products %}
                                     <div class="col-xl-3 col-lg-4 col-md-4 col-12">
@@ -53,14 +43,48 @@
                                         </div>
                                     </div>
                                     {% endfor %}
-
-                                </div>                            
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        {% if pages > 1 %} {% if pages.__lt__(6) %}
+        <ul class="pagination">
+            {% for idx in range(1, pages + 1) %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('product_list', page=idx) }}">{{ idx }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <ul class="pagination" id="{{page}}">
+            {% if page != 1 %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('product_list', page=page-1) }}">Previous</a></li>
+            {% endif %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('product_list', page=1) }}">{{ 1 }}</a></li>
+            <li class="page-item"><a class="page-link" href="{{ url_for('product_list', page=2) }}">{{ 2 }}</a></li>
+            {% if page.__lt__(5) %}{% for idx in range(3, 6) %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('product_list', page=idx) }}">{{ idx }}</a></li>
+            {% endfor %}
+            <li class="page-item"><a class="page-link" href="#">...</a></li>
+            {% elif page >= 5 and page.__lt__(pages - 4) %}
+            <li class="page-item"><a class="page-link" href="#">...</a></li>
+            {% for idx in range(page - 1, page + 3) %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('product_list', page=idx) }}">{{ idx }}</a></li>
+            {% endfor %}
+            <li class="page-item"><a class="page-link" href="#">...</a></li>
+            {% elif page >= pages - 4 %}
+            <li class="page-item"><a class="page-link" href="#">...</a></li>
+            {% for idx in range(pages - 5, pages - 1) %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('product_list', page=idx) }}">{{ idx }}</a></li>
+            {% endfor %} {% endif %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('product_list', page=pages - 1) }}">{{ pages - 1 }}</a></li>
+            <li class="page-item"><a class="page-link" href="{{ url_for('product_list', page=pages) }}">{{ pages }}</a></li>
+            {% if page != pages %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('product_list', page=page+1) }}">Next</a></li>
+            {% endif %}
+        </ul>
+        {% endif %} {% endif %}
     </div>
 </div>
 {% endblock %}

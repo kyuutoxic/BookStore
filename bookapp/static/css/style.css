@@ -4356,7 +4356,7 @@ img:hover {
 .pagination {
     text-align: left;
     margin: 50px 0 0 0;
-    display: block;
+    justify-content: center;
 }
 
 .pagination.center {

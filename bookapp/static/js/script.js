@@ -257,6 +257,29 @@ function getHtmlComments(comment) {
 }
 
 
+
+function addActive() {
+    var url = window.location.pathname;
+    var li = document.getElementsByClassName("activenav");
+    for (var i = 0; i < li.length; i++) {
+        x = li[i].id;
+        if (x.includes(url))
+            li[i].classList.add("active");
+    }
+
+
+    var page = document.getElementsByClassName("pagination")[0].id;
+    var page_li = document.getElementsByClassName("page-item");
+    for (var i = 0; i < page_li.length; i++) {
+        x = page_li[i].textContent;
+        if (x == page)
+            page_li[i].classList.add("active");
+    }
+
+
+}
+
+
 // function getHTMLCart() {
 
 // }

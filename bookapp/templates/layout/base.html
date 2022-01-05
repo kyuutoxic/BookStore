@@ -1,100 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<!-- Meta Tag -->
+    <!-- Meta Tag -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name='copyright' content=''>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name='copyright' content=''>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Title Tag  -->
     <title>
         {% block title %} {% endblock %}
     </title>
     <!-- Web Font -->
-	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-	<!-- StyleSheet -->
-    {% block js %}{% endblock %}
-    {% block css %}{% endblock %}
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+    <!-- StyleSheet -->
+    {% block js %}{% endblock %} {% block css %}{% endblock %}
     <!-- Bootstrap -->
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/client/bootstrap.css') }}">
-	<!-- Magnific Popup -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/client/bootstrap.css') }}">
+    <!-- Magnific Popup -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/client/magnific-popup.min.css') }}">
-	<!-- Font Awesome -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/client/font-awesome.css') }}">
-	<!-- Fancybox -->
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/client/jquery.fancybox.min.css') }}">
-	<!-- Themify Icons -->
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/client/jquery.fancybox.min.css') }}">
+    <!-- Themify Icons -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/client/themify-icons.css') }}">
-	<!-- Nice Select CSS -->
+    <!-- Nice Select CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/client/niceselect.css') }}">
-	<!-- Animate CSS -->
+    <!-- Animate CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/client/animate.css') }}">
-	<!-- Flex Slider CSS -->
+    <!-- Flex Slider CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/client/flex-slider.min.css') }}">
-	<!-- Owl Carousel -->
+    <!-- Owl Carousel -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/client/owl-carousel.css') }}">
-	<!-- Slicknav -->
+    <!-- Slicknav -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/client/slicknav.min.css') }}">
-	
-	<!-- Eshop StyleSheet -->
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/client/reset.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Eshop StyleSheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/client/reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/client/responsive.css') }}">
 </head>
-<body>
+
+<body onload="addActive()">
     <!-- Preloader -->
-	<div class="preloader">
-		<div class="preloader-inner">
-			<div class="preloader-icon">
-				<span></span>
-				<span></span>
-			</div>
-		</div>
-	</div>
-	<!-- End Preloader -->
-    {% block header %}
-        
-    {% endblock %}
-
-    {% block content %}{% endblock %}
-
-    {% block footer %}
-        {% include 'layout/footer.html' %}
-    {% endblock %}
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- End Preloader -->
+    {% block header %} {% endblock %} {% block content %}{% endblock %} {% block footer %} {% include 'layout/footer.html' %} {% endblock %}
 
     <!-- Jquery -->
     <script src="{{ url_for('static', filename='js/client/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/client/jquery-migrate-3.0.0.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/client/jquery-ui.min.js') }}"></script>
-	<!-- Popper JS -->
-	<script src="{{ url_for('static', filename='js/client/popper.min.js') }}"></script>
-	<!-- Bootstrap JS -->
-	<script src="{{ url_for('static', filename='js/client/bootstrap.min.js') }}"></script>
-	<!-- Color JS -->
-	<!-- Slicknav JS -->
-	<script src="{{ url_for('static', filename='js/client/slicknav.min.js') }}"></script>
-	<!-- Owl Carousel JS -->
-	<script src="{{ url_for('static', filename='js/client/owl-carousel.js') }}"></script>
-	<!-- Magnific Popup JS -->
-	<script src="{{ url_for('static', filename='js/client/magnific-popup.js') }}"></script>
-	<!-- Waypoints JS -->
-	<script src="{{ url_for('static', filename='js/client/waypoints.min.js') }}"></script>
-	<!-- Countdown JS -->
-	<script src="{{ url_for('static', filename='js/client/finalcountdown.min.js') }}"></script>
-	<!-- Nice Select JS -->
-	<script src="{{ url_for('static', filename='js/client/nicesellect.js') }}"></script>
-	<!-- Flex Slider JS -->
-	<script src="{{ url_for('static', filename='js/client/flex-slider.js') }}"></script>
-	<!-- ScrollUp JS -->
-	<script src="{{ url_for('static', filename='js/client/scrollup.js') }}"></script>
-	<!-- Onepage Nav JS -->
-	<script src="{{ url_for('static', filename='js/client/onepage-nav.min.js') }}"></script>
-	<!-- Easing JS -->
-	<script src="{{ url_for('static', filename='js/client/easing.js') }}"></script>
-	<!-- Active JS -->
-	<script src="{{ url_for('static', filename='js/client/active.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/script.js') }}"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="{{ url_for('static', filename='js/client/jquery-ui.min.js') }}"></script>
+    <!-- Popper JS -->
+    <script src="{{ url_for('static', filename='js/client/popper.min.js') }}"></script>
+    <!-- Bootstrap JS -->
+    <script src="{{ url_for('static', filename='js/client/bootstrap.min.js') }}"></script>
+    <!-- Color JS -->
+    <!-- Slicknav JS -->
+    <script src="{{ url_for('static', filename='js/client/slicknav.min.js') }}"></script>
+    <!-- Owl Carousel JS -->
+    <script src="{{ url_for('static', filename='js/client/owl-carousel.js') }}"></script>
+    <!-- Magnific Popup JS -->
+    <script src="{{ url_for('static', filename='js/client/magnific-popup.js') }}"></script>
+    <!-- Waypoints JS -->
+    <script src="{{ url_for('static', filename='js/client/waypoints.min.js') }}"></script>
+    <!-- Countdown JS -->
+    <script src="{{ url_for('static', filename='js/client/finalcountdown.min.js') }}"></script>
+    <!-- Nice Select JS -->
+    <script src="{{ url_for('static', filename='js/client/nicesellect.js') }}"></script>
+    <!-- Flex Slider JS -->
+    <script src="{{ url_for('static', filename='js/client/flex-slider.js') }}"></script>
+    <!-- ScrollUp JS -->
+    <script src="{{ url_for('static', filename='js/client/scrollup.js') }}"></script>
+    <!-- Onepage Nav JS -->
+    <script src="{{ url_for('static', filename='js/client/onepage-nav.min.js') }}"></script>
+    <!-- Easing JS -->
+    <script src="{{ url_for('static', filename='js/client/easing.js') }}"></script>
+    <!-- Active JS -->
+    <script src="{{ url_for('static', filename='js/client/active.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 </body>
+
 </html>
