@@ -44,15 +44,15 @@ def index():
 
 @app.route("/products")
 def product_list():
-    # kw = request.args.get('keyword')
-    # from_price = request.args.get('from_price')
-    # to_price = request.args.get('to_price')
-    # cate_id = request.args.get('category_id')
 
-    products = utils.load_products()
+    page = request.args.get('page', 1, type=int)
+
+    products = utils.load_products(page=page)
+    counter = utils.count_products()
+
 
     return render_template('products.html',
-                           products=products)
+                           products=products, pages=math.ceil(counter/app.config['PAGE_SIZE']), page=page)
 
 
 @app.route('/books/<int:book_id>')

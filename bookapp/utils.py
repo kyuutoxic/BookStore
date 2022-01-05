@@ -193,8 +193,14 @@ def add_receipts(cart):
         db.session.commit()
 
 
-def load_products():
-    return Book.query.all()
+def load_products(page = 1):
+    products = Book.query
+    page_size = app.config['PAGE_SIZE']
+    start = (page - 1) * page_size
+    end = start + page_size
+
+    return products.slice(start, end).all()
+
 
 
 def add_comment(content, book_id):
@@ -216,6 +222,10 @@ def get_comment(book_id, page):
 
 def count_comments(book_id):
     return Comment.query.filter(Comment.book_id.__eq__(book_id)).count()
+
+
+def count_products():
+    return Book.query.count()
 
 
 
