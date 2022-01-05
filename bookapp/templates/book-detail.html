@@ -109,9 +109,18 @@
                 {% else %}
                 <a href="{{ url_for('user_login', next='book_detail', book_id=book.id) }}"> Dang nhap de binh luan </a> 
                 {% endif %}
+                {% if pages > 1 %}
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    {% for idx in range(1, pages+1) %}
+                    <li class="page-item"><a class="page-link" href="javascript:;" onclick="loadComments({{book.id}}, {{idx}})">{{ idx }}</a></li>
+                    {% endfor %}
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+                {% endif %}
                 <div class="col-12">
                     <div class="comments">
-                        <h3 class="comment-title">Comments ({{counter}})</h3>
+                        <h3 class="comment-title" >Comments (<span id="comment-title">{{counter}}</span>)</h3>
                         <div id="comment">
 
                         </div>

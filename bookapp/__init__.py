@@ -13,7 +13,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] ="mysql+pymysql://root:123456@localhost/db
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 app.config['PAGE_SIZE'] = 8
-app.config['COMMENT_SIZE'] = 20 
+app.config['COMMENT_SIZE'] = 4
 
 
 db = SQLAlchemy(app=app)

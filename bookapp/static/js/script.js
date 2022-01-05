@@ -222,14 +222,17 @@ function addComment(bookId) {
             let comments = document.getElementById('comment')
             comments.innerHTML = getHtmlComments(data.data) + comments.innerHTML
             content.value = ""
+
+            let commentTitle = document.getElementById('comment-title')
+            commentTitle.innerHTML = parseInt(commentTitle.innerHTML) + 1
         } else
             alert('Them binh luan that bai')
     }).catch(err => console.error(err))
 }
 
 
-function loadComments(bookId) {
-    fetch(`/api/books/${bookId}/comments`).then(res => res.json()).then(data => {
+function loadComments(bookId, page=1) {
+    fetch(`/api/books/${bookId}/comments/page=${page}`).then(res => res.json()).then(data => {
         console.info(data)
         let comments = document.getElementById('comment')
         comments.innerHTML = ""

@@ -212,7 +212,7 @@ def add_comment(content, book_id):
     return c
 
 
-def get_comment(book_id, page):
+def get_comment(book_id, page = 1):
     page_size = app.config['COMMENT_SIZE']
     start = (page - 1) * page_size
     end = start + page_size
