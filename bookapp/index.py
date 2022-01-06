@@ -159,6 +159,37 @@ def add_to_cart():
     return jsonify(utils.cart_stats(session.get('cart')))
 
 
+@app.route('/api/add-to-cart/minicart', methods=['post'])
+def add_to_minicart():
+    data = request.json
+    id = str(data.get('id'))
+    name = data.get('name')
+    price = data.get('price')
+    image = data.get('image')
+
+    cart = session.get('cart')
+    if not cart:
+        cart = {}
+
+    if id in cart:
+        cart[id]['quantity'] = cart[id]['quantity'] + 1
+    else:
+        cart[id] = {
+            'id': id,
+            'name': name,
+            'price': price,
+            'image': image,
+            'quantity': 1
+        }
+
+    session['cart'] = cart
+    results = session['cart']
+
+
+
+    return jsonify(results)
+
+
 @app.route('/api/pay', methods=['post'])
 def pay():
     try:
@@ -189,6 +220,17 @@ def update_cart():
 
 @app.route('/api/cart/<book_id>', methods=['delete'])
 def delete_cart(book_id):
+    cart = session.get('cart')
+    if cart:
+        if book_id in cart:
+            del cart[book_id]
+            session['cart'] = cart
+
+    return jsonify(utils.cart_stats(cart))
+
+
+@app.route('/api/minicart/<book_id>', methods=['delete'])
+def delete_mini_cart(book_id):
     cart = session.get('cart')
     if cart:
         if book_id in cart:

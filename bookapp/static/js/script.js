@@ -24,7 +24,7 @@ function addToCart(id, name, price, image) {
             d.innerText = data.total_quantity;
 
             let cartCounter1 = document.getElementById("cartCounter1");
-            cartCounter1.innerText =
+            cartCounter1.innerText = ""
                 new Intl.NumberFormat().format(data.total_quantity) + " Items";
 
             let amount1 = document.getElementById("amount1");
@@ -285,21 +285,73 @@ function addActiveNav() {
     }
 }
 
-// function getHTMLCart() {
+function miniCart(id, name, price, image) {
+    fetch(`/api/add-to-cart/minicart`,{
+        method: "post",
+        body: JSON.stringify({
+            id: id,
+            name: name,
+            price: price,
+            image: image,
+        }),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(res => res.json()).then(data => {
+        console.info(data)
+        let comments = document.getElementById('shopping-list')
+        comments.innerHTML = ""
+        let result = []
+        for (var key in data) {
+            result.push(data[key])
+            comments.innerHTML += getHtmlMiniCart(data[key])
+        }
+        console.log(result)
+    })
+}
 
-// }
+function getHtmlMiniCart(book){
+    return `
+    <li id="books${book['id']}">
+        <a href="#" class="remove" title="Remove this item" onclick="deleteMiniCart(${book['id']})"><i class="fa fa-remove"></i></a>
+        <a class="cart-img" href="#"><img src="${book['image']}" alt="${book['name']}"></a>
+        <h4><a href="#">${book.name}</a></h4>
+        <p class="quantity" id="quantity${book.id}">${book.quantity} - <span class="amount">${new Intl.NumberFormat().format(book.price)}  VND</span></p>
+    </li>
+    `
+}
 
-// function loadCart(id) {
-//     fetch('/api/add-to-cart'
-//     ).then(function(res) {
-//         console.info(res)
-//         return res.json()
-//     }).then(function(data) {
-//         console.log(data)
-//         cart = document.getElementById('viewcart')
-//         cart.innerHTML = ""
-//         for (let i = 0; i < data.length; i++)
-//             cart.innerHTML += getHTMLCart(data[i])
-//     })
+function deleteMiniCart(bookId) {
+    fetch("/api/minicart/" + bookId, {
+            method: "delete",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(function(res) {
+            return res.json();
+        })
+        .then(function(data) {
 
-// }
+            let cartCounter = document.getElementById("cartCounter");
+            cartCounter.innerText = new Intl.NumberFormat().format(
+                data.total_quantity
+            );
+
+            let cartCounter1 = document.getElementById("cartCounter1");
+            cartCounter1.innerText =
+                new Intl.NumberFormat().format(data.total_quantity) + " Items";
+
+            let amount1 = document.getElementById("amount1");
+            amount1.innerText =
+                new Intl.NumberFormat().format(data.total_amount) + " VND";
+
+            let p = document.getElementById("books" + bookId);
+            p.style.display = "none";
+
+        })
+        .catch(function(err) {
+            console.error(err);
+        });
+
+}

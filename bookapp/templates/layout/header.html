@@ -94,11 +94,11 @@
                                     <span id="cartCounter1">{{ cart_stats.total_quantity }} Items</span>
                                     <a href="#">View Cart</a>
                                 </div>
-                                <ul class="shopping-list" id="viewcart">
+                                <ul class="shopping-list" id="shopping-list">
                                     {% for c in session['cart'].values() %}
 
                                     <li id="books{{ c.id }}">
-                                        <a href="#" class="remove" title="Remove this item" onclick="deleteCart({{ c.id }})"><i class="fa fa-remove"></i></a>
+                                        <a href="#" class="remove" title="Remove this item" onclick="deleteMiniCart({{ c.id }})"><i class="fa fa-remove"></i></a>
                                         <a class="cart-img" href="#"><img src="{{ c.image }}" alt="{{ c.name }}"></a>
                                         <h4><a href="#">{{ c.name }}</a></h4>
                                         <p class="quantity" id="quantity{{ c.id }}">{{ c.quantity }} - <span class="amount">{{ "{:,.0f}".format(c.price) }} VND</span></p>

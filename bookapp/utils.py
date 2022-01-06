@@ -223,6 +223,11 @@ def count_comments(book_id):
 def count_products():
     return Book.query.count()
 
+def find(lst, key, value):
+    for i, dic in enumerate(lst):
+        if dic[key] == value:
+            return i
+    return -1
 
 
 
