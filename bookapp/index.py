@@ -161,6 +161,7 @@ def add_to_cart():
 
 @app.route('/api/add-to-cart/minicart', methods=['post'])
 def add_to_minicart():
+
     data = request.json
     id = str(data.get('id'))
     name = data.get('name')
