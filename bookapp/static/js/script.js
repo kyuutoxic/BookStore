@@ -233,8 +233,9 @@ function addComment(bookId) {
 
 
 let qttcomment = 0
+
 function loadComments(bookId) {
-    qttcomment+=5
+    qttcomment += 5
     fetch(`/api/books/${bookId}/comments/${qttcomment}`).then(res => res.json()).then(data => {
         console.info(data)
         let comments = document.getElementById('comment')
@@ -265,15 +266,6 @@ function getHtmlComments(comment) {
 
 
 function addActive() {
-    var url = window.location.pathname;
-    var li = document.getElementsByClassName("activenav");
-    for (var i = 0; i < li.length; i++) {
-        x = li[i].id;
-        if (x.includes(url))
-            li[i].classList.add("active");
-    }
-
-
     var page = document.getElementsByClassName("pagination")[0].id;
     var page_li = document.getElementsByClassName("page-item");
     for (var i = 0; i < page_li.length; i++) {
@@ -281,10 +273,17 @@ function addActive() {
         if (x == page)
             page_li[i].classList.add("active");
     }
-
-
 }
 
+function addActiveNav() {
+    var url = window.location.pathname;
+    var li = document.getElementsByClassName("activenav");
+    for (var i = 0; i < li.length; i++) {
+        x = li[i].id;
+        if (x.includes(url))
+            li[i].classList.add("active");
+    }
+}
 
 // function getHTMLCart() {
 
