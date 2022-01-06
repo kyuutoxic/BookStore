@@ -12,7 +12,7 @@ app.secret_key = 'NguyenVanLam/NguyenHoangTrungThong/LeTuanDat/TranMinhHuy'
 app.config["SQLALCHEMY_DATABASE_URI"] ="mysql+pymysql://root:123456@localhost/dbappbook?charset=utf8mb4"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
-app.config['PAGE_SIZE'] = 8
+app.config['PAGE_SIZE'] = 16
 
 
 db = SQLAlchemy(app=app)

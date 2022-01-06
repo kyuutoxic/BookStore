@@ -92,11 +92,11 @@
 
                             <div class="shopping-item">
                                 <div class="dropdown-cart-header">
-                                    <span id="cartCounter1">{{ cart_stats.total_quantity }} Items</span> 
+                                    <span id="cartCounter1">{{ cart_stats.total_quantity }} Items</span>
                                     <a href="#">View Cart</a>
                                 </div>
                                 <ul class="shopping-list">
-                                {% for c in session['cart'].values() %}
+                                    {% for c in session['cart'].values() %}
 
                                     <li id="books{{ c.id }}">
                                         <a href="#" class="remove" title="Remove this item" onclick="deleteCart({{ c.id }})"><i class="fa fa-remove"></i></a>
@@ -105,7 +105,7 @@
                                         <p class="quantity" id="quantity{{ c.id }}">{{ c.quantity }} - <span class="amount">{{ "{:,.0f}".format(c.price) }} VND</span></p>
                                     </li>
 
-                                {% endfor %}
+                                    {% endfor %}
                                 </ul>
                                 <div class="bottom">
                                     <div class="total">
@@ -213,8 +213,8 @@
                                     </ul>
                                 </li>
                                 {% for c in range(8) %}
-                                    <li><a href="#">{{categories[c].name}}</a></li>
-                                {% endfor %}                              
+                                <li><a href="#">{{categories[c].name}}</a></li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
@@ -222,30 +222,30 @@
                         <div class="menu-area">
                             <!-- Main Menu -->
                             <nav class="navbar navbar-expand-lg">
-                                <div class="navbar-collapse">	
-                                    <div class="nav-inner">	
+                                <div class="navbar-collapse">
+                                    <div class="nav-inner">
                                         <ul class="nav main-menu menu navbar-nav">
-                                                <li class="active"><a href="#">Home</a></li>
-                                                <li><a href="{{ url_for('product_list') }}">Products</a></li>												
-                                                <li><a href="#">Service</a></li>
-                                                <li><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
-                                                    <ul class="dropdown">
-                                                        <li><a href="{{ url_for('cart') }}">Cart</a></li>
-                                                        <li><a href="checkout.html">Checkout</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#">Pages</a></li>									
-                                                <li><a href="#">Blog<i class="ti-angle-down"></i></a>
-                                                    <ul class="dropdown">
-                                                        <li><a href="blog-single-sidebar.html">Blog Single Sidebar</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="contact.html">Contact Us</a></li>
-                                            </ul>
+                                            <li class="active"><a href="#">Home</a></li>
+                                            <li><a href="{{ url_for('product_list') }}">Products</a></li>
+                                            <li><a href="#">Service</a></li>
+                                            <li><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
+                                                <ul class="dropdown">
+                                                    <li><a href="{{ url_for('cart') }}">Cart</a></li>
+                                                    <li><a href="checkout.html">Checkout</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Pages</a></li>
+                                            <li><a href="#">Blog<i class="ti-angle-down"></i></a>
+                                                <ul class="dropdown">
+                                                    <li><a href="blog-single-sidebar.html">Blog Single Sidebar</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="contact.html">Contact Us</a></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </nav>
-                            <!--/ End Main Menu -->	
+                            <!--/ End Main Menu -->
                         </div>
                     </div>
                 </div>
@@ -255,30 +255,30 @@
     <!--/ End Header Inner -->
 </header>
 <!--/ End Header -->
-    <!-- Slider Area -->
-	<section class="hero-slider">
-		<!-- Single Slider -->
-		<div class="single-slider">
-			<div class="container">
-				<div class="row no-gutters">
-					<div class="col-lg-9 offset-lg-3 col-12">
-						<div class="text-inner">
-							<div class="row">
-								<div class="col-lg-7 col-12">
-									<div class="hero-text">
-										<h1><span>UP TO 50% OFF </span>Lunar New<br> Year</h1>
-										<p>Instantly get discount code Lunar New Year <br> Promotion for [shopping/service] online channel.</p>
-										<div class="button">
-											<a href="#" class="btn">Shop Now!</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--/ End Single Slider -->
-	</section>
-	<!--/ End Slider Area -->
+<!-- Slider Area -->
+<section class="hero-slider">
+    <!-- Single Slider -->
+    <div class="single-slider">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-9 offset-lg-3 col-12">
+                    <div class="text-inner">
+                        <div class="row">
+                            <div class="col-lg-7 col-12">
+                                <div class="hero-text">
+                                    <h1><span>UP TO 50% OFF </span>Lunar New<br> Year</h1>
+                                    <p>Instantly get discount code Lunar New Year <br> Promotion for [shopping/service] online channel.</p>
+                                    <div class="button">
+                                        <a href="#" class="btn">Shop Now!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ End Single Slider -->
+</section>
+<!--/ End Slider Area -->

@@ -107,8 +107,7 @@
                     </div>
                 </div>
                 {% else %}
-                <a href="{{ url_for('user_login', next='book_detail', book_id=book.id) }}"> Dang nhap de binh luan </a> 
-                {% endif %}      
+                <a href="{{ url_for('user_login', next='book_detail', book_id=book.id) }}"> Dang nhap de binh luan </a> {% endif %}
                 <div class="col-12">
                     <div class="comments">
                         <h3 class="comment-title" >Comments (<span id="comment-title">{{counter}}</span>)</h3>
