@@ -777,7 +777,6 @@ Version:1.0
 /* Header Middle */
 
 .header.shop .search-bar-top {
-    text-align: center;
     margin-top: 10px;
 }
 
@@ -845,7 +844,7 @@ Version:1.0
 
 .header.shop .search-bar form {
     display: inline-block;
-    width: 70%;
+    width: 91%;
 }
 
 .header.shop .search-bar input {
@@ -858,7 +857,7 @@ Version:1.0
     font-size: 14px;
     font-weight: 400;
     padding: 0 25px 0 20px;
-    width: 87%;
+    width: 70%;
 }
 
 .header.shop .search-bar .btnn {

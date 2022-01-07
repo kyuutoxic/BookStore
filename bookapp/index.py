@@ -39,6 +39,7 @@ def user_load(user_id):
 
 @app.route("/")
 def index():
+    
     return render_template("index.html")
 
 
@@ -46,11 +47,8 @@ def index():
 def product_list():
 
     page = request.args.get('page', 1, type=int)
-
     products = utils.load_products(page=page)
     counter = utils.count_products()
-
-
     return render_template('products.html',
                            products=products, pages=math.ceil(counter/app.config['PAGE_SIZE']), page=page)
 
