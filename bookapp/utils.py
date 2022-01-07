@@ -193,14 +193,43 @@ def add_receipts(cart):
         db.session.commit()
 
 
-def load_products(page = 1):
+def load_products(category_id=None, kw=None,page = 1):
     products = Book.query
+    
+    if category_id == None:
+        category_id = '0'
+      
+    if category_id:
+        if category_id == str(0):
+            products = Book.query
+        else:
+            products = products.filter(Book.category_id.__eq__(category_id))
+
+    if kw:
+        products = products.filter(Book.name.contains(kw))
+
     page_size = app.config['PAGE_SIZE']
     start = (page - 1) * page_size
     end = start + page_size
 
     return products.slice(start, end).all()
 
+
+def count_products(category_id=0, kw=None):
+    products = Book.query
+    if category_id == None:
+        category_id = '0'
+      
+    if category_id:
+        if category_id == str(0):
+            products = Book.query
+        else:
+            products = products.filter(Book.category_id.__eq__(category_id))
+
+    if kw:
+        products = products.filter(Book.name.contains(kw))
+
+    return products.count()
 
 
 def add_comment(content, book_id):
@@ -220,14 +249,31 @@ def count_comments(book_id):
     return Comment.query.filter(Comment.book_id.__eq__(book_id)).count()
 
 
-def count_products():
-    return Book.query.count()
 
-def find(lst, key, value):
-    for i, dic in enumerate(lst):
-        if dic[key] == value:
-            return i
-    return -1
+def get_name_cate(category_id):
+    if category_id == None:
+        category_id = '0'
+    if category_id == str(0):
+        return 'All products'
+    else:
+        return ParentCategory.query.get(category_id)
+ 
+
+
+def get_name_category_by_id(category_id):
+    return Category.query.get(category_id)
+
+
+
+def get_name_parentcategory_by_id(parent_id):
+    return ParentCategory.query.get(parent_id)
+
+
+
+
+
+
+
 
 
 

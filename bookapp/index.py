@@ -39,27 +39,32 @@ def user_load(user_id):
 
 @app.route("/")
 def index():
-    
     return render_template("index.html")
 
 
 @app.route("/products")
 def product_list():
-
+    category_id = request.args.get('category_id')
+    kw = request.args.get('kw')
     page = request.args.get('page', 1, type=int)
-    products = utils.load_products(page=page)
-    counter = utils.count_products()
+
+    products = utils.load_products(category_id=category_id,kw=kw,page=page)
+    counter = utils.count_products(category_id=category_id,kw=kw)
+
+
     return render_template('products.html',
-                           products=products, pages=math.ceil(counter/app.config['PAGE_SIZE']), page=page)
+                           products=products, pages=math.ceil(counter/app.config['PAGE_SIZE']), page=page, name_cate=utils.get_name_cate(category_id=category_id))
+                           
 
 
 @app.route('/books/<int:book_id>')
 def book_detail(book_id): 
     book = utils.get_book_by_id(book_id=book_id)
     language = utils.get_language_by_id(book.language_id)
-
+    cate_name = utils.get_name_category_by_id(book.category_id)
+    parent_name = utils.get_name_parentcategory_by_id(cate_name.parent_id)
     counter = utils.count_comments(book_id=book_id)
-    return render_template('book-detail.html', book = book, language=language, counter=counter)
+    return render_template('book-detail.html', book = book, language=language, counter=counter, cate_name=cate_name,parent_name=parent_name)
 
 
 @app.route('/login', methods=["GET", "POST"])

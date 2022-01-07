@@ -94,8 +94,6 @@ class Book(BaseModel):
     imports = relationship("Import", backref="book", lazy=True)
     receipt_details = relationship('ReceiptDetail', backref='book', lazy=True)
     comments = relationship('Comment', backref='book', lazy=True)
-    # parent_book = relationship('ParentCategory',secondary='parent_book',lazy='subquery',backref=backref('book', lazy=True))
-    # children_book = relationship('ChildrenCategory',secondary='children_book',lazy='subquery',backref=backref('book', lazy=True))
 
     def __str__(self):
         return self.name
