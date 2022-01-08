@@ -22,11 +22,7 @@
                             <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
                             {% if current_user.is_authenticated %}
                             <li>
-                                <a href="#"><img style="height: 20px;
-                                                        width: 20px;
-                                                        border-radius: 100%;
-                                                        display: inherit;
-                                                        margin-right: 5px;" src="{{current_user.avatar}}">{{current_user}}</a>
+                                <a href="#">{{current_user}}</a>
                             </li>
                             <li><i class="ti-power-off"></i><a href="{{ url_for('user_signout') }}">Logout</a></li>
                             {% else %}
