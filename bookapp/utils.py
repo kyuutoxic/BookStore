@@ -7,8 +7,6 @@ from __init__ import db, app
 from flask_login import current_user
 from sqlalchemy.sql import extract
 
-
-
 def get_user_by_id(user_id):
     return User.query.get(user_id)
 
@@ -326,12 +324,3 @@ def product_stats(kw=None, from_date=None, to_date=None):
         p = p.filter(Receipt.created_date.__le__(to_date))
 
     return p.all()
-
-
-
-
-
-
-
-
-

@@ -122,7 +122,7 @@ class ReceiptDetail(BaseModel):
     receipt_id = Column(Integer, ForeignKey(Receipt.id), nullable=False, primary_key=True)
     book_id = Column(Integer, ForeignKey(Book.id), nullable=False, primary_key=True)
     quantity = Column(Integer, default=0,nullable=False)
-    unit_price = Column(Float, default=0,nullable=False)
+    unit_price = Column(Float, nullable=False)
 
 
 class Rule(BaseModel):

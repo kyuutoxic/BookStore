@@ -1,95 +1,99 @@
-{% extends 'admin/master.html' %} {% block body %} {{ super() }} {% if current_user.is_authenticated %}
+{% extends 'admin/master.html' %} {% block body %} {{ super() }} {% if
+current_user.is_authenticated %}
 
 <h1 class="text-center text-danger">THONG KE DOANH THU</h1>
 <div class="row">
-    <div class="col-md-5 col-xs-12">
-        <table class="table">
-            <tr>
-                <th>Ma SP</th>
-                <th>Ten SP</th>
-                <th>Doanh thu</th>
-            </tr>
-            {% for s in stats %}
-            <tr>
-                <td>{{ s[0] }}</td>
-                <td>{{ s[1] }}</td>
-                <td>
-                    {% if s[2] %} {{ "{:,.1f}".format(s[2]) }} VND {% else %} 0 VND {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-    <div class="col-md-5 col-xs-12">
-        <form>
-            <div class="form-group">
-                <input type="text" class="form-control" name="kw" placeholder="Nhap tu khoa..." />
-            </div>
-            <div class="form-group">
-                <input type="date" class="form-control" name="from_date" />
-            </div>
-            <div class="form-group">
-                <input type="date" class="form-control" name="to_date" />
-            </div>
-            <input type="submit" value="Thong ke" class="btn btn-info" />
-        </form>
+  <div class="col-md-5 col-xs-12">
+    <table class="table">
+      <tr>
+        <th>Ma SP</th>
+        <th>Ten SP</th>
+        <th>Doanh thu</th>
+      </tr>
+      {% for s in stats %}
+      <tr>
+        <td>{{ s[0] }}</td>
+        <td>{{ s[1] }}</td>
+        <td>
+          {% if s[2] %} {{ "{:,.1f}".format(s[2]) }} VND {% else %} 0 VND {%
+          endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  <div class="col-md-5 col-xs-12">
+    <form>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          name="kw"
+          placeholder="Nhap tu khoa..."
+        />
+      </div>
+      <div class="form-group">
+        <input type="date" class="form-control" name="from_date" />
+      </div>
+      <div class="form-group">
+        <input type="date" class="form-control" name="to_date" />
+      </div>
+      <input type="submit" value="Thong ke" class="btn btn-info" />
+    </form>
 
-        <canvas id="productChartId"></canvas>
-    </div>
+    <canvas id="productChartId"></canvas>
+  </div>
 </div>
 <div class="row">
-    <div class="col-md-5 col-xs-12">
-        <table class="table">
-            <tr>
-                <th>Thang</th>
-                <th>Doanh thu</th>
-            </tr>
-            {% for s in month_stats %}
-            <tr>
-                <td>{{ s[0] }}</td>
-                <td>{{ "{:,.1f}".format(s[1]) }} VND</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-    <div class="col-md-5 col-xs-12">
-        <form>
-            <div class="form-group">
-                <input type="number" min="2000" name="year" class="form-control" placeholder="Nhap nam..." />
-            </div>
-            <input type="submit" value="Thong ke" class="btn btn-danger" />
-        </form>
-        <canvas id="productMonthChartId"></canvas>
-    </div>
+  <div class="col-md-5 col-xs-12">
+    <table class="table">
+      <tr>
+        <th>Thang</th>
+        <th>Doanh thu</th>
+      </tr>
+      {% for s in month_stats %}
+      <tr>
+        <td>{{ s[0] }}</td>
+        <td>{{ "{:,.1f}".format(s[1]) }} VND</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  <div class="col-md-5 col-xs-12">
+    <form>
+      <div class="form-group">
+        <input
+          type="number"
+          min="2000"
+          name="year"
+          class="form-control"
+          placeholder="Nhap nam..."
+        />
+      </div>
+      <input type="submit" value="Thong ke" class="btn btn-danger" />
+    </form>
+    <canvas id="productMonthChartId"></canvas>
+  </div>
 </div>
 <div class="row">
-    <div class="col-md-5 col-xs-12">
-        <table class="table">
-            <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>QUANTITY</th>
-                <th>TOTAL</th>
-            </tr>
-            {% for s in product_month_statss %}
-            <tr>
-                <td>{{s[0] }}</td>
-                <td>{{s[1] }}</td>
-                <td>{{s[2] }} </td>
-                <td>{{s[3] }} </td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-    <div class="col-md-5 col-xs-12">
-        <form>
-            <div class="form-group">
-                <input type="number" min="2000" name="year" class="form-control" placeholder="Nhap nam..." />
-            </div>
-            <input type="submit" value="Thong ke" class="btn btn-danger" />
-        </form>
-        <canvas id="productMonthChartId"></canvas>
-    </div>
+  <div class="col-md-5 col-xs-12">
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>QUANTITY</th>
+        <th>TOTAL</th>
+      </tr>
+      {% for s in product_month_statss %}
+      <tr>
+        <td>{{s[0] }}</td>
+        <td>{{s[1] }}</td>
+        <td>{{s[2] }}</td>
+        <td>{{s[3] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
@@ -156,4 +160,4 @@ function loadChart(ctx, labels, data, type, colors, borderColors) {
     });
 }
 </script>
-{% else %} {% include 'admin/login-admin.html' %} {% endif %} {% endblock body %}
+{% else %} {% include 'admin/login-admin.html' %} {% endif %} {% endblock body%}
