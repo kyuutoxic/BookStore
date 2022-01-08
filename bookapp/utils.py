@@ -76,6 +76,7 @@ def read_receipt_by_active():
 
 def add_receiptdetails(receipt_id, book_id, quantity, unit_price):
     receipt_details = ReceiptDetail(receipt_id=receipt_id, book_id=book_id, quantity=quantity, unit_price=unit_price)
+
     db.session.add(receipt_details)
     db.session.commit()
 
