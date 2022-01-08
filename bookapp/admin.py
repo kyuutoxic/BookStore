@@ -116,7 +116,6 @@ class Sale(SellerView):
         quantity = request.args.get('quantity')
         receipt_id = request.args.get('receipt')
 
-
         if book_id and quantity and receipt_id:
             # p = utils.read_receiptdetails_by_receipt_id(receipt_id)
             # for i in p:
@@ -126,7 +125,7 @@ class Sale(SellerView):
             # else:
             b = utils.get_book(book_id=book_id)
             if b.quantity >= int(quantity):
-                utils.add_receiptdetails(receipt_id=receipt_id, book_id=book_id, quantity=quantity)
+                utils.add_receiptdetails(receipt_id=receipt_id, book_id=book_id, quantity=quantity, unit_price=b.price)
             else:
                 err_msg = 'Quantity in stock is ' + str(b.quantity)
 
