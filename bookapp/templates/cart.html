@@ -1,16 +1,5 @@
-{% extends 'layout/base.html' %}
-
-{% block title %}Chi tiet san pham{% endblock %}
-
-{% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/book-detail.css') }}">
-{% endblock %}
-
-{% block header %}
-{% include 'layout/header.html' %}   
-{% endblock %}
-
-{% block content %}
+{% extends 'layout/base.html' %} {% block title %}Chi tiet san pham{% endblock %} {% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/book-detail.css') }}"> {% endblock %} {% block header %} {% include 'layout/header.html' %} {% endblock %} {% block content %}
 <!-- Breadcrumbs -->
 <div class="breadcrumbs">
     <div class="container">
@@ -40,7 +29,7 @@
                             <th>PRODUCT</th>
                             <th>NAME</th>
                             <th class="text-center">QUANTITY</th>
-                            <th class="text-center">UNIT PRICE</th> 
+                            <th class="text-center">UNIT PRICE</th>
                             <th class="text-center"><i class="ti-trash remove-icon"></i></th>
                         </tr>
                     </thead>
@@ -51,16 +40,17 @@
                             <td class="product-des" data-title="Description">
                                 <p class="product-name"><a href="#">{{ c.name }}</a></p>
                             </td>
-                            <td class="qty" data-title="Qty"><!-- Input Order -->
+                            <td class="qty" data-title="Qty">
+                                <!-- Input Order -->
                                 <div class="input-group">
                                     <div class="button minus">
                                         <button type="button" class="btn btn-primary btn-number" data-type="minus" data-field="{{ c.id }}" onclick="updateCartByButton({{ c.id }}, getValueMinus('{{ c.id }}'))">
                                             <i class="ti-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" name="{{ c.id }}" class="input-number"  data-min="1" data-max="100" value="{{ c.quantity }}" onblur="updateCartByInput({{ c.id }}, this)" id="{{ c.id }}">
+                                    <input type="text" name="{{ c.id }}" class="input-number" data-min="1" data-max="100" value="{{ c.quantity }}" onblur="updateCartByInput({{ c.id }}, this)" id="{{ c.id }}">
                                     <div class="button plus">
-                                        <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="{{ c.id }}" onclick="updateCartByButton({{ c.id }}, getValuePlus('{{ c.id }}'))" >
+                                        <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="{{ c.id }}" onclick="updateCartByButton({{ c.id }}, getValuePlus('{{ c.id }}'))">
                                             <i class="ti-plus"></i>
                                         </button>
                                     </div>
@@ -70,7 +60,7 @@
                             <td class="total-amount" data-title="Total"><span class="total-book-amount">{{ "{:,.0f}".format(c.price) }} VND</span></td>
                             <td class="action" data-title="Remove"><a href="#" onclick="deleteCart({{ c.id }})"><i class="ti-trash remove-icon"></i></a></td>
                         </tr>
-                        {% endfor %}                      
+                        {% endfor %}
                     </tbody>
                 </table>
                 <!--/ End Shopping Summery -->
@@ -106,13 +96,12 @@
                                     <li class="last">You Pay<span id="amountIds">{{ "{:,.0f}".format(cart_stats.total_amount) }} VND</span></li>
                                 </ul>
                                 {% if current_user.is_authenticated %}
-                                    <div class="button5">
-                                        <a href="#" class="btn" onclick="pay()">Checkout</a>
-                                        <a href="#" class="btn">Continue shopping</a>
-                                    </div>
+                                <div class="button5">
+                                    <a href="#" class="btn" onclick="pay()">Checkout</a>
+                                    <a href="#" class="btn">Continue shopping</a>
+                                </div>
                                 {% else %}
-                                <a href="{{ url_for('user_login', next='cart') }}" class="text-danger">Vui long dang nhap de thanh toan</a>
-                                {% endif %}
+                                <a href="{{ url_for('user_login', next='cart') }}" class="text-danger">Vui long dang nhap de thanh toan</a> {% endif %}
                             </div>
                         </div>
                     </div>
@@ -125,5 +114,4 @@
 <!--/ End Shopping Cart -->
 {% else %}
 <p><i>Khong co san pham trong gio!!!</i></p>
-{% endif %}
-{% endblock %}
+{% endif %} {% endblock %}

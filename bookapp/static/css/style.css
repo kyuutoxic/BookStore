@@ -604,6 +604,10 @@ Version:1.0
     transform: translateY(0px);
     opacity: 1;
     visibility: visible;
+    max-height: 545px;
+    min-height: 145px;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
 .header .shopping .dropdown-cart-header {
@@ -1278,7 +1282,7 @@ Version:1.0
 
 .header.shop .right-bar .sinlge-bar {
     display: inline-block;
-    margin-right: 25px;
+    margin-right: 22px;
 }
 
 .header.shop .right-bar .sinlge-bar:last-child {

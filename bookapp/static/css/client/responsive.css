@@ -89,12 +89,12 @@ Version:1.0
         font-size: 14px;
     }
     .header.shop .search-bar {
-        width: 445px;
+        width: 100%;
     }
     .header.shop .search-bar input {
         padding: 0 52px 0 20px;
-        width: 264px;
-        height: auto;
+        width: 70%;
+        height: 45px;
         font-size: 13px;
     }
     .header.shop .all-category {
