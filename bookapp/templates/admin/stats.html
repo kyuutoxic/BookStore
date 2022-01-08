@@ -93,54 +93,29 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    let labels = [],
-        labels2 = []
-    let data = [],
-        data2 = []
-    let colors = [],
-        colors2 = []
-    let borderColors = [],
-        borderColors2 = []
+    let labels = [], labels2 = []
+    let data = [], data2 = []
+    let colors = [], colors2 = []
+    let borderColors = [], borderColors2 = []
     let r, g, b;
 
-    { %
-        for s in stats %
-    } { %
-        if s[2] %
-    }
-    labels.push({
-        {
-            s[1]
-        }
-    })
-    data.push({
-        {
-            s[2]
-        }
-    })
+    {% for s in stats %}
+    {% if s[2] %}
+    labels.push('{{s[1]}}')
+    data.push({{ s[2] }})
 
     r = parseInt(Math.random() * 255)
     g = parseInt(Math.random() * 255)
     b = parseInt(Math.random() * 255)
     colors.push(`rgba(${r}, ${g}, ${b}, 0.2)`)
-    borderColors.push(`rgba(${r}, ${g}, ${b}, 1)`) { % endif %
-    } { % endfor %
-    }
+    borderColors.push(`rgba(${r}, ${g}, ${b}, 1)`)
+    {% endif %}
+    {% endfor %}
 
-    { %
-        for s in month_stats %
-    }
+    {% for s in month_stats %}
 
-    labels2.push({
-        {
-            s[0]
-        }
-    })
-    data2.push({
-        {
-            s[1]
-        }
-    })
+    labels2.push({{s[0]}})
+    data2.push({{ s[1] }})
 
     r = parseInt(Math.random() * 255)
     g = parseInt(Math.random() * 255)
@@ -148,8 +123,7 @@
     colors2.push(`rgba(${r}, ${g}, ${b}, 0.2)`)
     borderColors2.push(`rgba(${r}, ${g}, ${b}, 1)`)
 
-    { % endfor %
-    }
+    {% endfor %}
 
     window.onload = function() {
         const ctx = document.getElementById('productChartId').getContext('2d')
@@ -159,27 +133,27 @@
         loadChart(ctx2, labels2, data2, 'line', colors2, borderColors2)
     }
 
-    function loadChart(ctx, labels, data, type, colors, borderColors) {
-        const myChart = new Chart(ctx, {
-            type: type,
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Thong ke doanh thu',
-                    data: data,
-                    backgroundColor: colors,
-                    borderColor: borderColors,
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+function loadChart(ctx, labels, data, type, colors, borderColors) {
+    const myChart = new Chart(ctx, {
+        type: type,
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Thong ke doanh thu',
+                data: data,
+                backgroundColor: colors,
+                borderColor: borderColors,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
             }
-        });
-    }
+        }
+    });
+}
 </script>
 {% else %} {% include 'admin/login-admin.html' %} {% endif %} {% endblock body %}

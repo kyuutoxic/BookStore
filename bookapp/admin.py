@@ -171,7 +171,8 @@ class StatsView(AdminBaseView):
                             month_stats=utils.product_month_stats(year=year),
                             stats=utils.product_stats(kw=kw,
                                                         from_date=from_date,
-                                                        to_date=to_date), product_month_statss=utils.product_month_statss())
+                                                        to_date=to_date), 
+                                                        product_month_statss=utils.product_month_statss())
 
 
 admin = Admin(app, name="Quản lý nhà sách",template_mode="bootstrap3", index_view=MyAdminIndexView())
