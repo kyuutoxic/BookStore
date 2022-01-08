@@ -5,6 +5,8 @@ from models import Category, Book, ParentCategory, Import, Receipt, ReceiptDetai
 from sqlalchemy import func
 from __init__ import db, app
 from flask_login import current_user
+from sqlalchemy.sql import extract
+
 
 
 def get_user_by_id(user_id):
@@ -187,7 +189,7 @@ def add_receipts(cart):
         for c in cart.values():
             detail = ReceiptDetail(receipt_id=receipt.id,
                                    book_id=c['id'],
-                                   quantity=c['quantity'])
+                                   quantity=c['quantity'],unit_price=c['price'])
             db.session.add(detail)
 
         db.session.commit()
@@ -203,7 +205,9 @@ def load_products(category_id=None, kw=None,page = 1):
         if category_id == str(0):
             products = Book.query
         else:
+            # cate = Category.query.filter(Category.id == category_id)
             products = products.filter(Book.category_id.__eq__(category_id))
+            # products = db.session.query()
 
     if kw:
         products = products.filter(Book.name.contains(kw))
@@ -268,6 +272,40 @@ def get_name_category_by_id(category_id):
 def get_name_parentcategory_by_id(parent_id):
     return ParentCategory.query.get(parent_id)
 
+
+def product_month_stats(year):
+    return db.session.query(extract('month', Receipt.created_date),
+                            func.sum(ReceiptDetail.quantity*ReceiptDetail.unit_price))\
+                     .join(ReceiptDetail, ReceiptDetail.receipt_id.__eq__(Receipt.id))\
+                     .filter(extract('year', Receipt.created_date) == year)\
+                     .group_by(extract('month', Receipt.created_date))\
+                     .order_by(extract('month', Receipt.created_date)).all()
+
+
+def product_month_statss():
+    return db.session.query(Category.id, Category.name,func.sum(ReceiptDetail.quantity),
+                            func.sum(ReceiptDetail.quantity*ReceiptDetail.unit_price), Book.id)\
+                     .join(ReceiptDetail, ReceiptDetail.book_id.__eq__(Book.id))\
+                     .all()
+
+                    
+def product_stats(kw=None, from_date=None, to_date=None):
+    p = db.session.query(Book.id, Book.name,
+                         func.sum(ReceiptDetail.quantity * ReceiptDetail.unit_price))\
+                  .join(ReceiptDetail, ReceiptDetail.book_id.__eq__(Book.id), isouter=True)\
+                  .join(Receipt, Receipt.id.__eq__(ReceiptDetail.receipt_id))\
+                  .group_by(Book.id, Book.name)
+
+    if kw:
+        p = p.filter(Book.name.contains(kw))
+
+    if from_date:
+        p = p.filter(Receipt.created_date.__ge__(from_date))
+
+    if to_date:
+        p = p.filter(Receipt.created_date.__le__(to_date))
+
+    return p.all()
 
 
 

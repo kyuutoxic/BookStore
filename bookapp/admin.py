@@ -163,7 +163,16 @@ class Sale(SellerView):
 class StatsView(AdminBaseView):
     @expose('/')
     def index(self):
-        return self.render('admin/stats.html')
+        kw = request.args.get('kw')
+        from_date = request.args.get('from_date')
+        to_date = request.args.get('to_date')
+        year = request.args.get('year', datetime.now().year)
+
+        return self.render('admin/stats.html',
+                            month_stats=utils.product_month_stats(year=year),
+                            stats=utils.product_stats(kw=kw,
+                                                        from_date=from_date,
+                                                        to_date=to_date), product_month_statss=utils.product_month_statss())
 
 
 admin = Admin(app, name="Quản lý nhà sách",template_mode="bootstrap3", index_view=MyAdminIndexView())
