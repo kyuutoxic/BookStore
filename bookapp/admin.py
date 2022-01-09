@@ -167,15 +167,17 @@ class StatsView(AdminBaseView):
         to_date = request.args.get('to_date')
         year = request.args.get('year', datetime.now().year)
         month = request.args.get('month')
-
+        if month is None:
+            month = datetime.now().month
 
 
         return self.render('admin/stats.html',
-                            month_stats=utils.product_month_stats(year=year),
+                            year_stats=utils.product_year_stats(year=year),
                             stats=utils.product_stats(kw=kw,
                                                         from_date=from_date,
                                                         to_date=to_date), 
-                                                        product_month_statss=utils.product_month_statss(month=month))
+                                                        category_month_stats=utils.category_month_stats(month=month),
+                                                        product_month_stats=utils.product_month_stats(month=month), month=month, year=year)
 
 
 admin = Admin(app, name="Quản lý nhà sách",template_mode="bootstrap3", index_view=MyAdminIndexView())

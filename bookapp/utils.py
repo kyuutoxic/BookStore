@@ -203,20 +203,23 @@ def load_products(category_id=None, kw=None,page = 1):
         if category_id == str(0):
             products = Book.query
         else:
+            products = db.session.query(Book).join(Category).filter(Category.parent_id.__eq__(category_id))
             # cate = Category.query.filter(Category.id == category_id)
             # products = products.filter(Book.category_id.__eq__(category_id))
             # products = db.session.query()
-            id = db.session.query(Category.id).filter(Category.parent_id == category_id).all()
-            result = [x[0] for x in id]
-            products = Book.query.filter(Book.category_id.in_(result))
+            # id = db.session.query(Category.id).filter(Category.parent_id == category_id).all()
+            # result = [x[0] for x in id]
+            # products = Book.query.filter(Book.category_id.in_(result))
 
     if kw:
         products = products.filter(Book.name.contains(kw))
+        # products = db.session.query(Book).join(Category).join(ParentCategory).filter(ParentCategory.name.contains(kw))
+        
 
     page_size = app.config['PAGE_SIZE']
     start = (page - 1) * page_size
     end = start + page_size
-
+        
     return products.slice(start, end).all()
 
 
@@ -229,10 +232,12 @@ def count_products(category_id=0, kw=None):
         if category_id == str(0):
             products = Book.query
         else:
+            # products = db.session.query(Book.category).filter(Category.parent_id.__eq__(category_id))
+            products = Book.query.filter(Category.parent_id.__eq__(category_id))
             # products = products.filter(Book.category_id.__eq__(category_id))
-            id = db.session.query(Category.id).filter(Category.parent_id == category_id).all()
-            result = [x[0] for x in id]
-            products = Book.query.filter(Book.category_id.in_(result))
+            # id = db.session.query(Category.id).filter(Category.parent_id == category_id).all()
+            # result = [x[0] for x in id]
+            # products = Book.query.filter(Book.category_id.in_(result))
 
     if kw:
         products = products.filter(Book.name.contains(kw))
@@ -277,7 +282,7 @@ def get_name_parentcategory_by_id(parent_id):
     return ParentCategory.query.get(parent_id)
 
 
-def product_month_stats(year):
+def product_year_stats(year):
     return db.session.query(extract('month', Receipt.created_date),
                             func.sum(ReceiptDetail.quantity*ReceiptDetail.unit_price))\
                      .join(ReceiptDetail, ReceiptDetail.receipt_id.__eq__(Receipt.id))\
@@ -286,16 +291,25 @@ def product_month_stats(year):
                      .order_by(extract('month', Receipt.created_date)).all()
 
 
-def product_month_statss(month):
+def category_month_stats(month):
     return db.session.query(Category.id, Category.name,func.sum(ReceiptDetail.quantity),
-                            func.sum(ReceiptDetail.quantity*ReceiptDetail.unit_price), Book.id, extract('month', Receipt.created_date))\
-                        .filter(Receipt.active.__eq__(True))\
+                            func.sum(ReceiptDetail.quantity*ReceiptDetail.unit_price))\
                         .join(Book, Book.category_id.__eq__(Category.id))\
                         .join(ReceiptDetail, ReceiptDetail.book_id.__eq__(Book.id))\
-                        .filter(extract('month', Receipt.created_date).__eq__(month))\
+                        .join(Receipt, Receipt.id.__eq__(ReceiptDetail.receipt_id))\
+                        .filter(extract('month', Receipt.created_date) == month, Receipt.active == 1)\
                         .group_by(Category.id, Category.name).all()
 
-                    
+
+def product_month_stats(month):
+    return db.session.query(Book.id, Book.name,func.sum(ReceiptDetail.quantity),
+                            func.sum(ReceiptDetail.quantity*ReceiptDetail.unit_price))\
+                        .join(ReceiptDetail, ReceiptDetail.book_id.__eq__(Book.id))\
+                        .join(Receipt, Receipt.id.__eq__(ReceiptDetail.receipt_id))\
+                        .filter(extract('month', Receipt.created_date) == month, Receipt.active == 1)\
+                        .group_by(Book.id, Book.name).all()
+
+
 def product_stats(kw=None, from_date=None, to_date=None):
     p = db.session.query(Book.id, Book.name,
                          func.sum(ReceiptDetail.quantity * ReceiptDetail.unit_price))\
@@ -315,23 +329,6 @@ def product_stats(kw=None, from_date=None, to_date=None):
     return p.all()
 
                     
-def product_stats(kw=None, from_date=None, to_date=None):
-    p = db.session.query(Book.id, Book.name,
-                         func.sum(ReceiptDetail.quantity * ReceiptDetail.unit_price))\
-                  .join(ReceiptDetail, ReceiptDetail.book_id.__eq__(Book.id), isouter=True)\
-                  .join(Receipt, Receipt.id.__eq__(ReceiptDetail.receipt_id))\
-                  .group_by(Book.id, Book.name)
-
-    if kw:
-        p = p.filter(Book.name.contains(kw))
-
-    if from_date:
-        p = p.filter(Receipt.created_date.__ge__(from_date))
-
-    if to_date:
-        p = p.filter(Receipt.created_date.__le__(to_date))
-
-    return p.all()
 
 
 

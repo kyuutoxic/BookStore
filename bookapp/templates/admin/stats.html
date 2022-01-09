@@ -1,9 +1,99 @@
 {% extends 'admin/master.html' %} {% block body %} {{ super() }} {% if
-current_user.is_authenticated %}
-
+  current_user.is_authenticated %}
+  
+  
 <h1 class="text-center text-danger">THONG KE DOANH THU</h1>
+<br>
+<br>
+<br>
+<br>
 <div class="row">
   <div class="col-md-5 col-xs-12">
+    <table class="table">
+    </table>
+  </div>
+  <div class="col-md-5 col-xs-12">
+    <form>
+      <label  style="width:120px">Thang</label>
+      <div class="form-group">
+          <select class="usa-select" name="month" id="month" style="width:75%; height: 30px; margin-right: 10px; margin-left: 3px">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+          <input type="submit" value="Thong ke" class="btn btn-danger" />
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-5 col-xs-12">
+    <h4>THỐNG KÊ DOANH THU THÁNG {{month}} THEO THỂ LOẠI</h4>
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>QUANTITY</th>
+        <th>TOTAL</th>
+      </tr>
+      {% for s in category_month_stats %}
+      <tr>
+        <td>{{s[0] }}</td>
+        <td>{{s[1] }}</td>
+        <td>{{s[2] }}</td>
+        <td>{{"{:,.0f}".format(s[3])}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  <div class="col-md-5 col-xs-12">
+      <canvas id="categoryMonthStatssChartId"></canvas>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class="row">
+  <div class="col-md-5 col-xs-12">
+    <h4>THỐNG KÊ DOANH THU THÁNG {{month}} THEO ĐẦU SÁCH</h4>
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>QUANTITY</th>
+        <th>TOTAL</th>
+      </tr>
+      {% for s in product_month_stats %}
+      <tr>
+        <td>{{s[0] }}</td>
+        <td>{{s[1] }}</td>
+        <td>{{s[2] }}</td>
+        <td>{{"{:,.0f}".format(s[3])}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  <div class="col-md-5 col-xs-12">
+      <canvas id="productMonthStatssChartId"></canvas>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class="row">
+  <div class="col-md-5 col-xs-12">
+    <h4>THỐNG KÊ DOANH THU THEO ĐẦU SÁCH</h4>
     <table class="table">
       <tr>
         <th>Ma SP</th>
@@ -44,14 +134,19 @@ current_user.is_authenticated %}
     <canvas id="productChartId"></canvas>
   </div>
 </div>
+<br>
+<br>
+<br>
+<br>
 <div class="row">
   <div class="col-md-5 col-xs-12">
+    <h4>THỐNG KÊ DOANH THU NĂM {{year}}</h4>
     <table class="table">
       <tr>
         <th>Thang</th>
         <th>Doanh thu</th>
       </tr>
-      {% for s in month_stats %}
+      {% for s in year_stats %}
       <tr>
         <td>{{ s[0] }}</td>
         <td>{{ "{:,.1f}".format(s[1]) }} VND</td>
@@ -75,50 +170,16 @@ current_user.is_authenticated %}
     <canvas id="productMonthChartId"></canvas>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-5 col-xs-12">
-    <form>
-      <label for="month" style="width:120px">Invoice id:</label>
-      <select class="usa-select" name="month" id="month" style="width:210px; height: 30px; margin-right: 10px; margin-left: 3px">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-      </select>
-      <input type="submit" value="Thong ke" class="btn btn-danger" />
-    </form>
-    <table class="table">
-      <tr>
-        <th>ID</th>
-        <th>NAME</th>
-        <th>QUANTITY</th>
-        <th>TOTAL</th>
-      </tr>
-      {% for s in product_month_statss %}
-      <tr>
-        <td>{{s[0] }}</td>
-        <td>{{s[1] }}</td>
-        <td>{{s[2] }}</td>
-        <td>{{s[3] }}</td>
-      </tr>
-      {% endfor %}
-    </table>
-  </div>
-</div>
+<br>
+<br>
+<br>
+<br>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    let labels = [], labels2 = []
-    let data = [], data2 = []
-    let colors = [], colors2 = []
-    let borderColors = [], borderColors2 = []
+    let labels = [], labels2 = [], labels3 = [], labels4 = []
+    let data = [], data2 = [], data3 = [], data4 = []
+    let colors = [], colors2 = [], colors3 = [], colors4 = []
+    let borderColors = [], borderColors2 = [], borderColors3 = [], borderColors4 = []
     let r, g, b;
 
     {% for s in stats %}
@@ -134,7 +195,7 @@ current_user.is_authenticated %}
     {% endif %}
     {% endfor %}
 
-    {% for s in month_stats %}
+    {% for s in year_stats %}
 
     labels2.push({{s[0]}})
     data2.push({{ s[1] }})
@@ -147,12 +208,38 @@ current_user.is_authenticated %}
 
     {% endfor %}
 
+    {% for p in category_month_stats %}
+    labels3.push('{{p[1]}}')
+    data3.push({{ p[2] }})
+
+    r = parseInt(Math.random() * 255)
+    g = parseInt(Math.random() * 255)
+    b = parseInt(Math.random() * 255)
+    colors3.push(`rgba(${r}, ${g}, ${b}, 0.2)`)
+    borderColors3.push(`rgba(${r}, ${g}, ${b}, 1)`)
+    {% endfor %}
+
+    {% for p in product_month_stats %}
+    labels4.push('{{p[1]}}')
+    data4.push({{ p[2] }})
+
+    r = parseInt(Math.random() * 255)
+    g = parseInt(Math.random() * 255)
+    b = parseInt(Math.random() * 255)
+    colors4.push(`rgba(${r}, ${g}, ${b}, 0.2)`)
+    borderColors4.push(`rgba(${r}, ${g}, ${b}, 1)`)
+    {% endfor %}
+    
     window.onload = function() {
         const ctx = document.getElementById('productChartId').getContext('2d')
         const ctx2 = document.getElementById('productMonthChartId').getContext('2d')
+        const ctx3 = document.getElementById('categoryMonthStatssChartId').getContext('2d')
+        const ctx4 = document.getElementById('productMonthStatssChartId').getContext('2d')
 
         loadChart(ctx, labels, data, 'bar', colors, borderColors)
         loadChart(ctx2, labels2, data2, 'line', colors2, borderColors2)
+        loadChart(ctx3, labels3, data3, 'bar', colors3, borderColors3)
+        loadChart(ctx4, labels4, data4, 'doughnut', colors4, borderColors4)
     }
 
 function loadChart(ctx, labels, data, type, colors, borderColors) {
