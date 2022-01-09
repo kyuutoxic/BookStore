@@ -204,8 +204,11 @@ def load_products(category_id=None, kw=None,page = 1):
             products = Book.query
         else:
             # cate = Category.query.filter(Category.id == category_id)
-            products = products.filter(Book.category_id.__eq__(category_id))
+            # products = products.filter(Book.category_id.__eq__(category_id))
             # products = db.session.query()
+            id = db.session.query(Category.id).filter(Category.parent_id == category_id).all()
+            result = [x[0] for x in id]
+            products = Book.query.filter(Book.category_id.in_(result))
 
     if kw:
         products = products.filter(Book.name.contains(kw))
@@ -226,7 +229,10 @@ def count_products(category_id=0, kw=None):
         if category_id == str(0):
             products = Book.query
         else:
-            products = products.filter(Book.category_id.__eq__(category_id))
+            # products = products.filter(Book.category_id.__eq__(category_id))
+            id = db.session.query(Category.id).filter(Category.parent_id == category_id).all()
+            result = [x[0] for x in id]
+            products = Book.query.filter(Book.category_id.in_(result))
 
     if kw:
         products = products.filter(Book.name.contains(kw))
@@ -280,12 +286,14 @@ def product_month_stats(year):
                      .order_by(extract('month', Receipt.created_date)).all()
 
 
-def product_month_statss():
+def product_month_statss(month):
     return db.session.query(Category.id, Category.name,func.sum(ReceiptDetail.quantity),
-                            func.sum(ReceiptDetail.quantity*ReceiptDetail.unit_price), Book.id)\
+                            func.sum(ReceiptDetail.quantity*ReceiptDetail.unit_price), Book.id, extract('month', Receipt.created_date))\
+                        .filter(Receipt.active.__eq__(True))\
                         .join(Book, Book.category_id.__eq__(Category.id))\
                         .join(ReceiptDetail, ReceiptDetail.book_id.__eq__(Book.id))\
-                        .group_by(Category.id, Category.name)
+                        .filter(extract('month', Receipt.created_date).__eq__(month))\
+                        .group_by(Category.id, Category.name).all()
 
                     
 def product_stats(kw=None, from_date=None, to_date=None):
@@ -324,3 +332,9 @@ def product_stats(kw=None, from_date=None, to_date=None):
         p = p.filter(Receipt.created_date.__le__(to_date))
 
     return p.all()
+
+
+
+
+
+
