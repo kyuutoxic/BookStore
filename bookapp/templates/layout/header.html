@@ -109,7 +109,7 @@
                                         <span>Total</span>
                                         <span class="total-amount" id="amount1">{{ "{:,.0f}".format(cart_stats.total_amount) }} VND</span>
                                     </div>
-                                    <a href="checkout.html" class="btn animate">Checkout</a>
+                                    <a href="{{ url_for('checkout') }}"  class="btn animate">Checkout</a>
                                 </div>
                             </div>
                             <!--/ End Shopping Item -->

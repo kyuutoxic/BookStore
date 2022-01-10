@@ -1,3 +1,4 @@
+from flask.scaffold import F
 from sqlalchemy import Column, Integer, String, Float, Boolean, ForeignKey, Enum
 from enum import Enum as UserEnum
 from datetime import datetime
@@ -24,7 +25,7 @@ class UserRole(UserEnum):
 
 class User(BaseModel, UserMixin):
 
-    __tablename__ = 'user'
+    __tablename__ = 'User'
 
     first_name = Column(String(50), nullable=False)
     last_name = Column(String(50), nullable=False)
@@ -113,6 +114,8 @@ class Receipt(BaseModel):
     created_date = Column(DateTime, default=datetime.now())
     user_id = Column(Integer, ForeignKey(User.id), nullable=False)
     details = relationship('ReceiptDetail', backref='receipt', lazy=True)
+    phone_number = Column(String(50))
+    address_id = Column(Integer, ForeignKey('address.id'))
     active = Column(Boolean, default=False)
 
 
@@ -143,6 +146,32 @@ class Comment(BaseModel):
 
     def __str__(self):
         return self.content
+
+
+class City(db.Model):
+    __tablename__ = 'city'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(255), nullable=False)
+    district = relationship('District', backref='city', lazy=True)
+
+class District(db.Model):
+    __tablename__ = 'district'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(255), nullable=False)
+    city_id = Column(Integer, ForeignKey(City.id), nullable=False)
+
+
+
+class Address(BaseModel):
+    __tablename__ = 'address'
+
+    street_name = Column(String(255), nullable=False)
+    city_id = Column(Integer, ForeignKey(City.id), nullable=False)
+    district_id = Column(Integer, ForeignKey(District.id), nullable=False)
+
+
 
 
 if __name__ == '__main__':

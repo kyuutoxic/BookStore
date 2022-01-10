@@ -1,7 +1,7 @@
 from models import User
 from flask import request, session
 import hashlib
-from models import Category, Book, ParentCategory, Import, Receipt, ReceiptDetail, Rule, BookLanguage, Comment
+from models import Category, Book, ParentCategory, Import, Receipt, ReceiptDetail, Rule, BookLanguage, Comment, City, District
 from sqlalchemy import func
 from __init__ import db, app
 from flask_login import current_user
@@ -327,6 +327,14 @@ def product_stats(kw=None, from_date=None, to_date=None):
         p = p.filter(Receipt.created_date.__le__(to_date))
 
     return p.all()
+
+
+def load_city():
+    return City.query.all()
+
+
+def load_district_by_city_id(city_id):
+    return District.query.filter(District.city_id.__eq__(city_id))
 
                     
 

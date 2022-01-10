@@ -6011,6 +6011,18 @@ img:hover {
 }
 
 
+#lamcainaynhaDat {
+    position: absolute;
+    z-index: 999;
+    right: 4%;
+    width: 360px;
+    height: 45px;
+    top: 32%;
+    display: block !important;
+    border: 0;
+    background-color: #f6f7fb;  
+}
+
 /*=============================
 	End Footer CSS
 ===============================*/

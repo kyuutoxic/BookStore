@@ -1,0 +1,116 @@
+{% extends 'layout/base.html' %}
+ {% block title %}Products{% endblock %}
+
+{%block css %}
+{% endblock %} 
+
+{% block header %}
+{% include 'layout/header.html'%} 
+{% endblock %} 
+
+{% block content %} 
+<section class="shop checkout section">
+    <div class="container">
+        <div class="row"> 
+            <div class="col-lg-8 col-12">
+                <div class="checkout-form">
+                    <h2>Make Your Checkout Here</h2>
+                    <p>Please fill in the recipient's information</p>
+                    <!-- Form -->
+                    <form class="form" method="post" action="#">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Name<span>*</span></label>
+                                    <input type="text" name="name" placeholder="" required="required">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Phone Number<span>*</span></label>
+                                    <input type="text" name="number" placeholder="" required="required">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Country<span>*</span></label>
+                                    <select name="country_name" id="country" onchange="changeFunc()">
+                                        {% for c in city %}
+                                        <option value="{{ c.id }}">{{ c.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>State / Divition<span>*</span></label>
+                                    <select id="lamcainaynhaDat">
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Address Line 1<span>*</span></label>
+                                    <input type="text" name="address" placeholder="" required="required">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group create-account">
+                                    <input id="cbox" type="checkbox">
+                                    <label>Create an account?</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!--/ End Form -->
+                </div>
+            </div>
+            <div class="col-lg-4 col-12">
+                <div class="order-details">
+                    <!-- Order Widget -->
+                    <div class="single-widget">
+                        <h2>CART  TOTALS</h2>
+                        <div class="content">
+                            <ul>
+                                <li>Sub Total<span>$330.00</span></li>
+                                <li>(+) Shipping<span>$10.00</span></li>
+                                <li class="last">Total<span>$340.00</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--/ End Order Widget -->
+                    <!-- Order Widget -->
+                    <div class="single-widget">
+                        <h2>Payments</h2>
+                        <div class="content">
+                            <div style="padding-left: 24px;">
+                            <br>
+                             <input type="radio" id="html" name="fav_language" value="momo">
+                             <label for="html">Momo</label><br>
+                             <input type="radio" id="css" name="fav_language" value="offline">
+                             <label for="css">Offline</label><br>
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ End Order Widget -->
+                    <!-- Payment Method Widget -->
+                    <!--/ End Payment Method Widget -->
+                    <!-- Button Widget -->
+                    <div class="single-widget get-button">
+                        <div class="content">
+                            <div class="button">
+                                <a href="#" class="btn">proceed to checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ End Button Widget -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

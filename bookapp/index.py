@@ -67,6 +67,7 @@ def book_detail(book_id):
     return render_template('book-detail.html', book = book, language=language, counter=counter, cate_name=cate_name,parent_name=parent_name)
 
 
+
 @app.route('/login', methods=["GET", "POST"])
 def user_login():
     err_msg = ''
@@ -285,6 +286,27 @@ def get_comments(book_id, qttcomment):
                 'username': c.user.username,
                 'avatar': c.user.avatar
             }
+        })
+
+    return jsonify(results)
+
+
+@app.route('/checkout')
+def checkout():
+    city = utils.load_city()
+    return render_template('checkout.html', city=city)
+
+
+@app.route('/api/load-address/<int:city_id>')
+def load_address(city_id):
+    district = utils.load_district_by_city_id(city_id=city_id)
+    results = []
+
+    for d in district:
+        results.append({
+            'id': d.id,
+            'name': d.name,
+            'city_id': d.city_id
         })
 
     return jsonify(results)
