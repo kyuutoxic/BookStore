@@ -108,7 +108,7 @@ class Sale(SellerView):
         cus_name = request.args.get('cus_name')
 
         if id:
-            receipt = utils.add_receipt(user_id=id, cus_name=cus_name)
+            utils.add_receipt(user_id=id, cus_name=cus_name)
 
         kw = request.args.get('kw')
 
@@ -177,7 +177,7 @@ class StatsView(AdminBaseView):
                                                         from_date=from_date,
                                                         to_date=to_date), 
                                                         category_month_stats=utils.category_month_stats(month=month),
-                                                        product_month_stats=utils.product_month_stats(month=month), month=month, year=year)
+                                                        product_month_stats=utils.product_month_stats(month=month), month=month, year=year, kw=kw)
 
 
 admin = Admin(app, name="Quản lý nhà sách",template_mode="bootstrap3", index_view=MyAdminIndexView())

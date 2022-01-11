@@ -44,21 +44,15 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>State / Divition<span>*</span></label>
-                                    <select id="lamcainaynhaDat">
-
+                                    <select name="district_name" id="district">
+                                        <!-- ajax script.js -->
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-12">
+                            <div class="col-lg-12 col-md-12 col-12">
                                 <div class="form-group">
                                     <label>Address Line 1<span>*</span></label>
                                     <input type="text" name="address" placeholder="" required="required">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group create-account">
-                                    <input id="cbox" type="checkbox">
-                                    <label>Create an account?</label>
                                 </div>
                             </div>
                         </div>
@@ -85,12 +79,21 @@
                         <h2>Payments</h2>
                         <div class="content">
                             <div style="padding-left: 24px;">
-                            <br>
-                             <input type="radio" id="html" name="fav_language" value="momo">
-                             <label for="html">Momo</label><br>
-                             <input type="radio" id="css" name="fav_language" value="offline">
-                             <label for="css">Offline</label><br>
-                            
+                            <div class="grid_opt">
+                                <div>
+                                    <input type="radio" name="opt" id="opt1" class="opt" value="momo"> 
+                                    <label for="opt1" class="label_opt">
+                                        <span class="box_opt"></span>
+                                        <span>Momo</span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="opt" id="opt2" class="opt" value="offline">
+                                    <label for="opt2" class="label_opt">
+                                        <span class="box_opt"></span>
+                                        <span>Offline</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>

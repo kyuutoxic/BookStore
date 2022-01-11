@@ -213,12 +213,12 @@
                                 {% for c in range(8) %}
                                 <li style="height: 52px"><form action="/products" style = "height: 100%"><button name = "category_id" value = "{{categories[c].id}}"
                                     style="    
-                                    width: 80%;
-                                    height: 80%;
+                                    width: 100%;
+                                    height: 100%;
                                     text-align: left;
                                     background-color: white;
                                     border: none;
-                                    margin: 2% 9%;">{{categories[c].name}}</button></form></li>
+                                    padding: 2% 9%;">{{categories[c].name}}</button></form></li>
                                 {% endfor %}
                             </ul>
                         </div>

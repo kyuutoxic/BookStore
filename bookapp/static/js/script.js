@@ -367,7 +367,7 @@ function loadAddress(city_id) {
     .then((res) => res.json())
     .then((data) => {
       console.info(data);
-      let comments = document.getElementById("lamcainaynhaDat");
+      let comments = document.getElementById("district");
       comments.innerHTML = "";
       for (let i = 0; i < data.length; i++) {
         comments.innerHTML += getHtmlDistrict(data[i]);
@@ -378,12 +378,12 @@ function loadAddress(city_id) {
 
 function getHtmlDistrict(district) {
   return `
-  <option value=${district["id"]} style="height:45px;">${district["name"]}</option>
+  <option value=${district["id"]}>${district["name"]}</option>
     `;
 }
 
 function changeFunc() {
   var selectBox = document.getElementById("country");
   var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-  loadAddress(selectedValue)
+  loadAddress(selectedValue); 
 }

@@ -38,7 +38,7 @@ def read_book(kw=None):
     books = Book.query
 
     if kw:
-        books = books.filter(Book.name.contains(kw))
+        books = books.filter(Book.name.contains(kw.strip()))
 
     return books.all()
 
@@ -318,7 +318,7 @@ def product_stats(kw=None, from_date=None, to_date=None):
                   .group_by(Book.id, Book.name)
 
     if kw:
-        p = p.filter(Book.name.contains(kw))
+        p = p.filter(Book.name.contains(kw.strip()))
 
     if from_date:
         p = p.filter(Receipt.created_date.__ge__(from_date))

@@ -36,6 +36,7 @@ Version:1.0
 19. Contact CSS
 20. 404 Error CSS
 21. Footer CSS
+22. Radio Button Checkout
 ========================================*/
 
 
@@ -3914,6 +3915,7 @@ img:hover {
     width: 100%;
     height: 300px;
     overflow: scroll;
+    overflow-x: hidden;
 }
 
 .shop.checkout .nice-select .list li {}
@@ -6011,18 +6013,82 @@ img:hover {
 }
 
 
-#lamcainaynhaDat {
+#district {
     position: absolute;
-    z-index: 999;
+    z-index: 9;
     right: 4%;
-    width: 360px;
-    height: 45px;
     top: 32%;
-    display: block !important;
-    border: 0;
-    background-color: #f6f7fb;  
+    display: block !important;  
+    width: 100%;
+    height: 45px;
+    line-height: 50px;
+    margin-bottom: 25px;
+    background: #F6F7FB;
+    border-radius: 0px;
+    border: none;
 }
 
+#district .option {
+    height: 45px !important;
+}
 /*=============================
 	End Footer CSS
+===============================*/
+
+/*=============================
+  Start Radio Button Checkout
+===============================*/
+.opt{
+    display: none;
+}
+
+.label_opt{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.box_opt{
+    width: 20px;
+    height: 20px;
+    border: 2px solid black;
+    border-radius: 50%;
+    position: relative;
+    margin-right: 10px; 
+    cursor: pointer;
+}
+
+
+.box_opt::after, .box_opt::before{
+    width: 100%;
+    height: 100%;
+    content: "";
+    background-color: orange;
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 0.5s ease-in-out;
+}
+
+.opt:checked + .label_opt .box_opt::before{
+    transform: scale(1.8);
+    opacity: 0.3;
+}
+
+.opt:checked + .label_opt .box_opt::after{
+    transform: scale(0.5);
+    opacity: 1;
+}
+
+.box_opt:hover, .label_opt:hover .box_opt{
+    border-color: orange;
+}
+
+.label_opt:hover {
+    color: orange;
+}
+/*=============================
+	End Radio Button Checkout
 ===============================*/
