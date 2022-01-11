@@ -97,7 +97,7 @@
                                 </ul>
                                 {% if current_user.is_authenticated %}
                                 <div class="button5">
-                                    <a href="#" class="btn" onclick="pay()">Checkout</a>
+                                    <a href="{{ url_for('checkout') }}" class="btn">Checkout</a>
                                     <a href="#" class="btn">Continue shopping</a>
                                 </div>
                                 {% else %}

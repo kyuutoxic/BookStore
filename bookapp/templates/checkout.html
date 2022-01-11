@@ -10,6 +10,7 @@
 
 {% block content %} 
 <section class="shop checkout section">
+    <form class="form" action="{{ url_for('checkout') }}" method="post">
     <div class="container">
         <div class="row"> 
             <div class="col-lg-8 col-12">
@@ -17,7 +18,6 @@
                     <h2>Make Your Checkout Here</h2>
                     <p>Please fill in the recipient's information</p>
                     <!-- Form -->
-                    <form class="form" method="post" action="#">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
@@ -51,27 +51,26 @@
                             </div>
                             <div class="col-lg-12 col-md-12 col-12">
                                 <div class="form-group">
-                                    <label>Address Line 1<span>*</span></label>
+                                    <label>Address Line<span>*</span></label>
                                     <input type="text" name="address" placeholder="" required="required">
                                 </div>
                             </div>
                         </div>
-                    </form>
-                    <!--/ End Form -->
+                        <!--/ End Form -->
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-12">
-                <div class="order-details">
-                    <!-- Order Widget -->
-                    <div class="single-widget">
-                        <h2>CART  TOTALS</h2>
-                        <div class="content">
-                            <ul>
-                                <li>Sub Total<span>$330.00</span></li>
-                                <li>(+) Shipping<span>$10.00</span></li>
-                                <li class="last">Total<span>$340.00</span></li>
-                            </ul>
-                        </div>
+                <div class="col-lg-4 col-12">
+                    <div class="order-details">
+                        <!-- Order Widget -->
+                        <div class="single-widget">
+                            <h2>CART  TOTALS</h2>
+                            <div class="content">
+                                <ul>
+                                    <li>Sub Total<span>{{ "{:,.0f}".format(cart_stats.total_amount) }} VND</span></li>
+                                    <li>(+) Shipping<span>Free</span></li>
+                                    <li class="last">Total<span>{{ "{:,.0f}".format(cart_stats.total_amount) }} VND</span></li> 
+                                </ul>
+                            </div>
                     </div>
                     <!--/ End Order Widget -->
                     <!-- Order Widget -->
@@ -79,32 +78,33 @@
                         <h2>Payments</h2>
                         <div class="content">
                             <div style="padding-left: 24px;">
-                            <div class="grid_opt">
-                                <div>
-                                    <input type="radio" name="opt" id="opt1" class="opt" value="momo"> 
-                                    <label for="opt1" class="label_opt">
-                                        <span class="box_opt"></span>
-                                        <span>Momo</span>
-                                    </label>
-                                </div>
-                                <div>
-                                    <input type="radio" name="opt" id="opt2" class="opt" value="offline">
-                                    <label for="opt2" class="label_opt">
-                                        <span class="box_opt"></span>
-                                        <span>Offline</span>
-                                    </label>
+                                <div class="grid_opt">
+                                    <div>
+                                        <input type="radio" name="opt" id="opt1" class="opt" value="momo" checked="checked"> 
+                                        <label for="opt1" class="label_opt">
+                                            <span class="box_opt"></span>
+                                            <span>Momo</span>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="opt" id="opt2" class="opt" value="offline">
+                                        <label for="opt2" class="label_opt">
+                                            <span class="box_opt"></span>
+                                            <span>Offline</span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!--/ End Order Widget -->
-                    <!-- Payment Method Widget -->
-                    <!--/ End Payment Method Widget -->
-                    <!-- Button Widget -->
-                    <div class="single-widget get-button">
+                        <!--/ End Order Widget -->
+                        <!-- Payment Method Widget -->
+                        <!--/ End Payment Method Widget -->
+                        <!-- Button Widget -->
+                        <div class="single-widget get-button">
                         <div class="content">
                             <div class="button">
-                                <a href="#" class="btn">proceed to checkout</a>
+                                <button type="submit" class="btn">proceed to checkout</button>
+                                <!-- <a href="#" class="btn">proceed to checkout</a> -->
                             </div>
                         </div>
                     </div>
@@ -113,6 +113,7 @@
             </div>
         </div>
     </div>
+</form>
 </section>
 
 

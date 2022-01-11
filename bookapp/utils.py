@@ -1,7 +1,7 @@
 from models import User
 from flask import request, session
 import hashlib
-from models import Category, Book, ParentCategory, Import, Receipt, ReceiptDetail, Rule, BookLanguage, Comment, City, District
+from models import Category, Book, ParentCategory, Import, Receipt, ReceiptDetail, Rule, BookLanguage, Comment, City, District, Address
 from sqlalchemy import func
 from __init__ import db, app
 from flask_login import current_user
@@ -178,17 +178,28 @@ def cart_stats(cart):
     }
 
 
-def add_receipts(cart):
+def add_receipts(cart, cus_name=None, phone_number=None,address_id=None, opt = 'offline'):
     if cart:
-        receipt = Receipt(user=current_user)
-        db.session.add(receipt)
-        db.session.commit()
+        if opt == 'offline':
+        
+            receipt = Receipt(user=current_user, cus_name=cus_name, phone_number=phone_number, address_id=address_id)
+            db.session.add(receipt)
+            db.session.commit()
 
-        for c in cart.values():
-            detail = ReceiptDetail(receipt_id=receipt.id,
-                                   book_id=c['id'],
-                                   quantity=c['quantity'],unit_price=c['price'])
-            db.session.add(detail)
+            for c in cart.values():
+                    detail = ReceiptDetail(receipt_id=receipt.id,
+                                        book_id=c['id'],
+                                        quantity=c['quantity'],unit_price=c['price'])
+                    db.session.add(detail)
+        else:
+            receipt = Receipt(user=current_user, cus_name=cus_name, phone_number=phone_number, address_id=address_id, active=True)
+            db.session.add(receipt)
+            db.session.commit()
+            for c in cart.values():
+                detail = ReceiptDetail(receipt_id=receipt.id,
+                                    book_id=c['id'],
+                                    quantity=c['quantity'],unit_price=c['price'])
+                db.session.add(detail)
 
         db.session.commit()
 
@@ -336,8 +347,17 @@ def load_city():
 def load_district_by_city_id(city_id):
     return District.query.filter(District.city_id.__eq__(city_id))
 
-                    
 
+def add_address(street_name, city_id, district_id):
+    address = Address(street_name=street_name, city_id=city_id, district_id=district_id)
+    db.session.add(address)
+    db.session.commit()
+
+    return address
+
+
+def get_address(address_id):
+    return Address.query.get(address_id)           
 
 
 
