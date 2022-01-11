@@ -126,7 +126,7 @@ def user_signout():
     cart = session.get('cart')
     if cart:
         del session['cart']
-    return redirect(url_for('user_login'))
+    return redirect(url_for('index'))
 
 
 @app.route('/cart')
@@ -305,10 +305,12 @@ def checkout():
         opt = request.form['opt']
 
         if street_name and district_id and city_id:
-            address = utils.add_address(street_name=street_name, district_id=district_id, city_id=city_id)
-            # address = utils.get_address(address_id.id)
-
-            utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address.id)
+            address_id = utils.get_address(street_name=street_name, district_id=district_id, city_id=city_id)
+            if address_id:
+                utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address_id[0].id)
+            else:
+                address = utils.add_address(street_name=street_name, district_id=district_id, city_id=city_id)
+                utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address.id)
 
             cart = session.get('cart')
             if cart:

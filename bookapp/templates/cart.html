@@ -98,10 +98,14 @@
                                 {% if current_user.is_authenticated %}
                                 <div class="button5">
                                     <a href="{{ url_for('checkout') }}" class="btn">Checkout</a>
-                                    <a href="#" class="btn">Continue shopping</a>
+                                    <a href="{{ url_for('product_list')}}" class="btn">Continue shopping</a>
                                 </div>
                                 {% else %}
-                                <a href="{{ url_for('user_login', next='cart') }}" class="text-danger">Vui long dang nhap de thanh toan</a> {% endif %}
+                                <div class="button5">
+                                    <a href="{{ url_for('user_login', next='checkout') }}" class="btn">Checkout</a>
+                                    <a href="{{ url_for('product_list')}}" class="btn">Continue shopping</a>
+                                </div> 
+                                {% endif %}
                             </div>
                         </div>
                     </div>

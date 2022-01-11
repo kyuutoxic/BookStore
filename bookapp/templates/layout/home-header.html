@@ -110,8 +110,10 @@
                                         <span>Total</span>
                                         <span class="total-amount" id="amount1">{{ "{:,.0f}".format(cart_stats.total_amount) }} VND</span>
                                     </div>
+                                    {% if current_user.is_authenticated %}
                                     <a href="{{ url_for('checkout') }}" class="btn animate">Checkout</a>
-                                </div>
+                                    {% else %}
+                                    <a href="{{ url_for('user_login', next='cart') }}" class="btn animate">Checkout</a>{% endif %}
                             </div>
 
                             <!--/ End Shopping Item -->
@@ -121,8 +123,9 @@
             </div>
         </div>
     </div>
+</div>
     <!-- Header Inner -->
-    <div class="header-inner">
+<div class="header-inner">
         <div class="container">
             <div class="cat-nav-head">
                 <div class="row">
@@ -256,7 +259,7 @@
                 </div>
             </div>
         </div>
-    </div>
+</div>
     <!--/ End Header Inner -->
 </header>
 <!--/ End Header -->

@@ -356,8 +356,8 @@ def add_address(street_name, city_id, district_id):
     return address
 
 
-def get_address(address_id):
-    return Address.query.get(address_id)           
+def get_address(street_name, city_id, district_id):
+    return Address.query.filter(Address.street_name.__eq__(street_name), Address.city_id.__eq__(city_id), Address.district_id.__eq__(district_id))         
 
 
 
