@@ -366,6 +366,7 @@ function loadAddress(city_id) {
   fetch(`/api/load-address/${city_id}`)
     .then((res) => res.json())
     .then((data) => {
+      $('#district').niceSelect('destroy');
       console.info(data);
       let comments = document.getElementById("district");
       comments.innerHTML = "";
@@ -373,6 +374,7 @@ function loadAddress(city_id) {
         comments.innerHTML += getHtmlDistrict(data[i]);
         console.log(data[i]['name'])
       }
+      $('#district').niceSelect();
     });
 }
 
