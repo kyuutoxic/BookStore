@@ -1,7 +1,8 @@
-{% extends 'layout/base.html' %} {% block title %}Chi tiet san pham{% endblock %} {% block css %}
+{% extends 'layout/base.html' %} {% block title %}Book Details{% endblock %} {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/book-detail.css') }}"> {% endblock %} {% block header %} {% include 'layout/header.html' %} {% endblock %} {% block content %}
 <div class="container">
     <!-- product -->
+    <div id="toast"></div>
     <div class="product-content product-wrap clearfix product-deatil">
         <div class="row">
             <div class="col-md-5 col-sm-12 col-xs-12">
@@ -57,7 +58,7 @@
                 <hr />
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-6 btn-group pull-right">
-                        <button class="btn btn-white btn-default " onclick="addToCart({{ book.id }}, '{{ book.name }}', {{ book.price }}, '{{ book.image }}'), miniCart({{ book.id }}, '{{ book.name }}', {{ book.price }}, '{{ book.image }}')">Add to cart ({{"{:,.0f}".format(book.price)}} VND)</button>
+                        <button class="btn btn-white btn-default " onclick="addToCart({{ book.id }}, '{{ book.name }}', {{ book.price }}, '{{ book.image }}'), miniCart({{ book.id }}, '{{ book.name }}', {{ book.price }}, '{{ book.image }}'); showSuccessToast()">Add to cart ({{"{:,.0f}".format(book.price)}} VND)</button>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-6">
                         <div class="btn-group ">

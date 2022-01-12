@@ -6076,6 +6076,9 @@ img:hover {
 	End Radio Button Checkout
 ===============================*/
 
+/*=============================
+	    Start img blog
+===============================*/
 #img_blog {
     transition: transform .2s !important;
 }
@@ -6083,3 +6086,94 @@ img:hover {
 #img_blog:hover{
     transform: scale(1.08) !important;
 }
+/*=============================
+	    End img blog
+===============================*/
+
+/*=============================
+	    Start noti cart
+===============================*/
+#toast {
+    position: fixed;
+    top: 32px;
+    right: 32px;
+    z-index: 999999;
+  }
+
+  .toast {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 2px;
+    padding: 20px 0;
+    min-width: 400px;
+    max-width: 450px;
+    border-left: 4px solid;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
+    transition: all linear 0.3s;
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(calc(100% + 32px));
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+    }
+  }
+
+  .toast--success {
+    border-color: #47d864;
+  }
+
+  .toast--success .toasticon {
+    color: #47d864;
+  }
+
+
+  .toast + .toast {
+    margin-top: 24px;
+  }
+
+  .toasticon {
+    font-size: 24px;
+  }
+
+  .toasticon,
+  .toastclose {
+    padding: 0 16px;
+  }
+
+  .toastbody {
+    flex-grow: 1;
+  }
+
+  .toasttitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .toastmsg {
+    font-size: 14px;
+    color: #888;
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  .toastclose {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+  }
+  /*=============================
+	    End noti cart
+===============================*/

@@ -307,8 +307,8 @@ def checkout():
 
         if street_name and district_id and city_id:
             address_id = utils.get_address(street_name=street_name, district_id=district_id, city_id=city_id)
-            if address_id:
-                utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address_id[0].id)
+            if address_id != 0:
+                utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address_id)
             else:
                 address = utils.add_address(street_name=street_name, district_id=district_id, city_id=city_id)
                 utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address.id)

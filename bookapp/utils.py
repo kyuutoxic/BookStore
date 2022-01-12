@@ -357,9 +357,17 @@ def add_address(street_name, city_id, district_id):
 
 
 def get_address(street_name, city_id, district_id):
-    return Address.query.filter(Address.street_name.__eq__(street_name), Address.city_id.__eq__(city_id), Address.district_id.__eq__(district_id))         
+    a = Address.query
+    for i in a:
+        if i.street_name.__eq__(street_name) and i.city_id.__eq__(city_id) and i.district_id.__eq__(district_id):
+            return i.id
+    else:
+        return 0
+    # return Address.query.filter(Address.street_name.__eq__(street_name), Address.city_id.__eq__(city_id), Address.district_id.__eq__(district_id))         
 
 
-
+if __name__ == '__main__':
+    p = get_address(street_name='1327', city_id=2, district_id=26)
+    print(p)
 
 
