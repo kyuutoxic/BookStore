@@ -9,6 +9,7 @@
 {% endblock %} 
 
 {% block content %} 
+{% if current_user.is_authenticated %}
 <section class="shop checkout section">
     <form class="form" action="{{ url_for('checkout') }}" method="post">
     <div class="container">
@@ -115,6 +116,7 @@
     </div>
 </form>
 </section>
-
-
+{% else %}
+{{ url_for('user_login', next='checkout') }}
+{% endif %}
 {% endblock %}

@@ -6075,6 +6075,7 @@ img:hover {
 /*=============================
 	End Radio Button Checkout
 ===============================*/
+<<<<<<< HEAD
 #toast {
     position: fixed;
     top: 32px;
@@ -6156,3 +6157,13 @@ img:hover {
     color: rgba(0, 0, 0, 0.3);
     cursor: pointer;
   }
+=======
+
+#img_blog {
+    transition: transform .2s !important;
+}
+
+#img_blog:hover{
+    transform: scale(1.08) !important;
+}
+>>>>>>> 9c4dff299137ef707b01ead16a42d6dd9e8cb151

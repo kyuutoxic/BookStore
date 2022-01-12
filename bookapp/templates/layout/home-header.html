@@ -113,7 +113,7 @@
                                     {% if current_user.is_authenticated %}
                                     <a href="{{ url_for('checkout') }}" class="btn animate">Checkout</a>
                                     {% else %}
-                                    <a href="{{ url_for('user_login', next='cart') }}" class="btn animate">Checkout</a>{% endif %}
+                                    <a href="{{ url_for('user_login', next='checkout') }}" class="btn animate">Checkout</a>{% endif %}
                             </div>
 
                             <!--/ End Shopping Item -->
@@ -136,39 +136,39 @@
                                 <li><a href="#most-popular-1">New Arrivals <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                     <ul class="mega-menu">
                                         <li class="single-menu">
-                                            <a href="#" class="title-link">Shop Kid's</a>
+                                            <a href="#" class="title-link">Thiếu nhi</a>
                                             <div class="image">
-                                                <img src="https://via.placeholder.com/225x155" alt="#">
+                                                <a href="{{ url_for('book_detail', book_id=6) }}"><img src="{{books[5].image}}" alt="#"></a>
                                             </div>
                                             <div class="inner-link">
-                                                <a href="#">Kids Toys</a>
-                                                <a href="#">Kids Travel Car</a>
-                                                <a href="#">Kids Color Shape</a>
-                                                <a href="#">Kids Tent</a>
+                                                <a href="#">Truyện thiếu nhi</a>
+                                                <a href="#">Kiến thức bách khoa</a>
+                                                <a href="#">Kỹ năng sống</a>
+                                                <a href="#">Sách tô màu</a>
                                             </div>
                                         </li>
                                         <li class="single-menu">
-                                            <a href="#" class="title-link">Shop Men's</a>
+                                            <a href="#" class="title-link">Tuổi teen</a>
                                             <div class="image">
-                                                <img src="https://via.placeholder.com/225x155" alt="#">
+                                                <a href="{{ url_for('book_detail', book_id=126) }}"><img src="{{books[125].image}}" alt="#"></a>
                                             </div>
                                             <div class="inner-link">
-                                                <a href="#">Watch</a>
-                                                <a href="#">T-shirt</a>
-                                                <a href="#">Hoodies</a>
-                                                <a href="#">Formal Pant</a>
+                                                <a href="#">Tiểu thuyết</a>
+                                                <a href="#">Truyện ngắn</a>
+                                                <a href="#">Light novel</a>
+                                                <a href="#">Trinh thám</a>
                                             </div>
                                         </li>
                                         <li class="single-menu">
-                                            <a href="#" class="title-link">Shop Women's</a>
+                                            <a href="#" class="title-link">Tâm lý</a>
                                             <div class="image">
-                                                <img src="https://via.placeholder.com/225x155" alt="#">
+                                                <a href="{{ url_for('book_detail', book_id=161) }}"><img src="{{books[160].image}}" alt="#"></a>
                                             </div>
                                             <div class="inner-link">
-                                                <a href="#">Ladies Shirt</a>
-                                                <a href="#">Ladies Frog</a>
-                                                <a href="#">Ladies Sun Glass</a>
-                                                <a href="#">Ladies Watch</a>
+                                                <a href="#">Rèn luyện nhân cách</a>
+                                                <a href="#">Hạt giống tâm hồn</a>
+                                                <a href="#">Kỹ năng giao tiếp</a>
+                                                <a href="#">Kỹ năng sống</a>
                                             </div>
                                         </li>
                                     </ul>
@@ -176,39 +176,39 @@
                                 <li class="main-mega"><a href="#most-popular-2">best selling <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                     <ul class="mega-menu">
                                         <li class="single-menu">
-                                            <a href="#" class="title-link">Shop Kid's</a>
+                                            <a href="#" class="title-link">Manga-Comics</a>
                                             <div class="image">
-                                                <img src="https://via.placeholder.com/225x155" alt="#">
+                                                <a href="{{ url_for('book_detail', book_id=79) }}"><img src="{{books[78].image}}" alt="#"></a>
                                             </div>
                                             <div class="inner-link">
-                                                <a href="#">Kids Toys</a>
-                                                <a href="#">Kids Travel Car</a>
-                                                <a href="#">Kids Color Shape</a>
-                                                <a href="#">Kids Tent</a>
+                                                <a href="#">Manga</a>
+                                                <a href="#">Comic</a>
+                                                <a href="#">Marvel-Comic</a>
+                                                <a href="#">DC-Comic</a>
+                                            </div>
+                                        </li>
+                                        <li class="single-menu"> 
+                                            <a href="#" class="title-link">Novels</a>
+                                            <div class="image">
+                                                <a href="{{ url_for('book_detail', book_id=66) }}"><img src="{{books[65].image}}" alt="#"></a>
+                                            </div>
+                                            <div class="inner-link">
+                                                <a href="#">Tiểu thuyết</a>
+                                                <a href="#">Truyện ngắn</a>
+                                                <a href="#">Light novel</a>
+                                                <a href="#">Trinh thám</a>
                                             </div>
                                         </li>
                                         <li class="single-menu">
-                                            <a href="#" class="title-link">Shop Men's</a>
+                                            <a href="#" class="title-link">Language</a>
                                             <div class="image">
-                                                <img src="https://via.placeholder.com/225x155" alt="#">
+                                                <a href="{{ url_for('book_detail', book_id=187) }}"><img src="{{books[186].image}}" alt="#"></a>
                                             </div>
                                             <div class="inner-link">
-                                                <a href="#">Watch</a>
-                                                <a href="#">T-shirt</a>
-                                                <a href="#">Hoodies</a>
-                                                <a href="#">Formal Pant</a>
-                                            </div>
-                                        </li>
-                                        <li class="single-menu">
-                                            <a href="#" class="title-link">Shop Women's</a>
-                                            <div class="image">
-                                                <img src="https://via.placeholder.com/225x155" alt="#">
-                                            </div>
-                                            <div class="inner-link">
-                                                <a href="#">Ladies Shirt</a>
-                                                <a href="#">Ladies Frog</a>
-                                                <a href="#">Ladies Sun Glass</a>
-                                                <a href="#">Ladies Watch</a>
+                                                <a href="#">Tiếng Anh</a>
+                                                <a href="#">Tiếng Nhật</a>
+                                                <a href="#">Tiếng Hoa</a>
+                                                <a href="#">Tiếng Hàn</a>
                                             </div>
                                         </li>
                                     </ul>
@@ -235,20 +235,21 @@
                                         <ul class="nav main-menu menu navbar-nav">
                                             <li class="active"><a href="#">Home</a></li>
                                             <li><a href="{{ url_for('product_list') }}">Products</a></li>
-                                            <li><a href="#">Service</a></li>
                                             <li><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
                                                 <ul class="dropdown">
                                                     <li><a href="{{ url_for('cart') }}">Cart</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
+                                                    {% if current_user.is_authenticated %}
+                                                    <li><a href="{{ url_for('checkout') }}">Checkout</a></li>
+                                                    {% else %}
+                                                    <li><a href="{{ url_for('user_login', next='checkout') }}">Checkout</a></li>{% endif %}
                                                 </ul>
                                             </li>
-                                            <li><a href="#">Pages</a></li>
                                             <li><a href="#">Blog<i class="ti-angle-down"></i></a>
                                                 <ul class="dropdown">
-                                                    <li><a href="blog-single-sidebar.html">Blog Single Sidebar</a></li>
+                                                    <li><a href="{{ url_for('blog') }}">Blog Single Sidebar</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="contact.html">Contact Us</a></li>
+                                            <li><a href="#footer">Contact Us</a></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -1,0 +1,138 @@
+{% extends 'layout/base.html' %} {% block title %}Blog{% endblock %} {% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/book-detail.css') }}"> {% endblock %} {% block header %} {% include 'layout/header.html' %} {% endblock %} {% block content %}
+<!-- Start Blog Single -->
+<section class="blog-single section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-12">
+                <div class="blog-single-main">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="image">
+                                <img id="img_blog" src="/static/img/photo4.jpg" alt="#">
+                            </div>
+                            <div class="blog-detail">
+                                <h2 class="blog-title">Chủ đề Quản lý nhà sách</h2>
+                                <div class="blog-meta">
+                                    <span class="author"><a href="#"><i class="fa fa-user"></i>Giảng viên hướng dẫn: Dương Hữu Thành</a><a href="#"><i class="fa fa-calendar"></i>Otc 1, 2021</a></span>
+                                </div>
+                                <div class="content">
+                                    <p style="font-size: 20px;"><strong>Thành viên nhóm:</strong></p>
+                                    <p>Nguyễn Văn Lâm</p>
+                                    <p>Nguyễn Hoàng Trung Thông</p>
+                                    <p>Trần Minh Huy</p>
+                                    <p>Lê Tuấn Đạt</p>
+                                    <blockquote> <i class="fa fa-quote-left"></i> Hệ thống quản lý nhà sách cho phép khách hàng thực hiện các chức năng như: tra cứu, đặt sách, quản lý giỏ hàng, quản lý tài khoản và thông tin cá nhân một cách dễ dàng và nhanh chóng. Bên cạnh đó, giúp nhà sách có thể dễ dàng thực hiện các chức năng như: lập hoá đơn mua trực tiếp, nhập sách, quản lý sách, thống kê báo cáo doanh thu, tần suất sản phẩm.</blockquote>
+                                    <p>Để xây dựng Thương hiệu mạnh, một trong những định hướng quan trọng hàng đầu của FAHASA là chiến lược phát triển nguồn nhân lực - mấu chốt của mọi sự thành công.</p>
+
+                                    <p>Eshop có hơn 2.200 CB-CNV, trình độ chuyên môn giỏi, nhiệt tình, năng động, chuyên nghiệp. Lực lượng quản lý Eshop có thâm niên công tác, giỏi nghiệp vụ nhiều kinh nghiệm, có khả năng quản lý tốt và điều hành đơn vị hoạt động hiệu quả.</p>
+                                        
+                                    <p>Kết hợp tuyển dụng nguồn nhân lực đầu vào có chất lượng và kế hoạch bồi dưỡng kiến thức, rèn luyện bổ sung các kỹ năng và chuẩn bị đội ngũ kế thừa theo hướng chính qui thông qua các lớp học ngắn hạn, dài hạn; các lớp bồi dưỡng CB-CNV được tổ chức trong nước cũng như ở nước ngoài đều được lãnh đạo FAHASA đặc biệt quan tâm và tạo điều kiện triển khai thực hiện. Chính vì thế, trình độ chuyên môn của đội ngũ CB-CNV ngày càng được nâng cao, đáp ứng nhu cầu ngày càng tăng của công việc cũng như sự phát triển của xã hội đang trên đường hội nhập.</p>
+                                    <p>Công ty Eshop chuyên kinh doanh: sách quốc văn, ngoại văn, văn hóa phẩm, văn phòng phẩm, dụng cụ học tập, quà lưu niệm, đồ chơi dành cho trẻ em… Một số Nhà sách trực thuộc Công ty FAHASA còn kinh doanh các mặt hàng siêu thị như: hàng tiêu dùng, hàng gia dụng, hóa  mỹ phẩm…</p>
+
+                                    <p>Sách quốc văn với nhiều thể loại đa dạng như sách giáo khoa – tham khảo, giáo trình, sách học ngữ, từ điển, sách tham khảo thuộc nhiều chuyên ngành phong phú: văn học, tâm lý – giáo dục, khoa học kỹ thuật, khoa học kinh tế - xã hội, khoa học thường thức, sách phong thủy, nghệ thuật sống, danh ngôn, sách thiếu nhi, truyện tranh, truyện đọc, từ điển, công nghệ thông tin, khoa học – kỹ thuật, nấu ăn, làm đẹp...  của nhiều Nhà xuất bản, nhà cung cấp sách có uy tín như: NXB Trẻ, Giáo Dục, Kim Đồng, Văn hóa -Văn Nghệ, Tổng hợp TP.HCM, Chính Trị Quốc Gia; Công ty Đông A, Nhã Nam, Bách Việt, Alphabook, Thái Hà, Minh Lâm, Đinh Tị, Minh Long, TGM, Sáng Tạo Trí Việt, Khang Việt, Toàn Phúc…</p>
+                                        
+                                    <p>Sách ngoại văn bao gồm: từ điển, giáo trình, tham khảo, truyện tranh thiếu nhi , sách học ngữ, từ vựng, ngữ pháp, luyện thi TOEFL, TOEIC, IELS…được nhập từ các NXB nước ngoài như: Cambridge, Mc Graw-Hill, Pearson Education, Oxford, Macmillan, Cengage Learning…</p>
+                                </div>
+                            </div>
+                            <div class="share-social">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="content-tags">
+                                            <h4>Tags:</h4>
+                                            <ul class="tag-inner">
+                                                <li><a href="#">TIỂU THUYẾT</a></li>
+                                                <li><a href="#">TUỔI TEEN</a></li>
+                                                <li><a href="#">THỂ LOẠI KHÁC</a></li>
+                                                <li><a href="#">KỸ NĂNG SỐNG</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>										
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-12">
+                <div class="main-sidebar">
+                    <!-- Single Widget -->
+                    <div class="single-widget category">
+                        <h3 class="title">Blog Categories</h3>
+                        <ul class="categor-list">
+                            <li><a href="#">LỊCH SỬ</a></li>
+                            <li><a href="#">CHÍNH TRỊ</a></li>
+                            <li><a href="#">KINH TẾ</a></li>
+                            <li><a href="#">THỂ THAO</a></li>
+                            <li><a href="#">NẤU ĂN</a></li>
+                        </ul>
+                    </div>
+                    <!--/ End Single Widget -->
+                    <!-- Single Widget -->
+                    <div class="single-widget recent-post">
+                        <h3 class="title">Recent post</h3>
+                        <!-- Single Post -->
+                        <div class="single-post">
+                            <div class="image">
+                                <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/400x400/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_36793.jpg" alt="#">
+                            </div>
+                            <div class="content">
+                                <h5><a href="#">Top 10 best novels of the month</a></h5>
+                                <ul class="comment">
+                                    <li><i class="fa fa-calendar" aria-hidden="true"></i>Jan 11, 2020</li>
+                                    <li><i class="fa fa-commenting-o" aria-hidden="true"></i>35</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End Single Post -->
+                        <!-- Single Post -->
+                        <div class="single-post">
+                            <div class="image">
+                                <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/400x400/9df78eab33525d08d6e5fb8d27136e95/i/m/image_173814.jpg" alt="#">
+                            </div>
+                            <div class="content">
+                                <h5><a href="#">Top 10 best economic books of the month</a></h5>
+                                <ul class="comment">
+                                    <li><i class="fa fa-calendar" aria-hidden="true"></i>Mar 05, 2020</li>
+                                    <li><i class="fa fa-commenting-o" aria-hidden="true"></i>59</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End Single Post -->
+                        <!-- Single Post -->
+                        <div class="single-post">
+                            <div class="image">
+                                <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/400x400/9df78eab33525d08d6e5fb8d27136e95/o/m/omdiet-quy-2canh-buom-khuyet.jpg" alt="#">
+                            </div>
+                            <div class="content">
+                                <h5><a href="#">Top 10 best manga-comics of the month</a></h5>
+                                <ul class="comment">
+                                    <li><i class="fa fa-calendar" aria-hidden="true"></i>June 09, 2020</li>
+                                    <li><i class="fa fa-commenting-o" aria-hidden="true"></i>44</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End Single Post -->
+                    </div>
+                    <!--/ End Single Widget -->
+                    <!-- Single Widget -->
+                    <div class="single-widget side-tags">
+                        <h3 class="title">Tags</h3>
+                        <ul class="tag">
+                            <li><a href="#">TRUYỆN THIẾU NHI</a></li>
+                            <li><a href="#">PICTURE & ACTIVITY BOOKS</a></li>
+                            <li><a href="#">FICTION FOR TEEN</a></li>
+                            <li><a href="#">KINH TẾ</a></li>
+                            <li><a href="#">CÂU CHUYỆN CUỘC ĐỜI</a></li>
+                            <li><a href="#">SOCIETY & SOCIAL ISSUES</a></li>
+                            <li><a href="#">THỜI TRANG</a></li>
+                        </ul>
+                    </div>
+                    <!--/ End Single Widget -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Blog Single -->
+{% endblock %}

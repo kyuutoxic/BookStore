@@ -109,7 +109,10 @@
                                         <span>Total</span>
                                         <span class="total-amount" id="amount1">{{ "{:,.0f}".format(cart_stats.total_amount) }} VND</span>
                                     </div>
-                                    <a href="{{ url_for('checkout') }}"  class="btn animate">Checkout</a>
+                                    {% if current_user.is_authenticated %}
+                                    <a href="{{ url_for('checkout') }}" class="btn animate">Checkout</a>
+                                    {% else %}
+                                    <a href="{{ url_for('user_login', next='checkout') }}" class="btn animate">Checkout</a>{% endif %}
                                 </div>
                             </div>
                             <!--/ End Shopping Item -->
@@ -133,20 +136,21 @@
                                         <ul class="nav main-menu menu navbar-nav">
                                             <li><a href="{{ url_for('index') }}">Home</a></li>
                                             <li class="activenav" id="/products"><a href="{{ url_for('product_list') }}">Products</a></li>
-                                            <li class="activenav" id="/service"><a href="#">Service</a></li>
                                             <li class="activenav" id="/cart /checkout"><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
                                                 <ul class="dropdown">
                                                     <li><a href="{{ url_for('cart') }}">Cart</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
+                                                    {% if current_user.is_authenticated %}
+                                                    <li><a href="{{ url_for('checkout') }}">Checkout</a></li>
+                                                    {% else %}
+                                                    <li><a href="{{ url_for('user_login', next='checkout') }}">Checkout</a></li>{% endif %}
                                                 </ul>
                                             </li>
-                                            <li class="activenav" id="/pages"><a href="#">Pages</a></li>
                                             <li class="activenav" id="/blog single sidebar"><a href="#">Blog<i class="ti-angle-down"></i></a>
                                                 <ul class="dropdown">
-                                                    <li><a href="blog-single-sidebar.html">Blog Single Sidebar</a></li>
+                                                    <li><a href="{{ url_for('blog') }}">Blog Single Sidebar</a></li>
                                                 </ul>
                                             </li>
-                                            <li class="activenav" id="/contact us"><a href="contact.html">Contact Us</a></li>
+                                            <li class="activenav" id="/contact us"><a href="#footer">Contact Us</a></li>
                                         </ul>
                                     </div>
                                 </div>
