@@ -292,6 +292,7 @@ def get_comments(book_id, qttcomment):
 
 
 @app.route('/checkout',methods=['get', 'post'])
+@login_required
 def checkout():
     city = utils.load_city()
 
@@ -334,6 +335,9 @@ def load_address(city_id):
 
     return jsonify(results)
 
+@app.route('/blog')
+def blog():
+    return render_template('blog.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
