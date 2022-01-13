@@ -331,7 +331,7 @@ def send_email(info):
     head = 'Your payment was successfully!'
     body = ''
     for i in rs:
-        body = body + str(i.quantity) + ' quyển ' + get_book_by_id(i.book_id).name + ' giá ' + str(i.unit_price) + '/1 quyển \n'
+        body = body + str(i.quantity) + ' quyển ' + get_book_by_id(i.book_id).name + ' giá ' + str(i.unit_price) + '/1 quyển \n\n'
     footer = 'The package will come after a fews day, hope you happy!'
     msg = f'Subject: {subject}\n\n{head}\n\n{body}\n{footer}'
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
