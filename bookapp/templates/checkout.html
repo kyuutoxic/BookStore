@@ -34,7 +34,7 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
-                                    <label>Country<span>*</span></label>
+                                    <label>City<span>*</span></label>
                                     <select name="country_name" id="country" onchange="changeFunc()">
                                         {% for c in city %}
                                         <option value="{{ c.id }}">{{ c.name }}</option>
@@ -117,6 +117,11 @@
     </div>
 </form>
 </section>
+<script>
+    window.onload = function() {
+        changeFunc()
+    }
+</script>    
 {% else %}
 {{ url_for('user_login', next='checkout') }}
 {% endif %}

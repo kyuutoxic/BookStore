@@ -114,6 +114,14 @@ def update_stock(book_id, quantity):
     db.session.commit()
 
 
+def check_stock(book_id, quantity):
+    book = Book.query.get(book_id)
+    if book.quantity >= quantity:
+        return True
+    return False
+
+
+
 # Client func
 def read_parent_category():
     return ParentCategory.query.all()
@@ -124,11 +132,8 @@ def read_books():
 
 
 def get_book_by_id(book_id):
-    book = Book.query
+    return Book.query.get(book_id)
 
-    for b in book:
-        if b.id == book_id:
-            return b
 
 
 def get_language_by_id(language_id):
@@ -200,6 +205,9 @@ def add_receipts(cart, cus_name=None, phone_number=None,address_id=None, opt = '
                                     book_id=c['id'],
                                     quantity=c['quantity'],unit_price=c['price'])
                 db.session.add(detail)
+            receipt_detail_for_update_stock = read_receiptdetails_by_receipt_id(receipt_id=receipt.id)
+            for b in receipt_detail_for_update_stock:
+                update_stock(book_id=b.book_id, quantity=b.quantity)
 
         db.session.commit()
     return receipt
@@ -365,14 +373,3 @@ def get_address(street_name, city_id, district_id):
     else:
         return 0
     # return Address.query.filter(Address.street_name.__eq__(street_name), Address.city_id.__eq__(city_id), Address.district_id.__eq__(district_id))         
-
-if __name__ == '__main__':
-    rs = read_receiptdetails_by_receipt_id(1)
-    subject = 'THANK YOU FOR SHOPPPING WITH US'
-    head = 'Your payment was successfully!'
-    body = ''
-    for i in rs:
-        body = body + str(i.quantity) + ' quyển ' + get_book_by_id(i.book_id).name + ' giá ' + str(i.unit_price) + '/1 quyển \n'
-    footer = 'The package will come after a fews day, hope you happy!'
-    msg = f'Subject: {subject}\n\n{head}\n\n{body}\n{footer}'
-    print(msg)

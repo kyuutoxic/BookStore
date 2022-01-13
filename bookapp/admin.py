@@ -46,12 +46,12 @@ class BookView(ManagerView):
     create_modal = True
     details_modal = True
     column_filters = ['name', 'price', 'category']
-    form_excluded_columns = ['imports','receipt_details', 'comments']
+    form_excluded_columns = ['imports','receipt_details','comments']
     column_exclude_list = ['image']
 
 
 class UserView(EditView):
-    form_excluded_columns = ['receipts']
+    form_excluded_columns = ['receipts', 'comments']
     column_exclude_list = ['password', 'avatar']
 
 
@@ -180,16 +180,17 @@ class StatsView(AdminBaseView):
                                                         product_month_stats=utils.product_month_stats(month=month), month=month, year=year, kw=kw)
 
 
-admin = Admin(app, name="Quản lý nhà sách",template_mode="bootstrap3", index_view=MyAdminIndexView())
+admin = Admin(app, name="BookStore",template_mode="bootstrap3", index_view=MyAdminIndexView())
 
 admin.add_view(Imports(name='Import'))
-admin.add_view(Sale(name='Sale'))
-admin.add_view(UserView(User, db.session))
-admin.add_view(BookView(Book, db.session))
+admin.add_view(Sale(name='Sales'))
+admin.add_view(UserView(User, db.session, name='Users'))
+admin.add_view(BookView(Book, db.session, name='Books'))
 # admin.add_view(ModelView(BookLanguage, db.session))
 # admin.add_view(ModelView(Category, db.session))
 # admin.add_view(ModelView(ParentCategory, db.session))
-admin.add_view(EditView(Rule, db.session))
+admin.add_view(EditView(Rule, db.session, name='Rules'))
 admin.add_view(StatsView(name='Stats'))
-admin.add_view(LogoutView(name='Logout', menu_icon_type='fa', menu_icon_value='fa-connectdevelop'))
+admin.add_view(LogoutView(name='Logout', menu_icon_type='fa', menu_icon_value='fas fa-sign-out-alt'))
+# Xoa chu b de them icon
 

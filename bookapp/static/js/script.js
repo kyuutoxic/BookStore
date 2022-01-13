@@ -80,32 +80,42 @@ function updateCartByInput(id, obj) {
       return res.json();
     })
     .then(function (data) {
-      let info = document.getElementsByClassName("cart-info");
-      for (let i = 0; i < info.length; i++)
-        info[i].innerText = data.total_quantity;
+      if (data.status === 200){
+        let info = document.getElementsByClassName("cart-info");
+        for (let i = 0; i < info.length; i++)
+          info[i].innerText = data.data.total_quantity;
 
-      let amount = document.getElementById("amountId");
-      amount.innerText = new Intl.NumberFormat().format(data.total_amount);
+        let amount = document.getElementById("amountId");
+        amount.innerText = new Intl.NumberFormat().format(data.data.total_amount);
 
-      let amounts = document.getElementById("amountIds");
-      amounts.innerText = new Intl.NumberFormat().format(data.total_amount);
+        let amounts = document.getElementById("amountIds");
+        amounts.innerText = new Intl.NumberFormat().format(data.data.total_amount);
 
-      let cartCounter = document.getElementById("cartCounter");
-      cartCounter.innerText = new Intl.NumberFormat().format(
-        data.total_quantity
-      );
+        let cartCounter = document.getElementById("cartCounter");
+        cartCounter.innerText = new Intl.NumberFormat().format(
+          data.data.total_quantity
+        );
 
-      let cartCounter1 = document.getElementById("cartCounter1");
-      cartCounter1.innerText =
-        new Intl.NumberFormat().format(data.total_quantity) + " Items";
+        let cartCounter1 = document.getElementById("cartCounter1");
+        cartCounter1.innerText =
+          new Intl.NumberFormat().format(data.data.total_quantity) + " Items";
 
-      let amount1 = document.getElementById("amount1");
-      amount1.innerText =
-        new Intl.NumberFormat().format(data.total_amount) + " VND";
+        let amount1 = document.getElementById("amount1");
+        amount1.innerText =
+          new Intl.NumberFormat().format(data.data.total_amount) + " VND";
 
-      let p = document.getElementById("quantity" + id);
-      p.innerText = new Intl.NumberFormat().format(parseInt(obj.value));
-    })
+        let p = document.getElementById("quantity" + id);
+        p.innerText = new Intl.NumberFormat().format(parseInt(obj.value));
+    }
+    else{
+      console.log(data)
+      alert("qua troi qua dat")
+      quantity = document.getElementById(data.data.id)
+      quantity.value = data.data.quantity
+      updateCartByButton(id=data.data.id, obj=data.data.quantity)
+      
+    }
+  })
     .catch(function (err) {
       console.error(err);
     });
@@ -126,34 +136,45 @@ function updateCartByButton(id, obj) {
       return res.json();
     })
     .then(function (data) {
-      let info = document.getElementsByClassName("cart-info");
-      for (let i = 0; i < info.length; i++)
-        info[i].innerText = data.total_quantity;
+      if (data.status === 200){
+        console.log(data)
 
-      let amount = document.getElementById("amountId");
-      amount.innerText = new Intl.NumberFormat().format(data.total_amount);
+        let info = document.getElementsByClassName("cart-info");
+        for (let i = 0; i < info.length; i++)
+          info[i].innerText = data.data.total_quantity;
 
-      let amounts = document.getElementById("amountIds");
-      amounts.innerText = new Intl.NumberFormat().format(data.total_amount);
+        let amount = document.getElementById("amountId");
+        amount.innerText = new Intl.NumberFormat().format(data.data.total_amount);
 
-      let cartCounter = document.getElementById("cartCounter");
-      cartCounter.innerText = new Intl.NumberFormat().format(
-        data.total_quantity
-      );
+        let amounts = document.getElementById("amountIds");
+        amounts.innerText = new Intl.NumberFormat().format(data.data.total_amount);
 
-      let cartCounter1 = document.getElementById("cartCounter1");
-      cartCounter1.innerText =
-        new Intl.NumberFormat().format(data.total_quantity) + " Items";
+        let cartCounter = document.getElementById("cartCounter");
+        cartCounter.innerText = new Intl.NumberFormat().format(
+          data.data.total_quantity
+        );
 
-      let amount1 = document.getElementById("amount1");
-      amount1.innerText =
-        new Intl.NumberFormat().format(data.total_amount) + " VND";
+        let cartCounter1 = document.getElementById("cartCounter1");
+        cartCounter1.innerText =
+          new Intl.NumberFormat().format(data.data.total_quantity) + " Items";
 
-      let p = document.getElementById("quantity" + id);
-      p.innerText = new Intl.NumberFormat().format(obj);
+        let amount1 = document.getElementById("amount1");
+        amount1.innerText =
+          new Intl.NumberFormat().format(data.data.total_amount) + " VND";
+
+        let p = document.getElementById("quantity" + id);
+        p.innerText = new Intl.NumberFormat().format(obj);
+      }
+      else {
+        console.log(data)
+        alert("qua troi qua dat")
+        quantity = document.getElementById(data.data.id)
+        quantity.value = data.data.quantity
+        updateCartByInput(id=data.data.id, obj=data.data.quantity)
+
+      }
     })
     .catch(function (err) {
-      console.error(err);
     });
 }
 

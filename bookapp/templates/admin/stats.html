@@ -2,7 +2,7 @@
   current_user.is_authenticated %}
   
   
-<h1 class="text-center text-danger">THONG KE DOANH THU</h1>
+<h1 class="text-center text-danger">Revenue Statistics</h1>
 <br>
 <br>
 <br>
@@ -14,7 +14,7 @@
   </div>
   <div class="col-md-5 col-xs-12">
     <form>
-      <label  style="width:120px">Thang</label>
+      <label  style="width:120px">Month</label>
       <div class="form-group">
           <select class="usa-select" name="month" id="month" style="width:75%; height: 30px; margin-right: 10px; margin-left: 3px">
             <option value="1">1</option>
@@ -30,7 +30,7 @@
             <option value="11">11</option>
             <option value="12">12</option>
           </select>
-          <input type="submit" value="Thong ke" class="btn btn-danger" />
+          <input type="submit" value="Statistics" class="btn btn-danger" />
       </div>
     </form>
   </div>
@@ -93,12 +93,12 @@
 <br>
 <div class="row">
   <div class="col-md-5 col-xs-12">
-    <h4>THỐNG KÊ DOANH THU THEO ĐẦU SÁCH</h4>
+    <h4>SALES STATISTICS BY BOOK</h4>
     <table class="table">
       <tr>
-        <th>Ma SP</th>
-        <th>Ten SP</th>
-        <th>Doanh thu</th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Revenue</th>
       </tr>
       {% for s in stats %}
       <tr>
@@ -128,7 +128,7 @@
       <div class="form-group">
         <input type="date" class="form-control" name="to_date" />
       </div>
-      <input type="submit" value="Thong ke" class="btn btn-info" />
+      <input type="submit" value="Statistics" class="btn btn-info" />
     </form>
 
     <canvas id="productChartId"></canvas>
@@ -140,11 +140,11 @@
 <br>
 <div class="row">
   <div class="col-md-5 col-xs-12">
-    <h4>THỐNG KÊ DOANH THU NĂM {{year}}</h4>
+    <h4>REVENUE STATISTICS OF THE YEAR {{year}}</h4>
     <table class="table">
       <tr>
-        <th>Thang</th>
-        <th>Doanh thu</th>
+        <th>Month</th>
+        <th>Revenue</th>
       </tr>
       {% for s in year_stats %}
       <tr>
@@ -165,7 +165,7 @@
           placeholder="Nhap nam..."
         />
       </div>
-      <input type="submit" value="Thong ke" class="btn btn-danger" />
+      <input type="submit" value="Statistics" class="btn btn-danger" />
     </form>
     <canvas id="productMonthChartId"></canvas>
   </div>
@@ -248,7 +248,7 @@ function loadChart(ctx, labels, data, type, colors, borderColors) {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Thong ke doanh thu',
+                label: 'Revenue Statistics',
                 data: data,
                 backgroundColor: colors,
                 borderColor: borderColors,

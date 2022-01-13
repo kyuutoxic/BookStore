@@ -133,6 +133,7 @@ def user_signout():
 
 @app.route('/cart')
 def cart():
+
     return render_template('cart.html',
                            cart_stats=utils.cart_stats(session.get('cart')))
 
@@ -215,14 +216,30 @@ def update_cart():
     data = request.json
     id = str(data.get('id'))
     quantity = data.get('quantity')
+    book = utils.get_book_by_id(book_id=id)
 
-    cart = session.get('cart')
-    if cart:
-        if id in cart and quantity:
-            cart[id]['quantity'] = quantity
-            session['cart'] = cart
+    if utils.check_stock(book_id = id, quantity = quantity) == True:
+        cart = session.get('cart')
+        if cart:
+            if id in cart and quantity:
+                cart[id]['quantity'] = quantity
+                session['cart'] = cart
+            data = utils.cart_stats(cart)
+            
+        return jsonify({
+            "status":200,
+            'data': data
+        })
+    else:
+        return jsonify({
+        "status":404,
+        'data': {
+            'id': id,
+            'quantity': book.quantity
+        }
+    })
 
-    return jsonify(utils.cart_stats(cart))
+
 
 
 @app.route('/api/cart/<book_id>', methods=['delete'])
@@ -322,17 +339,25 @@ def checkout():
 
     return render_template('checkout.html', city=city)
 
+
 def send_email(info):
     EMAIL_ADDRESS = '1951052195thong@ou.edu.vn'
     EMAIL_PASSWORD = 'Trongthung016294600911'
     EMAIL_TO = str(current_user.email)
     rs = read_receiptdetails_by_receipt_id(info.id)
     subject = 'THANK YOU FOR SHOPPING WITH US'
-    head = 'Your payment was successfully!'
+    head = 'Your payment was successfully!\n\nYour receipt ID:' + str(info.id)
     body = ''
+    total = utils.cart_stats(session.get('cart'))['total_amount']
     for i in rs:
-        body = body + str(i.quantity) + ' quyển ' + get_book_by_id(i.book_id).name + ' giá ' + str(i.unit_price) + '/1 quyển \n\n'
-    footer = 'The package will come after a fews day, hope you happy!'
+        body = body + str(i.quantity) + ' "' + get_book_by_id(i.book_id).name + '" ' + str("{:,.0f}".format(i.unit_price)) + '/unit \n\n'
+    
+    if info.active == True:
+        footer = 'Total quantity: ' + str("{:,.0f}".format(total)) + ' VND \n\nThe package will come after a few day, hope you happy!'
+    else:
+        footer = 'Total quantity: ' + str("{:,.0f}".format(total)) + ' VND \n\nPlease show to the seller your receipt ID when you coming the bookstore within 48 hours, hope you happy!'
+
+
     msg = f'Subject: {subject}\n\n{head}\n\n{body}\n{footer}'
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
         smtp.starttls()
@@ -342,6 +367,7 @@ def send_email(info):
         smtp.sendmail(EMAIL_ADDRESS, EMAIL_TO, msg.encode('utf-8'))
 
         smtp.quit()
+
 
 @app.route('/api/load-address/<int:city_id>')
 def load_address(city_id):
@@ -356,6 +382,7 @@ def load_address(city_id):
         })
 
     return jsonify(results)
+
 
 @app.route('/blog')
 def blog():
