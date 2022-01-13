@@ -202,6 +202,7 @@ def add_receipts(cart, cus_name=None, phone_number=None,address_id=None, opt = '
                 db.session.add(detail)
 
         db.session.commit()
+    return receipt
 
 
 def load_products(category_id=None, kw=None,page = 1):
@@ -365,9 +366,13 @@ def get_address(street_name, city_id, district_id):
         return 0
     # return Address.query.filter(Address.street_name.__eq__(street_name), Address.city_id.__eq__(city_id), Address.district_id.__eq__(district_id))         
 
-
 if __name__ == '__main__':
-    p = get_address(street_name='1327', city_id=2, district_id=26)
-    print(p)
-
-
+    rs = read_receiptdetails_by_receipt_id(1)
+    subject = 'THANK YOU FOR SHOPPPING WITH US'
+    head = 'Your payment was successfully!'
+    body = ''
+    for i in rs:
+        body = body + str(i.quantity) + ' quyển ' + get_book_by_id(i.book_id).name + ' giá ' + str(i.unit_price) + '/1 quyển \n'
+    footer = 'The package will come after a fews day, hope you happy!'
+    msg = f'Subject: {subject}\n\n{head}\n\n{body}\n{footer}'
+    print(msg)

@@ -4,8 +4,10 @@ from admin import *
 from models import *
 from flask_login import login_user, logout_user, login_required
 import utils
+from utils import read_receiptdetails_by_receipt_id, get_book_by_id
 import cloudinary
 import math
+import smtplib
 
 
 
@@ -297,21 +299,21 @@ def checkout():
     city = utils.load_city()
 
     if request.method.__eq__('POST'):
-
         cus_name = request.form['name']
         phone_number = request.form['number']
         city_id = request.form['country_name']
         district_id = request.form['district_name']
         street_name = request.form['address']
         opt = request.form['opt']
-
         if street_name and district_id and city_id:
             address_id = utils.get_address(street_name=street_name, district_id=district_id, city_id=city_id)
             if address_id != 0:
-                utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address_id)
+                r = utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address_id)
+                send_email(info = r)
             else:
                 address = utils.add_address(street_name=street_name, district_id=district_id, city_id=city_id)
-                utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address.id)
+                r = utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address.id)
+                send_email(info = r)
 
             cart = session.get('cart')
             if cart:
@@ -320,6 +322,26 @@ def checkout():
 
     return render_template('checkout.html', city=city)
 
+def send_email(info):
+    EMAIL_ADDRESS = '1951052195thong@ou.edu.vn'
+    EMAIL_PASSWORD = 'Trongthung016294600911'
+    EMAIL_TO = str(current_user.email)
+    rs = read_receiptdetails_by_receipt_id(info.id)
+    subject = 'THANK YOU FOR SHOPPING WITH US'
+    head = 'Your payment was successfully!'
+    body = ''
+    for i in rs:
+        body = body + str(i.quantity) + ' quyển ' + get_book_by_id(i.book_id).name + ' giá ' + str(i.unit_price) + '/1 quyển \n'
+    footer = 'The package will come after a fews day, hope you happy!'
+    msg = f'Subject: {subject}\n\n{head}\n\n{body}\n{footer}'
+    with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+        smtp.starttls()
+
+        smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+
+        smtp.sendmail(EMAIL_ADDRESS, EMAIL_TO, msg.encode('utf-8'))
+
+        smtp.quit()
 
 @app.route('/api/load-address/<int:city_id>')
 def load_address(city_id):
