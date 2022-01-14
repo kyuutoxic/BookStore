@@ -457,3 +457,34 @@ function showSuccessToast() {
     duration: 1000
   });
 }
+
+
+function changeNotiRule(text = "", statics = "online"){
+  const main = document.getElementById("NotiRule");
+  // const types = document.getElementsByName("online");
+  if(main){
+    main.innerHTML = `<em>${text}</em>`
+  }
+
+  if(statics == "offline"){
+    document.querySelectorAll('.online').forEach(function(el) {
+      el.style.display = 'none';
+   });
+
+  }
+  if(statics == "online"){
+    document.querySelectorAll('.online').forEach(function(el) {
+      el.style.display = 'inline-block';
+   });
+  }
+}
+
+changeNotiRule(text = "", statics = "online")
+
+function NotiRuleMOMO(){
+  changeNotiRule(text = "", statics = "online")
+}
+
+function NotiRuleOffline(){
+  changeNotiRule(text = "Neu ban khong thanh toan bang momo ban se phai toi cua hang de lay sach va thanh toan tai quay", statics = "offline")
+}

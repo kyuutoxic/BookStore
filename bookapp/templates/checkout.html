@@ -32,7 +32,7 @@
                                     <input type="text" name="number" placeholder="" required="required">
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-12">
+                            <div class="col-lg-6 col-md-6 col-12 online">
                                 <div class="form-group">
                                     <label>City<span>*</span></label>
                                     <select name="country_name" id="country" onchange="changeFunc()">
@@ -42,7 +42,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-12">
+                            <div class="col-lg-6 col-md-6 col-12 online">
                                 <div class="form-group">
                                     <label>State / Divition<span>*</span></label>
                                     <select name="district_name" id="district">
@@ -50,7 +50,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-12">
+                            <div class="col-lg-12 col-md-12 col-12 online">
                                 <div class="form-group">
                                     <label>Address Line<span>*</span></label>
                                     <input type="text" name="address" placeholder="" required="required">
@@ -82,18 +82,18 @@
                                 <div class="grid_opt">
                                     <div>
                                         <input type="radio" name="opt" id="opt1" class="opt" value="momo" checked="checked"> 
-                                        <label for="opt1" class="label_opt">
+                                        <label for="opt1" class="label_opt" onclick="NotiRuleMOMO();">
                                             <span class="box_opt"></span>
                                             <span>Momo</span>
                                         </label>
                                     </div>
                                     <div>
-                                        <input type="radio" name="opt" id="opt2" class="opt" value="offline">
-                                        <label for="opt2" class="label_opt">
+                                        <input type="radio" name="opt" id="opt2" class="opt" value="offline" >
+                                        <label for="opt2" class="label_opt" onclick="NotiRuleOffline();">
                                             <span class="box_opt"></span>
                                             <span>Offline</span>
                                         </label>
-                                        <span><em>Neu ban khong thanh toan bang momo ban se phai toi cua hang de lay sach va thanh toan tai quay</em></span>
+                                        <span id="NotiRule"></span>
                                     </div>
                                 </div>
                             </div>
