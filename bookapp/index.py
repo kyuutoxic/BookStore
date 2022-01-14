@@ -11,6 +11,7 @@ import smtplib
 
 
 
+
 @app.context_processor
 def common_response():
     return {
@@ -347,7 +348,7 @@ def send_email(info):
     rs = read_receiptdetails_by_receipt_id(info.id)
     subject = 'THANK YOU FOR SHOPPING WITH US'
     head = 'Your payment was successfully!\n\nYour receipt ID:' + str(info.id)
-    body = ''
+    body = '\n\n'
     total = utils.cart_stats(session.get('cart'))['total_amount']
     for i in rs:
         body = body + str(i.quantity) + ' "' + get_book_by_id(i.book_id).name + '" ' + str("{:,.0f}".format(i.unit_price)) + '/unit \n\n'

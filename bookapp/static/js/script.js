@@ -406,7 +406,7 @@ function getHtmlDistrict(district) {
 }
 
 function changeFunc() {
-  var selectBox = document.getElementById("country");
+  var selectBox = document.getElementById('country');
   var selectedValue = selectBox.options[selectBox.selectedIndex].value;
   loadAddress(selectedValue); 
 }

@@ -294,7 +294,6 @@
     {% if admin_view.extra_js %} {% for js_url in admin_view.extra_js %}
     <script src="{{ js_url }}" type="text/javascript"></script>
     {% endfor %} {% endif %}
-
     <!-- Morris.js charts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="{{url_for('static',filename='plugins/morris/morris.min.js')}}"></script>

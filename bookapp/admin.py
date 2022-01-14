@@ -7,7 +7,6 @@ from flask_login import current_user, logout_user
 import utils
 from flask_admin import AdminIndexView
 
-
 class ManagerView(ModelView):
     def is_accessible(self):
         return current_user.is_authenticated and (current_user.role == UserRole.MANAGER or current_user.role == UserRole.ADMINISTRATOR)
@@ -170,14 +169,13 @@ class StatsView(AdminBaseView):
         if month is None:
             month = datetime.now().month
 
-
         return self.render('admin/stats.html',
                             year_stats=utils.product_year_stats(year=year),
                             stats=utils.product_stats(kw=kw,
                                                         from_date=from_date,
                                                         to_date=to_date), 
                                                         category_month_stats=utils.category_month_stats(month=month),
-                                                        product_month_stats=utils.product_month_stats(month=month), month=month, year=year, kw=kw)
+                                                        product_month_stats=utils.product_month_stats(month=month), month=str.upper(datetime(1, int(month), 1).strftime("%B")), year=year, kw=kw)
 
 
 admin = Admin(app, name="BookStore",template_mode="bootstrap3", index_view=MyAdminIndexView())
