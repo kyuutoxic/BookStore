@@ -179,7 +179,7 @@ function updateCartByButton(id, obj) {
 }
 
 function deleteCart(bookId) {
-  if (confirm("Ban chac chan xoa mat hang khong?") == true) {
+  if (confirm("Are you sure?") == true) {
     fetch("/api/cart/" + bookId, {
       method: "delete",
       headers: {
@@ -451,8 +451,8 @@ function toast({ title = "", message = "", type = "success", duration = 3000 }) 
 
 function showSuccessToast() {
   toast({
-    title: "Suuccess",
-    message: "Bạn đã đặt hàng thành công",
+    title: "Add to cart",
+    message: "Successfull",
     type: "success",
     duration: 1000
   });

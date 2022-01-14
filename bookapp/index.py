@@ -323,20 +323,29 @@ def checkout():
         district_id = request.form['district_name']
         street_name = request.form['address']
         opt = request.form['opt']
-        if street_name and district_id and city_id:
-            address_id = utils.get_address(street_name=street_name, district_id=district_id, city_id=city_id)
-            if address_id != 0:
-                r = utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address_id)
-                send_email(info = r)
-            else:
-                address = utils.add_address(street_name=street_name, district_id=district_id, city_id=city_id)
-                r = utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address.id)
-                send_email(info = r)
-
+        if opt == "offline":
+            r = utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=None)
+            send_email(info = r)
             cart = session.get('cart')
             if cart:
                 del session['cart']
             return redirect(url_for('index'))
+        else:
+            if street_name and district_id and city_id:
+                address_id = utils.get_address(street_name=street_name, district_id=district_id, city_id=city_id)
+                if address_id != 0:
+                    r = utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address_id)
+                    send_email(info = r)
+                else:
+                    address = utils.add_address(street_name=street_name, district_id=district_id, city_id=city_id)
+                    r = utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address.id)
+                    send_email(info = r)
+
+                cart = session.get('cart')
+                if cart:
+                    del session['cart']
+                return redirect(url_for('index'))
+            
 
     return render_template('checkout.html', city=city)
 
@@ -345,13 +354,13 @@ def send_email(info):
     EMAIL_ADDRESS = '1951052195thong@ou.edu.vn'
     EMAIL_PASSWORD = 'Trongthung016294600911'
     EMAIL_TO = str(current_user.email)
-    rs = read_receiptdetails_by_receipt_id(info.id)
+    rs = utils.read_receiptdetails_by_receipt_id(info.id)
     subject = 'THANK YOU FOR SHOPPING WITH US'
     head = 'Your payment was successfully!\n\nYour receipt ID:' + str(info.id)
     body = '\n\n'
     total = utils.cart_stats(session.get('cart'))['total_amount']
     for i in rs:
-        body = body + str(i.quantity) + ' "' + get_book_by_id(i.book_id).name + '" ' + str("{:,.0f}".format(i.unit_price)) + '/unit \n\n'
+        body = body + str(i.quantity) + ' "' + utils.get_book_by_id(i.book_id).name + '" ' + str("{:,.0f}".format(i.unit_price)) + '/unit \n\n'
     
     if info.active == True:
         footer = 'Total quantity: ' + str("{:,.0f}".format(total)) + ' VND \n\nThe package will come after a few day, hope you happy!'
