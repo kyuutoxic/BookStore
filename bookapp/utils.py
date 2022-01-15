@@ -1,7 +1,7 @@
 from models import User
 from flask import request, session
 import hashlib
-from models import Category, Book, ParentCategory, Import, Receipt, ReceiptDetail, Rule, BookLanguage, Comment, City, District, Address, UserRole
+from models import Category, Book, ParentCategory, Import, Receipt, ReceiptDetail, Rule, BookLanguage, Comment, City, District, Address
 from sqlalchemy import func
 from __init__ import db, app
 from flask_login import current_user

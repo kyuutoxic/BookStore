@@ -47,11 +47,6 @@ class BookView(ManagerView):
     column_filters = ['name', 'price', 'category']
     form_excluded_columns = ['imports','receipt_details','comments']
     column_exclude_list = ['image']
-    def check(self):
-        if self.role == UserRole.STOCKKEEPER:
-            self.can_create = False
-            self.can_edit = False
-            self.can_delete = False
 
 class UserView(EditView):
     form_excluded_columns = ['receipts', 'comments']
