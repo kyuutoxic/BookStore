@@ -363,9 +363,9 @@ def send_email(info):
         body = body + str(i.quantity) + ' "' + utils.get_book_by_id(i.book_id).name + '" ' + str("{:,.0f}".format(i.unit_price)) + '/unit \n\n'
     
     if info.active == True:
-        footer = 'Total quantity: ' + str("{:,.0f}".format(total)) + ' VND \n\nThe package will come after a few day, hope you happy!'
+        footer = 'Total price: ' + str("{:,.0f}".format(total)) + ' VND \n\nThe package will come after a few day, hope you happy!'
     else:
-        footer = 'Total quantity: ' + str("{:,.0f}".format(total)) + ' VND \n\nPlease show to the seller your receipt ID when you coming the bookstore within 48 hours, hope you happy!'
+        footer = 'Total price: ' + str("{:,.0f}".format(total)) + ' VND \n\nPlease show to the seller your receipt ID when you coming the bookstore within 48 hours, hope you happy!'
 
 
     msg = f'Subject: {subject}\n\n{head}\n\n{body}\n{footer}'

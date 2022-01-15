@@ -9,7 +9,7 @@ from flask_admin import AdminIndexView
 
 class ManagerView(ModelView):
     def is_accessible(self):
-        return current_user.is_authenticated and (current_user.role == UserRole.MANAGER or current_user.role == UserRole.ADMINISTRATOR)
+        return current_user.is_authenticated and (current_user.role == UserRole.MANAGER or current_user.role == UserRole.ADMINISTRATOR or current_user.role == UserRole.STOCKKEEPER)
 
 
 class SellerView(BaseView):
@@ -47,6 +47,10 @@ class BookView(ManagerView):
     column_filters = ['name', 'price', 'category']
     form_excluded_columns = ['imports','receipt_details','comments']
     column_exclude_list = ['image']
+    if UserRole.ADMINISTRATOR:
+        can_create = False
+        can_edit = False
+        can_delete = False
 
 
 class UserView(EditView):
