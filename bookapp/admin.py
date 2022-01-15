@@ -106,6 +106,8 @@ class Imports(StockkeeperView):
 class Sale(SellerView):
     @expose('/')
     def index(self):
+        time = utils.get_rule(3)
+        utils.del_receipt_by_rule(time=time)
         err_msg = ''
         id = request.args.get('id')
         cus_name = request.args.get('cus_name')

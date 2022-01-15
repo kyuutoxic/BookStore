@@ -6,6 +6,7 @@ from sqlalchemy import func
 from __init__ import db, app
 from flask_login import current_user
 from sqlalchemy.sql import extract
+import datetime
 
 def get_user_by_id(user_id):
     return User.query.get(user_id)
@@ -372,4 +373,17 @@ def get_address(street_name, city_id, district_id):
             return i.id
     else:
         return 0
-    # return Address.query.filter(Address.street_name.__eq__(street_name), Address.city_id.__eq__(city_id), Address.district_id.__eq__(district_id))         
+    # return Address.query.filter(Address.street_name.__eq__(street_name), Address.city_id.__eq__(city_id), Address.district_id.__eq__(district_id))
+
+def del_receipt(receipt_id):
+    receipt_detail = read_receiptdetails_by_receipt_id(receipt_id=receipt_id)
+    for r in receipt_detail:
+        del_receipt_detail(r.id)
+    Receipt.query.filter(Receipt.id == receipt_id).delete()
+    db.session.commit()
+
+def del_receipt_by_rule(time):
+    receipts = Receipt.query.filter(Receipt.active == False).all()
+    for r in receipts:
+        if(datetime.datetime.now() > (r.created_date + datetime.timedelta(hours=time.value))):
+            del_receipt(receipt_id=r.id)
