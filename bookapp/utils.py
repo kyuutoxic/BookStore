@@ -1,12 +1,13 @@
 from models import User
 from flask import request, session
 import hashlib
-from models import Category, Book, ParentCategory, Import, Receipt, ReceiptDetail, Rule, BookLanguage, Comment, City, District, Address
+from models import Category, Book, ParentCategory, Import, Receipt, ReceiptDetail, Rule, BookLanguage, Comment, City, District, Address, UserRole
 from sqlalchemy import func
 from __init__ import db, app
 from flask_login import current_user
 from sqlalchemy.sql import extract
 import datetime
+import smtplib
 
 def get_user_by_id(user_id):
     return User.query.get(user_id)
@@ -387,3 +388,32 @@ def del_receipt_by_rule(time):
     for r in receipts:
         if(datetime.datetime.now() > (r.created_date + datetime.timedelta(hours=time.value))):
             del_receipt(receipt_id=r.id)
+
+
+def send_email(info):
+    EMAIL_ADDRESS = '1951052195thong@ou.edu.vn'
+    EMAIL_PASSWORD = 'Trongthung016294600911'
+    EMAIL_TO = str(current_user.email)
+    rs = read_receiptdetails_by_receipt_id(info.id)
+    subject = 'THANK YOU FOR SHOPPING WITH US'
+    head = 'Your payment was successfully!\n\nYour receipt ID:' + str(info.id)
+    body = '\n\n'
+    total = cart_stats(session.get('cart'))['total_amount']
+    for i in rs:
+        body = body + str(i.quantity) + ' "' + get_book_by_id(i.book_id).name + '" ' + str("{:,.0f}".format(i.unit_price)) + '/unit \n\n'
+    
+    if info.active == True:
+        footer = 'Total price: ' + str("{:,.0f}".format(total)) + ' VND \n\nThe package will come after a few day, hope you happy!'
+    else:
+        footer = 'Total price: ' + str("{:,.0f}".format(total)) + ' VND \n\nPlease show to the seller your receipt ID when you coming the bookstore within 48 hours, hope you happy!'
+
+
+    msg = f'Subject: {subject}\n\n{head}\n\n{body}\n{footer}'
+    with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+        smtp.starttls()
+
+        smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+
+        smtp.sendmail(EMAIL_ADDRESS, EMAIL_TO, msg.encode('utf-8'))
+
+        smtp.quit()

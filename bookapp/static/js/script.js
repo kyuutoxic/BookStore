@@ -470,12 +470,14 @@ function changeNotiRule(text = "", statics = "online"){
     document.querySelectorAll('.online').forEach(function(el) {
       el.style.display = 'none';
    });
-
+   $(".HideRequired").removeAttr('required');
   }
+
   if(statics == "online"){
     document.querySelectorAll('.online').forEach(function(el) {
       el.style.display = 'inline-block';
    });
+   $(".HideRequired").attr('required', 'required');
   }
 }
 

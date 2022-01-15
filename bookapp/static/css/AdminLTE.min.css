@@ -177,7 +177,8 @@ h6,
 }
 
 a {
-    color: #3c8dbc
+    color: #3c8dbc;
+    overflow-wrap: normal;
 }
 
 a:hover,
@@ -3078,7 +3079,8 @@ a:focus {
 .table-bordered>thead>tr>td,
 .table-bordered>tbody>tr>td,
 .table-bordered>tfoot>tr>td {
-    border: 1px solid #f4f4f4
+    border: 1px solid #f4f4f4;
+    overflow-wrap: anywhere;
 }
 
 .table-bordered>thead>tr>th,

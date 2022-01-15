@@ -114,11 +114,11 @@ def user_register():
                     utils.add_user(firstname=firstname,lastname=lastname,email=email ,username=username, password=password, avatar=avatar_path)
                     return redirect(url_for('user_login'))
                 else:
-                    err_msg = 'Mat khau khong khop'
+                    err_msg = 'Confirm password does not match'
             else:
-                err_msg = 'Tai khoan trung'
+                err_msg = 'Username has exist'
         except Exception as ex:
-            err_msg = 'He thong dang co loi: ' + str(ex)
+            err_msg = 'Error system: ' + str(ex)
     
     return render_template('register.html', err_msg=err_msg)
 
@@ -325,7 +325,7 @@ def checkout():
         opt = request.form['opt']
         if opt == "offline":
             r = utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=None)
-            send_email(info = r)
+            utils.send_email(info = r)
             cart = session.get('cart')
             if cart:
                 del session['cart']
@@ -335,11 +335,11 @@ def checkout():
                 address_id = utils.get_address(street_name=street_name, district_id=district_id, city_id=city_id)
                 if address_id != 0:
                     r = utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address_id)
-                    send_email(info = r)
+                    utils.send_email(info = r)
                 else:
                     address = utils.add_address(street_name=street_name, district_id=district_id, city_id=city_id)
                     r = utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address.id)
-                    send_email(info = r)
+                    utils.send_email(info = r)
 
                 cart = session.get('cart')
                 if cart:
@@ -348,36 +348,6 @@ def checkout():
             
 
     return render_template('checkout.html', city=city)
-
-
-def send_email(info):
-    EMAIL_ADDRESS = '1951052195thong@ou.edu.vn'
-    EMAIL_PASSWORD = 'Trongthung016294600911'
-    EMAIL_TO = str(current_user.email)
-    rs = utils.read_receiptdetails_by_receipt_id(info.id)
-    subject = 'THANK YOU FOR SHOPPING WITH US'
-    head = 'Your payment was successfully!\n\nYour receipt ID:' + str(info.id)
-    body = '\n\n'
-    total = utils.cart_stats(session.get('cart'))['total_amount']
-    for i in rs:
-        body = body + str(i.quantity) + ' "' + utils.get_book_by_id(i.book_id).name + '" ' + str("{:,.0f}".format(i.unit_price)) + '/unit \n\n'
-    
-    if info.active == True:
-        footer = 'Total price: ' + str("{:,.0f}".format(total)) + ' VND \n\nThe package will come after a few day, hope you happy!'
-    else:
-        footer = 'Total price: ' + str("{:,.0f}".format(total)) + ' VND \n\nPlease show to the seller your receipt ID when you coming the bookstore within 48 hours, hope you happy!'
-
-
-    msg = f'Subject: {subject}\n\n{head}\n\n{body}\n{footer}'
-    with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
-        smtp.starttls()
-
-        smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-
-        smtp.sendmail(EMAIL_ADDRESS, EMAIL_TO, msg.encode('utf-8'))
-
-        smtp.quit()
-
 
 @app.route('/api/load-address/<int:city_id>')
 def load_address(city_id):
@@ -399,4 +369,4 @@ def blog():
     return render_template('blog.html')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

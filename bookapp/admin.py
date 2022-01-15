@@ -8,6 +8,7 @@ import utils
 from flask_admin import AdminIndexView
 
 class ManagerView(ModelView):
+
     def is_accessible(self):
         return current_user.is_authenticated and (current_user.role == UserRole.MANAGER or current_user.role == UserRole.ADMINISTRATOR or current_user.role == UserRole.STOCKKEEPER)
 
@@ -38,7 +39,6 @@ class EditView(AdminView):
     create_modal = True
     details_modal = True
 
-
 class BookView(ManagerView):
     can_view_details = True
     edit_modal = True
@@ -47,11 +47,11 @@ class BookView(ManagerView):
     column_filters = ['name', 'price', 'category']
     form_excluded_columns = ['imports','receipt_details','comments']
     column_exclude_list = ['image']
-    if UserRole.ADMINISTRATOR:
-        can_create = False
-        can_edit = False
-        can_delete = False
-
+    def check(self):
+        if self.role == UserRole.STOCKKEEPER:
+            self.can_create = False
+            self.can_edit = False
+            self.can_delete = False
 
 class UserView(EditView):
     form_excluded_columns = ['receipts', 'comments']
@@ -197,4 +197,3 @@ admin.add_view(EditView(Rule, db.session, name='Rules'))
 admin.add_view(StatsView(name='Stats'))
 admin.add_view(LogoutView(name='Logout', menu_icon_type='fa', menu_icon_value='fas fa-sign-out-alt'))
 # Xoa chu b de them icon
-
