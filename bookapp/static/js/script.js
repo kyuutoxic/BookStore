@@ -494,7 +494,7 @@ function NotiRuleOffline(){
 
   
 $(document).ready(function(){
-  $('.pass_show').append('<span class="ptxt">Show</span>');  
+  $('.pass_show').append('<span class="ptxt" Style="width:40px">Show</span>');  
   });
     
   
