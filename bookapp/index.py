@@ -13,6 +13,7 @@ import smtplib
 import cloudinary.uploader
 
 
+# Dữ liệu sài chung
 @app.context_processor
 def common_response():
     return {
@@ -22,6 +23,7 @@ def common_response():
     }
 
 
+# Đặng nhập Admin
 @app.route('/admin-login', methods=['post'])
 def admin_login():
     username = request.form['username']
@@ -35,16 +37,19 @@ def admin_login():
     return redirect('/admin')
 
 
+#Log user
 @login.user_loader
 def user_load(user_id):
     return utils.get_user_by_id(user_id=user_id)
 
 
+# Trang chủ
 @app.route("/")
 def index():
     return render_template("index.html")
 
 
+#Trang sản phản
 @app.route("/products")
 def product_list():
     category_id = request.args.get('category_id')
@@ -58,6 +63,7 @@ def product_list():
                            products=products, pages=math.ceil(counter/app.config['PAGE_SIZE']), page=page, name_cate=utils.get_name_cate(category_id=category_id))
 
 
+#Trang chi tiết sản phẩm
 @app.route('/books/<int:book_id>')
 def book_detail(book_id):
     book = utils.get_book_by_id(book_id=book_id)
@@ -68,6 +74,7 @@ def book_detail(book_id):
     return render_template('book-detail.html', book=book, language=language, counter=counter, cate_name=cate_name, parent_name=parent_name)
 
 
+#Đăng nhập Client
 @app.route('/login', methods=["GET", "POST"])
 def user_login():
     err_msg = ''
@@ -88,6 +95,7 @@ def user_login():
     return render_template('login.html', err_msg=err_msg)
 
 
+# Đăng kí
 @app.route('/register', methods=["get", "post"])
 def user_register():
     err_msg = ""
@@ -121,6 +129,7 @@ def user_register():
     return render_template('register.html', err_msg=err_msg)
 
 
+# Đăng xuất
 @app.route('/user-logout')
 def user_signout():
     logout_user()
@@ -130,6 +139,7 @@ def user_signout():
     return redirect(url_for('index'))
 
 
+#Trang giỏ hàng
 @app.route('/cart')
 def cart():
 
@@ -137,6 +147,7 @@ def cart():
                            cart_stats=utils.cart_stats(session.get('cart')))
 
 
+#API giỏ hàng
 @app.route('/api/add-to-cart', methods=['post'])
 def add_to_cart():
     data = request.json
@@ -165,6 +176,7 @@ def add_to_cart():
     return jsonify(utils.cart_stats(session.get('cart')))
 
 
+# API giỏ hàng MINI
 @app.route('/api/add-to-cart/minicart', methods=['post'])
 def add_to_minicart():
 
@@ -195,6 +207,7 @@ def add_to_minicart():
     return jsonify(results)
 
 
+# API thanh toán
 @app.route('/api/pay', methods=['post'])
 def pay():
     try:
@@ -207,6 +220,7 @@ def pay():
         return jsonify({'code': 400})
 
 
+# API cập nhật giỏ hàng
 @app.route('/api/update-cart', methods=['put'])
 def update_cart():
     data = request.json
@@ -236,6 +250,7 @@ def update_cart():
         })
 
 
+# API xóa sản phẩm trong giỏ hàng
 @app.route('/api/cart/<book_id>', methods=['delete'])
 def delete_cart(book_id):
     cart = session.get('cart')
@@ -247,6 +262,7 @@ def delete_cart(book_id):
     return jsonify(utils.cart_stats(cart))
 
 
+# APi xóa sản phẩm trong giỏ hàng MINI
 @app.route('/api/minicart/<book_id>', methods=['delete'])
 def delete_mini_cart(book_id):
     cart = session.get('cart')
@@ -258,6 +274,7 @@ def delete_mini_cart(book_id):
     return jsonify(utils.cart_stats(cart))
 
 
+# API bình luận
 @app.route('/api/comments', methods=['post'])
 @login_required
 def add_comment():
@@ -285,6 +302,7 @@ def add_comment():
         return jsonify({"status": 404})
 
 
+# API xem số lượng bình luận
 @app.route('/api/books/<int:book_id>/comments/<int:qttcomment>')
 def get_comments(book_id, qttcomment):
     comments = utils.get_comment(book_id=book_id, qttcomment=qttcomment)
@@ -304,6 +322,7 @@ def get_comments(book_id, qttcomment):
     return jsonify(results)
 
 
+# Trang thanh toán
 @app.route('/checkout', methods=['get', 'post'])
 @login_required
 def checkout():
@@ -347,6 +366,7 @@ def checkout():
     return render_template('checkout.html', city=city)
 
 
+# API địa chỉ
 @app.route('/api/load-address/<int:city_id>')
 def load_address(city_id):
     district = utils.load_district_by_city_id(city_id=city_id)
@@ -362,11 +382,13 @@ def load_address(city_id):
     return jsonify(results)
 
 
+# Trang Blog
 @app.route('/blog')
 def blog():
     return render_template('blog.html')
 
 
+# Trang chi tiết khách hàng
 @app.route('/user-detail', methods=['get', 'post'])
 def user_detail():
     err_msg = ""
@@ -385,6 +407,7 @@ def user_detail():
     return render_template('user-detail.html', err_msg=err_msg)
 
 
+# Trang đổi password
 @app.route('/change-password', methods=['get', 'post'])
 def change_password():
     err_msg = ""
@@ -412,6 +435,7 @@ def change_password():
     return render_template('changepassword.html', err_msg=err_msg)
 
 
+#Trang đổi avatar
 @app.route('/change-avatar', methods=['get', 'post'])
 def change_avatar():
     err_msg = ""

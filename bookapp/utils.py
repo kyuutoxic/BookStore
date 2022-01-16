@@ -82,7 +82,6 @@ def add_receiptdetails(receipt_id, book_id, quantity, unit_price):
     db.session.commit()
 
 
-
 def update_quantity_receipt_details(receipt_detail_id, quantity):
     a = get_receiptdetails_by_id(receipt_detail_id)
     a.quantity = a.quantity + quantity
@@ -362,7 +361,6 @@ def get_address(street_name, city_id, district_id):
             return i.id
     else:
         return 0
-
 
 
 def del_receipt(receipt_id):

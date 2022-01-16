@@ -9,7 +9,7 @@ from flask_login import UserMixin
 
 
 # Id autoincrement
-class BaseModel(db.Model):  
+class BaseModel(db.Model):
     __abstract__ = True
 
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -58,7 +58,8 @@ class Category(BaseModel):
     __tablename__ = 'category'
 
     name = Column(String(50), nullable=False)
-    parent_id = Column(Integer, ForeignKey('parent_category.id'), nullable=False)
+    parent_id = Column(Integer, ForeignKey(
+        'parent_category.id'), nullable=False)
 
     books = relationship("Book", backref="category", lazy=True)
     # children_book = relationship('Children_Book', backref="children_category", lazy=True)
@@ -69,7 +70,7 @@ class Category(BaseModel):
 
 class ParentCategory(BaseModel):
     __tablename__ = 'parent_category'
-    
+
     name = Column(String(50), nullable=False)
     category = relationship('Category', backref="parent_category", lazy=True)
     # parent_book = relationship("Parent_Book", backref="parent_category", lazy=True)
@@ -82,7 +83,8 @@ class Book(BaseModel):
     __tablename__ = 'book'
 
     name = Column(String(255), nullable=False)
-    language_id = Column(Integer, ForeignKey('book_language.id'), nullable=False)
+    language_id = Column(Integer, ForeignKey(
+        'book_language.id'), nullable=False)
     num_pages = Column(Integer, nullable=False)
     publication_date = Column(DateTime, nullable=False)
     publisher = Column(String(255), nullable=False)
@@ -98,6 +100,7 @@ class Book(BaseModel):
 
     def __str__(self):
         return self.name
+
 
 class Import(BaseModel):
     __tablename__ = 'import'
@@ -122,9 +125,11 @@ class Receipt(BaseModel):
 class ReceiptDetail(BaseModel):
     __tablename__ = 'receipt_detail'
 
-    receipt_id = Column(Integer, ForeignKey(Receipt.id), nullable=False, primary_key=True)
-    book_id = Column(Integer, ForeignKey(Book.id), nullable=False, primary_key=True)
-    quantity = Column(Integer, default=0,nullable=False)
+    receipt_id = Column(Integer, ForeignKey(Receipt.id),
+                        nullable=False, primary_key=True)
+    book_id = Column(Integer, ForeignKey(Book.id),
+                     nullable=False, primary_key=True)
+    quantity = Column(Integer, default=0, nullable=False)
     unit_price = Column(Float, nullable=False)
 
 
@@ -155,6 +160,7 @@ class City(db.Model):
     name = Column(String(255), nullable=False)
     district = relationship('District', backref='city', lazy=True)
 
+
 class District(db.Model):
     __tablename__ = 'district'
 
@@ -163,15 +169,12 @@ class District(db.Model):
     city_id = Column(Integer, ForeignKey(City.id), nullable=False)
 
 
-
 class Address(BaseModel):
     __tablename__ = 'address'
 
     street_name = Column(String(255), nullable=False)
     city_id = Column(Integer, ForeignKey(City.id), nullable=False)
     district_id = Column(Integer, ForeignKey(District.id), nullable=False)
-
-
 
 
 if __name__ == '__main__':
