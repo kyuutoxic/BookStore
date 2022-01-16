@@ -423,14 +423,14 @@ def change_password():
                     if new_password == confirm_password:
                         utils.user_password_update(
                             id=id, password=new_password)
-                        err_msg = 'Thanh cong'
+                        err_msg = 'Successful'
                         return redirect(url_for('user_detail'))
                     else:
-                        err_msg = 'xac nhan sai'
+                        err_msg = 'Confirm password does not match'
                 else:
-                    err_msg = 'mat khau cu khong chinh xac'
+                    err_msg = 'Current password does not match'
         except Exception as ex:
-            err_msg = 'Loi' + str(ex)
+            err_msg = 'Error' + str(ex)
 
     return render_template('changepassword.html', err_msg=err_msg)
 
@@ -449,11 +449,11 @@ def change_avatar():
                 res = cloudinary.uploader.upload(avatar)
                 avatar_path = res['secure_url']
                 utils.change_avatar(id=id, avatar=avatar_path)
-                err_msg = 'Thanh cong'
+                err_msg = 'Successful'
                 return redirect(url_for('user_detail'))
 
         except Exception as ex:
-            err_msg = 'Loi ' + str(ex)
+            err_msg = 'Error ' + str(ex)
 
     return render_template('change-avatar.html', err_msg=err_msg)
 
