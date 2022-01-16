@@ -39,7 +39,6 @@ Version:1.0
 22. Radio Button Checkout
 ========================================*/
 
-
 /* Custom */
 
 .item-detail {
@@ -6177,9 +6176,9 @@ img:hover {
   /*=============================
 	    End noti cart
 ===============================*/
-
 .gird-user{
-    background-color: orangered;
+    position: relative;
+    background-color: white;
 }
 
 .user-info{
@@ -6197,11 +6196,67 @@ img:hover {
 }
 
 .user-info__avt__avt a{
-    width: 12%;
+    width: 180px;
     align-self: center;
     position: absolute;
-    left: 5%;
-    top: 290px;
+    left: 310px;
+    top: 65px;
+}
+
+.saomabietduoc{
+    left: 310px;
+    top: 161px;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #f1941e;
+    border-top-right-radius: 100%;
+    box-shadow: 0 -19px 0 0 #333333;
+}
+
+.saomabietduoc-2{
+    left: 477px;
+    top: 161px;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #f1941e;
+    border-top-left-radius: 100%;
+    box-shadow: 0 -19px 0 0 #333333;
+}
+
+.user-info__avt__avt::after{
+    content: "";
+    text-align: center;
+    left: 338px;
+    width: 150px;
+    height: 155px;
+    border-radius: 50%;
+    position: absolute;
+    top: 71px;
+    border: 15px solid #333333;
+}
+
+.user-info__avt__avt:hover a::after{
+    content: "";
+    text-align: center;
+    left: 26%;
+    width: 112px;
+    height: 117px;
+    border-radius: 100%;
+    background-color: gray;
+    opacity: 0.6;
+    position: absolute;
+    top: 24px;
+}
+
+.user-info__avt__avt:hover a::before{
+    content: "EDIT";
+    left: 50%;
+    position: absolute;
+    top: 75px;
+    color: white;
+    z-index: 9;
 }
 
 .user-info__avt{
@@ -6211,29 +6266,34 @@ img:hover {
 }
 
 .user-info__avt img{
-    border: 15px solid orange;
     border-radius: 100%;
     margin: 15px;
     transition: none;
     transform: none;
+    height: 135px;
 }
 
 .user-info__info{
-    margin-top: 150px;
+    margin-top: 132px;
     flex: 1;
     display: flex;
     flex-direction: column;
+    width: 70%;
+    align-self: center;
+    min-height: 165px;
 }
 
 .user-info__form{
     margin: 150px;
     border-radius: 10px;
-    background-color: coral;
+    background-color: #f1941e;
     margin: 10px;
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    border: 19px solid #333333;
+    padding: 10px;
 }
 
 .user-info__form div{
@@ -6244,7 +6304,7 @@ img:hover {
 }
 
 .user-info__form > div:first-child{
-    margin-top: 65px;
+    margin-top: 80px;
 }
 
 .user-info__form > input{

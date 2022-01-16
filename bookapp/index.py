@@ -395,10 +395,10 @@ def user_detail():
 
     if request.method.__eq__('POST'):
 
-        id = request.args.get('id')
-        first_name = request.args.get('first_name')
-        last_name = request.args.get('last_name')
-        email = request.args.get('email')
+        id = request.form['id']
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        email = request.form['email']
 
         if id and first_name and last_name:
             utils.user_update(id=id, first_name=first_name,
@@ -424,7 +424,7 @@ def change_password():
                         utils.user_password_update(
                             id=id, password=new_password)
                         err_msg = 'Thanh cong'
-                        return redirect(url_for('user_signout'))
+                        return redirect(url_for('user_detail'))
                     else:
                         err_msg = 'xac nhan sai'
                 else:
@@ -450,6 +450,7 @@ def change_avatar():
                 avatar_path = res['secure_url']
                 utils.change_avatar(id=id, avatar=avatar_path)
                 err_msg = 'Thanh cong'
+                return redirect(url_for('user_detail'))
 
         except Exception as ex:
             err_msg = 'Loi ' + str(ex)

@@ -1,12 +1,13 @@
-{% extends 'layout/base.html' %} {% block title %}Cart{% endblock %} {% block css %} 
+{% extends 'layout/base.html' %} {% block title %}User Detail{% endblock %} {% block css %} 
 {% endblock %} {% block header %} {% include 'layout/header.html' %} {% endblock %} {% block content %}
 <div class="gird-user">
+    <div class="saomabietduoc"></div>
+    <div class="saomabietduoc-2"></div>
     <div class="user-info">
         <div class="user-info__avt__avt">
-            <a href="{{ url_for('change_avatar') }}" class="user-info__opt" style="color: white;">
+            <a href="{{ url_for('change_avatar') }}" class="user-info__opt_1" style="color: white;">
                 <div class="user-info__avt">
                     <img src="{{ current_user.avatar }}" alt="">
-                    
                 </div>
             </a>
         </div>
@@ -31,7 +32,7 @@
                 </div>
                 <input type = "submit" class="btn" value="Update" style="margin-bottom: 15px;"/>
             </form>
-            <a href="{{ url_for('change_password') }}" class="user-info__opt" style="color: white;">Doi mau khau</a>
+            <a href="{{ url_for('change_password') }}" class="user-info__opt" style="color: black;"><h4><strong><em>* Change password</em></strong></h4></a>
         </div>       
     </div>   
 </div>
