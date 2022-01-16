@@ -6,6 +6,9 @@
   <h4>{{ err_msg }}</h4>
 </div>
 {% endif %} 
+<div>
+  <img src="{{ current_user.avatar }}" alt="">
+</div>
 <form method="post" enctype="multipart/form-data">
     ID: <input type = "text" name = "id" value="{{ current_user.id }}" disabled="disabled"/>
     <input type = "text" name = "id" value="{{ current_user.id }}" style="display: none;"/>

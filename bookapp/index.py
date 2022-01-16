@@ -401,6 +401,7 @@ def change_password():
                         utils.user_password_update(
                             id=id, password=new_password)
                         err_msg = 'Thanh cong'
+                        return redirect(url_for('user_signout'))
                     else:
                         err_msg = 'xac nhan sai'
                 else:
