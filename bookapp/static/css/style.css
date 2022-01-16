@@ -6177,3 +6177,90 @@ img:hover {
   /*=============================
 	    End noti cart
 ===============================*/
+
+.gird-user{
+    background-color: orangered;
+}
+
+.user-info{
+   display: flex;
+   flex-direction: column;
+}
+
+.user-info a:link{
+    color: cyan;
+}
+
+.user-info__avt__avt{
+    display: flex;
+    flex-direction: column;
+}
+
+.user-info__avt__avt a{
+    width: 12%;
+    align-self: center;
+    position: absolute;
+    left: 5%;
+    top: 290px;
+}
+
+.user-info__avt{
+    margin: 20px;
+    flex: 1;
+    align-self: center;
+}
+
+.user-info__avt img{
+    border: 15px solid orange;
+    border-radius: 100%;
+    margin: 15px;
+    transition: none;
+    transform: none;
+}
+
+.user-info__info{
+    margin-top: 150px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-info__form{
+    margin: 150px;
+    border-radius: 10px;
+    background-color: coral;
+    margin: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.user-info__form div{
+    margin: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.user-info__form > div:first-child{
+    margin-top: 65px;
+}
+
+.user-info__form > input{
+    width: 20%;   
+    align-self: flex-end;
+    margin-right: 15px;
+}
+
+.user-info__form input{
+    border-radius: 8px;
+}
+
+.user-info__form div input{
+    flex: 1;
+}
+
+.user-info__form div span{
+    width: 20%;
+}

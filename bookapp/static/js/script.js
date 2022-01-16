@@ -488,7 +488,7 @@ function NotiRuleMOMO(){
 }
 
 function NotiRuleOffline(){
-  changeNotiRule(text = "Neu ban khong thanh toan bang momo ban se phai toi cua hang de lay sach va thanh toan tai quay", statics = "offline")
+  changeNotiRule(text = "If you choose offline methods, you need to go to the book store to pay within 48 hours!!", statics = "offline")
 }
 
 

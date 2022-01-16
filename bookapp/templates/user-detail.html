@@ -1,21 +1,41 @@
 {% extends 'layout/base.html' %} {% block title %}Cart{% endblock %} {% block css %} 
 {% endblock %} {% block header %} {% include 'layout/header.html' %} {% endblock %} {% block content %}
-<div>
-    <img src="{{ current_user.avatar }}" alt="">
+<div class="gird-user">
+    <div class="user-info">
+        <div class="user-info__avt__avt">
+            <a href="{{ url_for('change_avatar') }}" class="user-info__opt" style="color: white;">
+                <div class="user-info__avt">
+                    <img src="{{ current_user.avatar }}" alt="">
+                    
+                </div>
+            </a>
+        </div>
+        
+        <div class="user-info__info">
+            <form method="post" class="user-info__form">
+                <div>
+                    <span><strong>ID:</strong></span>
+                    <input type = "text" name = "id" value="{{ current_user.id }}"/>
+                </div>
+                <div>
+                    <span><strong>First name:</strong></span>
+                    <input type = "text" name = "first_name" value="{{ current_user.first_name }}"/>
+                </div>
+                <div>
+                    <span><strong>Last name:</strong></span>
+                    <input type = "text" name = "last_name" value="{{ current_user.last_name }}"/>
+                </div>
+                <div>
+                    <span><strong>Email:</strong></span>
+                    <input type = "email" name = "email" value="{{ current_user.email }}"/>
+                </div>
+                <input type = "submit" class="btn" value="Update" style="margin-bottom: 15px;"/>
+            </form>
+            <a href="{{ url_for('change_password') }}" class="user-info__opt" style="color: white;">Doi mau khau</a>
+        </div>       
+    </div>   
 </div>
-<form method="post">
-    ID: <input type = "text" name = "id" value="{{ current_user.id }}"/>
-    <br>
-    First name: <input type = "text" name = "first_name" value="{{ current_user.first_name }}"/>
-    <br>
-    Last name: <input type = "text" name = "last_name" value="{{ current_user.last_name }}"/>
-    <br>
-    Email: <input type = "email" name = "email" value="{{ current_user.email }}"/>
-    <br>
-    <br>
-    <input type = "submit" class="btn" value="Update"/>
-</form>
-<a href="{{ url_for('change_avatar') }}">Doi avatar</a>
-<a href="{{ url_for('change_password') }}">Doi mau khau</a>
+
+
 
 {% endblock %}
