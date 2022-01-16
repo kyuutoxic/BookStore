@@ -1,8 +1,16 @@
+{% if current_user.is_authenticated %}
+{% if current_user.role|string == 'UserRole.CUSTOMER' %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    window.location.href="{{ url_for('index')}}";
+</script>
+<a href="{{ url_for('index')}}"><div class="alert alert-danger">
+  <strong>WARNING!</strong> You do not have permission to use this function. Please click here to return home page!!
+</div></a>
+{% else %}
 {% extends 'admin/master.html' %}
 {% block body %}
 {{ super() }}
-
-{% if current_user.is_authenticated %}
 
 <!-- Content Header (Page header) -->
 
@@ -155,9 +163,9 @@
       });
   }
 </script>
+{% endblock body %}
+{% endif %}
 {% else %} 
 {% include 'admin/login-admin.html' %}
 
 {% endif %}
-
-{% endblock body %}
