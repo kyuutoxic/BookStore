@@ -1,3 +1,5 @@
+from hashlib import new
+from re import T
 from flask import render_template, redirect, request, url_for, session, jsonify
 from __init__ import app, login
 from admin import *
@@ -8,8 +10,7 @@ from utils import read_receiptdetails_by_receipt_id, get_book_by_id
 import cloudinary
 import math
 import smtplib
-
-
+import cloudinary.uploader
 
 
 @app.context_processor
@@ -27,7 +28,7 @@ def admin_login():
     password = request.form['password']
 
     user = utils.check_login(username=username,
-                            password=password)
+                             password=password)
     if user:
         login_user(user=user)
 
@@ -37,7 +38,6 @@ def admin_login():
 @login.user_loader
 def user_load(user_id):
     return utils.get_user_by_id(user_id=user_id)
-
 
 
 @app.route("/")
@@ -51,24 +51,21 @@ def product_list():
     kw = request.args.get('kw')
     page = request.args.get('page', 1, type=int)
 
-    products = utils.load_products(category_id=category_id,kw=kw,page=page)
-    counter = utils.count_products(category_id=category_id,kw=kw)
-
+    products = utils.load_products(category_id=category_id, kw=kw, page=page)
+    counter = utils.count_products(category_id=category_id, kw=kw)
 
     return render_template('products.html',
                            products=products, pages=math.ceil(counter/app.config['PAGE_SIZE']), page=page, name_cate=utils.get_name_cate(category_id=category_id))
-                           
 
 
 @app.route('/books/<int:book_id>')
-def book_detail(book_id): 
+def book_detail(book_id):
     book = utils.get_book_by_id(book_id=book_id)
     language = utils.get_language_by_id(book.language_id)
     cate_name = utils.get_name_category_by_id(book.category_id)
     parent_name = utils.get_name_parentcategory_by_id(cate_name.parent_id)
     counter = utils.count_comments(book_id=book_id)
-    return render_template('book-detail.html', book = book, language=language, counter=counter, cate_name=cate_name,parent_name=parent_name)
-
+    return render_template('book-detail.html', book=book, language=language, counter=counter, cate_name=cate_name, parent_name=parent_name)
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -82,9 +79,9 @@ def user_login():
         if user:
             login_user(user=user)
 
-            if 'book_id' in  request.args:
+            if 'book_id' in request.args:
                 return redirect(url_for(request.args.get('next', 'index'), book_id=request.args['book_id']))
-                
+
             return redirect(url_for(request.args.get('next', 'index')))
         else:
             err_msg = 'User name or password is not precision'
@@ -111,7 +108,8 @@ def user_register():
                         res = cloudinary.uploader.upload(avatar)
                         avatar_path = res['secure_url']
 
-                    utils.add_user(firstname=firstname,lastname=lastname,email=email ,username=username, password=password, avatar=avatar_path)
+                    utils.add_user(firstname=firstname, lastname=lastname, email=email,
+                                   username=username, password=password, avatar=avatar_path)
                     return redirect(url_for('user_login'))
                 else:
                     err_msg = 'Confirm password does not match'
@@ -119,7 +117,7 @@ def user_register():
                 err_msg = 'Username has exist'
         except Exception as ex:
             err_msg = 'Error system: ' + str(ex)
-    
+
     return render_template('register.html', err_msg=err_msg)
 
 
@@ -194,8 +192,6 @@ def add_to_minicart():
     session['cart'] = cart
     results = session['cart']
 
-
-
     return jsonify(results)
 
 
@@ -211,7 +207,6 @@ def pay():
         return jsonify({'code': 400})
 
 
-
 @app.route('/api/update-cart', methods=['put'])
 def update_cart():
     data = request.json
@@ -219,28 +214,26 @@ def update_cart():
     quantity = data.get('quantity')
     book = utils.get_book_by_id(book_id=id)
 
-    if utils.check_stock(book_id = id, quantity = quantity) == True:
+    if utils.check_stock(book_id=id, quantity=quantity) == True:
         cart = session.get('cart')
         if cart:
             if id in cart and quantity:
                 cart[id]['quantity'] = quantity
                 session['cart'] = cart
             data = utils.cart_stats(cart)
-            
+
         return jsonify({
-            "status":200,
+            "status": 200,
             'data': data
         })
     else:
         return jsonify({
-        "status":404,
-        'data': {
-            'id': id,
-            'quantity': book.quantity
-        }
-    })
-
-
+            "status": 404,
+            'data': {
+                'id': id,
+                'quantity': book.quantity
+            }
+        })
 
 
 @app.route('/api/cart/<book_id>', methods=['delete'])
@@ -276,7 +269,7 @@ def add_comment():
         c = utils.add_comment(content=content, book_id=book_id)
 
         return jsonify({
-            "status":200,
+            "status": 200,
             "data": {
                 "id": c.id,
                 "content": c.content,
@@ -286,10 +279,10 @@ def add_comment():
                     'username': c.user.username,
                     'avatar': c.user.avatar
                 }
-            }        
+            }
         })
     except:
-        return jsonify({"status":404})
+        return jsonify({"status": 404})
 
 
 @app.route('/api/books/<int:book_id>/comments/<int:qttcomment>')
@@ -311,7 +304,7 @@ def get_comments(book_id, qttcomment):
     return jsonify(results)
 
 
-@app.route('/checkout',methods=['get', 'post'])
+@app.route('/checkout', methods=['get', 'post'])
 @login_required
 def checkout():
     city = utils.load_city()
@@ -324,30 +317,35 @@ def checkout():
         street_name = request.form['address']
         opt = request.form['opt']
         if opt == "offline":
-            r = utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=None)
-            utils.send_email(info = r)
+            r = utils.add_receipts(session.get(
+                'cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=None)
+            utils.send_email(info=r)
             cart = session.get('cart')
             if cart:
                 del session['cart']
             return redirect(url_for('index'))
         else:
             if street_name and district_id and city_id:
-                address_id = utils.get_address(street_name=street_name, district_id=district_id, city_id=city_id)
+                address_id = utils.get_address(
+                    street_name=street_name, district_id=district_id, city_id=city_id)
                 if address_id != 0:
-                    r = utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address_id)
-                    utils.send_email(info = r)
+                    r = utils.add_receipts(session.get(
+                        'cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address_id)
+                    utils.send_email(info=r)
                 else:
-                    address = utils.add_address(street_name=street_name, district_id=district_id, city_id=city_id)
-                    r = utils.add_receipts(session.get('cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address.id)
-                    utils.send_email(info = r)
+                    address = utils.add_address(
+                        street_name=street_name, district_id=district_id, city_id=city_id)
+                    r = utils.add_receipts(session.get(
+                        'cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address.id)
+                    utils.send_email(info=r)
 
                 cart = session.get('cart')
                 if cart:
                     del session['cart']
                 return redirect(url_for('index'))
-            
 
     return render_template('checkout.html', city=city)
+
 
 @app.route('/api/load-address/<int:city_id>')
 def load_address(city_id):
@@ -367,6 +365,72 @@ def load_address(city_id):
 @app.route('/blog')
 def blog():
     return render_template('blog.html')
+
+
+@app.route('/user-detail', methods=['get', 'post'])
+def user_detail():
+    err_msg = ""
+
+    if request.method.__eq__('POST'):
+
+        id = request.args.get('id')
+        first_name = request.args.get('first_name')
+        last_name = request.args.get('last_name')
+        email = request.args.get('email')
+
+        if id and first_name and last_name:
+            utils.user_update(id=id, first_name=first_name,
+                              last_name=last_name, email=email)
+
+    return render_template('user-detail.html', err_msg=err_msg)
+
+
+@app.route('/change-password', methods=['get', 'post'])
+def change_password():
+    err_msg = ""
+    if request.method.__eq__('POST'):
+
+        id = request.form['id']
+        current_password = request.form['CurrentPassword']
+        new_password = request.form['NewPassword']
+        confirm_password = request.form['ConfirmPassword']
+        try:
+            if current_password and new_password and confirm_password:
+                if utils.check_password(id=id, password=current_password) == True:
+                    if new_password == confirm_password:
+                        utils.user_password_update(
+                            id=id, password=new_password)
+                        err_msg = 'Thanh cong'
+                    else:
+                        err_msg = 'xac nhan sai'
+                else:
+                    err_msg = 'mat khau cu khong chinh xac'
+        except Exception as ex:
+            err_msg = 'Loi' + str(ex)
+
+    return render_template('changepassword.html', err_msg=err_msg)
+
+
+@app.route('/change-avatar', methods=['get', 'post'])
+def change_avatar():
+    err_msg = ""
+    if request.method.__eq__('POST'):
+
+        id = request.form['id']
+        avatar = request.files.get('avatar')
+        avatar_path = None
+        try:
+            if avatar:
+                res = cloudinary.uploader.upload(avatar)
+                avatar_path = res['secure_url']
+                utils.change_avatar(id=id, avatar=avatar_path)
+                err_msg = 'Thanh cong'
+
+        except Exception as ex:
+            err_msg = 'Loi ' + str(ex)
+
+    return render_template('change-avatar.html', err_msg=err_msg)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

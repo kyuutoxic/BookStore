@@ -490,3 +490,18 @@ function NotiRuleMOMO(){
 function NotiRuleOffline(){
   changeNotiRule(text = "Neu ban khong thanh toan bang momo ban se phai toi cua hang de lay sach va thanh toan tai quay", statics = "offline")
 }
+
+
+  
+$(document).ready(function(){
+  $('.pass_show').append('<span class="ptxt">Show</span>');  
+  });
+    
+  
+  $(document).on('click','.pass_show .ptxt', function(){ 
+  
+  $(this).text($(this).text() == "Show" ? "Hide" : "Show"); 
+  
+  $(this).prev().attr('type', function(index, attr){return attr == 'password' ? 'text' : 'password'; }); 
+  
+  });  

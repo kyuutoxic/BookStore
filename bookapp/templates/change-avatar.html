@@ -1,0 +1,26 @@
+{% extends 'layout/base.html' %} {% block title %}Change avatar{% endblock %} {% block css %} 
+{% endblock %} {% block header %} {% include 'layout/header.html' %} {% endblock %} {% block content %}
+
+{% if err_msg %}
+<div class="alert alert-danger">
+  <h4>{{ err_msg }}</h4>
+</div>
+{% endif %} 
+<form method="post" enctype="multipart/form-data">
+    ID: <input type = "text" name = "id" value="{{ current_user.id }}" disabled="disabled"/>
+    <input type = "text" name = "id" value="{{ current_user.id }}" style="display: none;"/>
+    <br>
+    First name: <input type = "text" name = "first_name" value="{{ current_user.first_name }}" disabled="disabled"/>
+    <br>
+    Last name: <input type = "text" name = "last_name" value="{{ current_user.last_name }}" disabled="disabled"/>
+    <br>
+    Email: <input type = "email" name = "email" value="{{ current_user.email }}" disabled="disabled"/>
+    <br>
+    Avatar: <input type="file" id="avatar" placeholder="avatar" name="avatar">
+    <br>
+    <input type = "submit" class="btn" value="Update"/>
+</form>
+<a href="{{ url_for('user_detail') }}">Xem thong tin</a>
+<a href="{{ url_for('change_password') }}">Doi mau khau</a>
+
+{% endblock %}

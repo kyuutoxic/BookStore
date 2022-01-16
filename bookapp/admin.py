@@ -117,12 +117,6 @@ class Sale(SellerView):
         receipt_id = request.args.get('receipt')
 
         if book_id and quantity and receipt_id:
-            # p = utils.read_receiptdetails_by_receipt_id(receipt_id)
-            # for i in p:
-            #     if i.book_id==book_id:
-            #         utils.update_quantity_receipt_details(receipt_detail_id=i.id, quantity=quantity)
-            #         break
-            # else:
             b = utils.get_book(book_id=book_id)
             if b.quantity >= int(quantity):
                 utils.add_receiptdetails(receipt_id=receipt_id, book_id=book_id, quantity=quantity, unit_price=b.price)
@@ -185,10 +179,6 @@ admin.add_view(Imports(name='Import'))
 admin.add_view(Sale(name='Sales'))
 admin.add_view(UserView(User, db.session, name='Users'))
 admin.add_view(BookView(Book, db.session, name='Books'))
-# admin.add_view(ModelView(BookLanguage, db.session))
-# admin.add_view(ModelView(Category, db.session))
-# admin.add_view(ModelView(ParentCategory, db.session))
 admin.add_view(EditView(Rule, db.session, name='Rules'))
 admin.add_view(StatsView(name='Stats'))
 admin.add_view(LogoutView(name='Logout', menu_icon_type='fa', menu_icon_value='fas fa-sign-out-alt'))
-# Xoa chu b de them icon

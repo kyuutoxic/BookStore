@@ -9,15 +9,16 @@ from sqlalchemy.sql import extract
 import datetime
 import smtplib
 
+
 def get_user_by_id(user_id):
     return User.query.get(user_id)
 
 
-#check username and password
 def check_login(username, password):
     if username and password:
-        password =str(hashlib.md5(password.strip().encode("utf-8")).hexdigest())
-       
+        password = str(hashlib.md5(
+            password.strip().encode("utf-8")).hexdigest())
+
         return User.query.filter(User.username == username.strip(), User.password == password).first()
 
 
@@ -26,10 +27,10 @@ def category_stats(parent=None):
 
     return db.session.query(Category.id, Category.name, Category.parent_id,
                             func.count(Book.id))\
-                     .join(Book,
-                           Book.category_id.__eq__(Category.id))\
-                    .filter(Category.parent_id.__eq__(parent))\
-                     .group_by(Category.id, Category.name).all()
+        .join(Book,
+              Book.category_id.__eq__(Category.id))\
+        .filter(Category.parent_id.__eq__(parent))\
+        .group_by(Category.id, Category.name).all()
 
 
 def read_parentCategory():
@@ -56,7 +57,7 @@ def add_import(book_id, quantities):
 
 
 def read_import():
-    return  Import.query.all()
+    return Import.query.all()
 
 
 def get_rule(rule_id):
@@ -71,17 +72,17 @@ def add_receipt(user_id, cus_name=None):
 
 def read_receipt_by_active():
     return db.session.query(Receipt.id)\
-                    .filter(Receipt.active == False).all()
+        .filter(Receipt.active == False).all()
 
 
 def add_receiptdetails(receipt_id, book_id, quantity, unit_price):
-    receipt_details = ReceiptDetail(receipt_id=receipt_id, book_id=book_id, quantity=quantity, unit_price=unit_price)
+    receipt_details = ReceiptDetail(
+        receipt_id=receipt_id, book_id=book_id, quantity=quantity, unit_price=unit_price)
     db.session.add(receipt_details)
     db.session.commit()
 
 
-# def get_add_receiptdetails():
-#     return ReceiptDetail.query.all()
+
 def update_quantity_receipt_details(receipt_detail_id, quantity):
     a = get_receiptdetails_by_id(receipt_detail_id)
     a.quantity = a.quantity + quantity
@@ -123,8 +124,6 @@ def check_stock(book_id, quantity):
     return False
 
 
-
-# Client func
 def read_parent_category():
     return ParentCategory.query.all()
 
@@ -137,14 +136,14 @@ def get_book_by_id(book_id):
     return Book.query.get(book_id)
 
 
-
 def get_language_by_id(language_id):
     return BookLanguage.query.get(language_id)
 
 
 def check_login(username, password):
     if username and password:
-        password = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
+        password = str(hashlib.md5(
+            password.strip().encode('utf-8')).hexdigest())
 
         return User.query.filter(User.username.__eq__(username.strip()),
                                  User.password.__eq__(password)).first()
@@ -156,9 +155,9 @@ def check_username(username):
         if u.username == username:
             return False
     return True
-    
 
-def add_user(firstname, lastname,email, username, password, **kwargs):
+
+def add_user(firstname, lastname, email, username, password, **kwargs):
     password = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
     user = User(first_name=firstname.strip(),
                 last_name=lastname.strip(),
@@ -185,29 +184,32 @@ def cart_stats(cart):
     }
 
 
-def add_receipts(cart, cus_name=None, phone_number=None,address_id=None, opt = 'offline'):
+def add_receipts(cart, cus_name=None, phone_number=None, address_id=None, opt='offline'):
     if cart:
         if opt == 'offline':
-        
-            receipt = Receipt(user=current_user, cus_name=cus_name, phone_number=phone_number, address_id=address_id)
+
+            receipt = Receipt(user=current_user, cus_name=cus_name,
+                              phone_number=phone_number, address_id=address_id)
             db.session.add(receipt)
             db.session.commit()
 
             for c in cart.values():
-                    detail = ReceiptDetail(receipt_id=receipt.id,
-                                        book_id=c['id'],
-                                        quantity=c['quantity'],unit_price=c['price'])
-                    db.session.add(detail)
+                detail = ReceiptDetail(receipt_id=receipt.id,
+                                       book_id=c['id'],
+                                       quantity=c['quantity'], unit_price=c['price'])
+                db.session.add(detail)
         else:
-            receipt = Receipt(user=current_user, cus_name=cus_name, phone_number=phone_number, address_id=address_id, active=True)
+            receipt = Receipt(user=current_user, cus_name=cus_name,
+                              phone_number=phone_number, address_id=address_id, active=True)
             db.session.add(receipt)
             db.session.commit()
             for c in cart.values():
                 detail = ReceiptDetail(receipt_id=receipt.id,
-                                    book_id=c['id'],
-                                    quantity=c['quantity'],unit_price=c['price'])
+                                       book_id=c['id'],
+                                       quantity=c['quantity'], unit_price=c['price'])
                 db.session.add(detail)
-            receipt_detail_for_update_stock = read_receiptdetails_by_receipt_id(receipt_id=receipt.id)
+            receipt_detail_for_update_stock = read_receiptdetails_by_receipt_id(
+                receipt_id=receipt.id)
             for b in receipt_detail_for_update_stock:
                 update_stock(book_id=b.book_id, quantity=b.quantity)
 
@@ -215,33 +217,25 @@ def add_receipts(cart, cus_name=None, phone_number=None,address_id=None, opt = '
     return receipt
 
 
-def load_products(category_id=None, kw=None,page = 1):
+def load_products(category_id=None, kw=None, page=1):
     products = Book.query
-    
+
     if category_id == None:
         category_id = '0'
-      
+
     if category_id:
         if category_id == str(0):
             products = Book.query
         else:
-            products = db.session.query(Book).join(Category).filter(Category.parent_id.__eq__(category_id))
-            # cate = Category.query.filter(Category.id == category_id)
-            # products = products.filter(Book.category_id.__eq__(category_id))
-            # products = db.session.query()
-            # id = db.session.query(Category.id).filter(Category.parent_id == category_id).all()
-            # result = [x[0] for x in id]
-            # products = Book.query.filter(Book.category_id.in_(result))
-
+            products = db.session.query(Book).join(Category).filter(
+                Category.parent_id.__eq__(category_id))
     if kw:
         products = products.filter(Book.name.contains(kw))
-        # products = db.session.query(Book).join(Category).join(ParentCategory).filter(ParentCategory.name.contains(kw))
-        
 
     page_size = app.config['PAGE_SIZE']
     start = (page - 1) * page_size
     end = start + page_size
-        
+
     return products.slice(start, end).all()
 
 
@@ -249,17 +243,13 @@ def count_products(category_id=0, kw=None):
     products = Book.query
     if category_id == None:
         category_id = '0'
-      
+
     if category_id:
         if category_id == str(0):
             products = Book.query
         else:
-            # products = db.session.query(Book.category).filter(Category.parent_id.__eq__(category_id))
-            products = Book.query.filter(Category.parent_id.__eq__(category_id))
-            # products = products.filter(Book.category_id.__eq__(category_id))
-            # id = db.session.query(Category.id).filter(Category.parent_id == category_id).all()
-            # result = [x[0] for x in id]
-            # products = Book.query.filter(Book.category_id.in_(result))
+            products = Book.query.filter(
+                Category.parent_id.__eq__(category_id))
 
     if kw:
         products = products.filter(Book.name.contains(kw))
@@ -272,17 +262,16 @@ def add_comment(content, book_id):
 
     db.session.add(c)
     db.session.commit()
-    
+
     return c
 
 
 def get_comment(book_id, qttcomment):
-    return Comment.query.filter(Comment.book_id.__eq__(book_id) ).order_by(-Comment.id).slice(0, qttcomment).all()
+    return Comment.query.filter(Comment.book_id.__eq__(book_id)).order_by(-Comment.id).slice(0, qttcomment).all()
 
 
 def count_comments(book_id):
     return Comment.query.filter(Comment.book_id.__eq__(book_id)).count()
-
 
 
 def get_name_cate(category_id):
@@ -292,12 +281,10 @@ def get_name_cate(category_id):
         return 'All products'
     else:
         return ParentCategory.query.get(category_id)
- 
 
 
 def get_name_category_by_id(category_id):
     return Category.query.get(category_id)
-
 
 
 def get_name_parentcategory_by_id(parent_id):
@@ -307,37 +294,37 @@ def get_name_parentcategory_by_id(parent_id):
 def product_year_stats(year):
     return db.session.query(extract('month', Receipt.created_date),
                             func.sum(ReceiptDetail.quantity*ReceiptDetail.unit_price))\
-                     .join(ReceiptDetail, ReceiptDetail.receipt_id.__eq__(Receipt.id))\
-                     .filter(extract('year', Receipt.created_date) == year)\
-                     .group_by(extract('month', Receipt.created_date))\
-                     .order_by(extract('month', Receipt.created_date)).all()
+        .join(ReceiptDetail, ReceiptDetail.receipt_id.__eq__(Receipt.id))\
+        .filter(extract('year', Receipt.created_date) == year)\
+        .group_by(extract('month', Receipt.created_date))\
+        .order_by(extract('month', Receipt.created_date)).all()
 
 
 def category_month_stats(month):
-    return db.session.query(Category.id, Category.name,func.sum(ReceiptDetail.quantity),
+    return db.session.query(Category.id, Category.name, func.sum(ReceiptDetail.quantity),
                             func.sum(ReceiptDetail.quantity*ReceiptDetail.unit_price))\
-                        .join(Book, Book.category_id.__eq__(Category.id))\
-                        .join(ReceiptDetail, ReceiptDetail.book_id.__eq__(Book.id))\
-                        .join(Receipt, Receipt.id.__eq__(ReceiptDetail.receipt_id))\
-                        .filter(extract('month', Receipt.created_date) == month, Receipt.active == 1)\
-                        .group_by(Category.id, Category.name).all()
+        .join(Book, Book.category_id.__eq__(Category.id))\
+        .join(ReceiptDetail, ReceiptDetail.book_id.__eq__(Book.id))\
+        .join(Receipt, Receipt.id.__eq__(ReceiptDetail.receipt_id))\
+        .filter(extract('month', Receipt.created_date) == month, Receipt.active == 1)\
+        .group_by(Category.id, Category.name).all()
 
 
 def product_month_stats(month):
-    return db.session.query(Book.id, Book.name,func.sum(ReceiptDetail.quantity),
+    return db.session.query(Book.id, Book.name, func.sum(ReceiptDetail.quantity),
                             func.sum(ReceiptDetail.quantity*ReceiptDetail.unit_price))\
-                        .join(ReceiptDetail, ReceiptDetail.book_id.__eq__(Book.id))\
-                        .join(Receipt, Receipt.id.__eq__(ReceiptDetail.receipt_id))\
-                        .filter(extract('month', Receipt.created_date) == month, Receipt.active == 1)\
-                        .group_by(Book.id, Book.name).all()
+        .join(ReceiptDetail, ReceiptDetail.book_id.__eq__(Book.id))\
+        .join(Receipt, Receipt.id.__eq__(ReceiptDetail.receipt_id))\
+        .filter(extract('month', Receipt.created_date) == month, Receipt.active == 1)\
+        .group_by(Book.id, Book.name).all()
 
 
 def product_stats(kw=None, from_date=None, to_date=None):
     p = db.session.query(Book.id, Book.name,
                          func.sum(ReceiptDetail.quantity * ReceiptDetail.unit_price))\
-                  .join(ReceiptDetail, ReceiptDetail.book_id.__eq__(Book.id), isouter=True)\
-                  .join(Receipt, Receipt.id.__eq__(ReceiptDetail.receipt_id))\
-                  .group_by(Book.id, Book.name)
+        .join(ReceiptDetail, ReceiptDetail.book_id.__eq__(Book.id), isouter=True)\
+        .join(Receipt, Receipt.id.__eq__(ReceiptDetail.receipt_id))\
+        .group_by(Book.id, Book.name)
 
     if kw:
         p = p.filter(Book.name.contains(kw.strip()))
@@ -360,7 +347,8 @@ def load_district_by_city_id(city_id):
 
 
 def add_address(street_name, city_id, district_id):
-    address = Address(street_name=street_name, city_id=city_id, district_id=district_id)
+    address = Address(street_name=street_name,
+                      city_id=city_id, district_id=district_id)
     db.session.add(address)
     db.session.commit()
 
@@ -374,7 +362,8 @@ def get_address(street_name, city_id, district_id):
             return i.id
     else:
         return 0
-    # return Address.query.filter(Address.street_name.__eq__(street_name), Address.city_id.__eq__(city_id), Address.district_id.__eq__(district_id))
+
+
 
 def del_receipt(receipt_id):
     receipt_detail = read_receiptdetails_by_receipt_id(receipt_id=receipt_id)
@@ -382,6 +371,7 @@ def del_receipt(receipt_id):
         del_receipt_detail(r.id)
     Receipt.query.filter(Receipt.id == receipt_id).delete()
     db.session.commit()
+
 
 def del_receipt_by_rule(time):
     receipts = Receipt.query.filter(Receipt.active == False).all()
@@ -400,13 +390,16 @@ def send_email(info):
     body = '\n\n'
     total = cart_stats(session.get('cart'))['total_amount']
     for i in rs:
-        body = body + str(i.quantity) + ' "' + get_book_by_id(i.book_id).name + '" ' + str("{:,.0f}".format(i.unit_price)) + '/unit \n\n'
-    
-    if info.active == True:
-        footer = 'Total price: ' + str("{:,.0f}".format(total)) + ' VND \n\nThe package will come after a few day, hope you happy!'
-    else:
-        footer = 'Total price: ' + str("{:,.0f}".format(total)) + ' VND \n\nPlease show to the seller your receipt ID when you coming the bookstore within 48 hours, hope you happy!'
+        body = body + str(i.quantity) + ' "' + get_book_by_id(i.book_id).name + \
+            '" ' + str("{:,.0f}".format(i.unit_price)) + '/unit \n\n'
 
+    if info.active == True:
+        footer = 'Total price: ' + \
+            str("{:,.0f}".format(total)) + \
+            ' VND \n\nThe package will come after a few day, hope you happy!'
+    else:
+        footer = 'Total price: ' + str("{:,.0f}".format(
+            total)) + ' VND \n\nPlease show to the seller your receipt ID when you coming the bookstore within 48 hours, hope you happy!'
 
     msg = f'Subject: {subject}\n\n{head}\n\n{body}\n{footer}'
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
@@ -417,3 +410,38 @@ def send_email(info):
         smtp.sendmail(EMAIL_ADDRESS, EMAIL_TO, msg.encode('utf-8'))
 
         smtp.quit()
+
+
+def user_update(id, first_name, last_name, email):
+    user = User.query.get(id)
+
+    user.first_name = first_name
+    user.last_name = last_name
+    user.email = email
+
+    db.session.commit()
+
+
+def check_password(id, password):
+    user = User.query.get(id)
+    currentpassword = str(hashlib.md5(
+        password.strip().encode("utf-8")).hexdigest())
+    if user.password == currentpassword:
+        return True
+    return False
+
+
+def user_password_update(id, password):
+    user = User.query.get(id)
+    newpassword = str(hashlib.md5(
+        password.strip().encode("utf-8")).hexdigest())
+
+    user.password = newpassword
+    db.session.commit()
+
+
+def change_avatar(id, avatar):
+    user = User.query.get(id)
+
+    user.avatar = avatar
+    db.session.commit()

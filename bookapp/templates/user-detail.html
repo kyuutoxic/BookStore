@@ -1,0 +1,22 @@
+{% extends 'layout/base.html' %} {% block title %}Cart{% endblock %} {% block css %} 
+{% endblock %} {% block header %} {% include 'layout/header.html' %} {% endblock %} {% block content %}
+<form method="post">
+    ID: <input type = "text" name = "id" value="{{ current_user.id }}"/>
+    <br>
+    First name: <input type = "text" name = "first_name" value="{{ current_user.first_name }}"/>
+    <br>
+    Last name: <input type = "text" name = "last_name" value="{{ current_user.last_name }}"/>
+    <br>
+    Email: <input type = "email" name = "email" value="{{ current_user.email }}"/>
+    <br>
+    {% if current_user.avatar %}
+    {% else %}
+    Avatar: <input type="file" id="avatar" placeholder="avatar" name="avatar">
+    {% endif %}
+    <br>
+    <input type = "submit" class="btn" value="Update"/>
+</form>
+<a href="{{ url_for('change_avatar') }}">Doi avatar</a>
+<a href="{{ url_for('change_password') }}">Doi mau khau</a>
+
+{% endblock %}
