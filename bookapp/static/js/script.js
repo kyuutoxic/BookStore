@@ -495,7 +495,6 @@ $(document).ready(function(){
   $('.pass_show').append('<span class="ptxt" Style="width:40px;background-color:white;">Show</span>');
   });
 
-
   $(document).on('click','.pass_show .ptxt', function(){ 
 
   $(this).text($(this).text() == "Show" ? "Hide" : "Show"); 
