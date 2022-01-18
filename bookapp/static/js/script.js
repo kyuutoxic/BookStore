@@ -491,17 +491,15 @@ function NotiRuleOffline(){
   changeNotiRule(text = "If you choose offline methods, you need to go to the book store to pay within 48 hours!!", statics = "offline")
 }
 
-
-  
 $(document).ready(function(){
-  $('.pass_show').append('<span class="ptxt">Show</span>');  
+  $('.pass_show').append('<span class="ptxt" Style="width:40px;background-color:white;">Show</span>');
   });
-    
-  
+
+
   $(document).on('click','.pass_show .ptxt', function(){ 
-  
+
   $(this).text($(this).text() == "Show" ? "Hide" : "Show"); 
-  
+
   $(this).prev().attr('type', function(index, attr){return attr == 'password' ? 'text' : 'password'; }); 
-  
-  });  
+
+  });

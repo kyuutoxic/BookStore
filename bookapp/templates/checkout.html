@@ -10,6 +10,7 @@
 
 {% block content %} 
 {% if current_user.is_authenticated %}
+{% if 'cart' in session and session['cart'] %}
 <section class="shop checkout section">
     <form class="form" action="{{ url_for('checkout') }}" method="post">
     <div class="container">
@@ -122,6 +123,9 @@
         changeFunc()
     }
 </script>    
+{% else %}
+<p class="alert alert-danger text-center"><i>Cart don't have any product yet!!!</i></p>
+{% endif %}
 {% else %}
 {{ url_for('user_login', next='checkout') }}
 {% endif %}

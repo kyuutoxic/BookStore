@@ -1,21 +1,5 @@
 {% extends 'layout/base.html' %} {% block title %}Cart{% endblock %} {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/book-detail.css') }}"> {% endblock %} {% block header %} {% include 'layout/header.html' %} {% endblock %} {% block content %}
-<!-- Breadcrumbs -->
-<div class="breadcrumbs">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="bread-inner">
-                    <ul class="bread-list">
-                        <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-                        <li class="active"><a href="blog-single.html">Cart</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Breadcrumbs -->
 <!-- Shopping Cart -->
 {% if 'cart' in session and session['cart'] %}
 <div class="shopping-cart section">
@@ -103,5 +87,5 @@
 </div>
 <!--/ End Shopping Cart -->
 {% else %}
-<p style="margin-left: 40%;"><i>Cart don't have any product yet!!!</i></p>
+<p class="alert alert-danger text-center"><i>Cart don't have any product yet!!!</i></p>
 {% endif %} {% endblock %}
