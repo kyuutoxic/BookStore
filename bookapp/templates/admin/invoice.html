@@ -113,21 +113,21 @@
         <td></td>
         <td></td>
         <td style="font-size: 20px;">Total:</td>
-        <td>
+        <td style="position: relative;">
             <form action="">
                 <div>
                     <div style="font-size: 20px;">{{ "{:,.0f}".format(sum) }} VND</div>
                     <br>
                     <input type="text" value="{{ get_receipt.id }}" name="receipt_id" style="display: none">
-                    <input type="submit" value="Checkout" class="btn btn-danger" />
+                    <input type="submit" value="Checkout" class="btn btn-danger" style="position: absolute;bottom: 0;"/>
                 </div>
             </form>
         </td>
-        <td>
+        <td style="position: relative;">
             <form action="">
                 <div style="padding-top: 50px;">
-                    <input type="text" value="{{ get_receipt.id }}" name="receipt_id" style="display: none">
-                    <input type="submit" value="Delete" class="btn btn-warning" />
+                    <input type="text" value="{{ get_receipt.id }}" name="receipt_id_delete" style="display: none">
+                    <input type="submit" value="Delete" class="btn btn-warning" style="position: absolute;bottom: 0;"/>
                 </div>
             </form>
         </td>

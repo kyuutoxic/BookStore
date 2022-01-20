@@ -109,11 +109,10 @@ function updateCartByInput(id, obj) {
     }
     else{
       console.log(data)
-      alert("qua troi qua dat")
+      alert("Quantity in stock is not enough!!!")
       quantity = document.getElementById(data.data.id)
       quantity.value = data.data.quantity
       updateCartByButton(id=data.data.id, obj=data.data.quantity)
-      
     }
   })
     .catch(function (err) {
@@ -167,7 +166,7 @@ function updateCartByButton(id, obj) {
       }
       else {
         console.log(data)
-        alert("qua troi qua dat")
+        alert("Quantity in stock is not enough")
         quantity = document.getElementById(data.data.id)
         quantity.value = data.data.quantity
         updateCartByInput(id=data.data.id, obj=data.data.quantity)

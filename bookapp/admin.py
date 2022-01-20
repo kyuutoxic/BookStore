@@ -67,7 +67,7 @@ class MyAdminIndexView(AdminIndexView):
     @expose('/')
     def index(self):
         return self.render('admin/index.html',
-                           stats=utils.category_stats(), parent=utils.read_parentCategory())
+                           stats=utils.category_stats(), parent=utils.read_parentCategory(), count_receipt=utils.count_receipt(), count_cus = utils.count_cus())
 
 
 class Imports(StockkeeperView):
@@ -97,7 +97,7 @@ class Imports(StockkeeperView):
         except Exception as ex:
             err_msg = ''
 
-        return self.render('admin/import.html', book=utils.read_book(kw=kw), books=utils.read_book(), err_msg=err_msg, imports=utils.read_import())
+        return self.render('admin/import.html', book=utils.read_book(kw=kw), books=utils.read_book_from_import(), err_msg=err_msg)
 
 
 class Sale(SellerView):
@@ -140,6 +140,10 @@ class Sale(SellerView):
             for b in receipt_detail_for_update_stock:
                 utils.update_stock(book_id=b.book_id, quantity=b.quantity)
             utils.update_receipt_status(receipts_id)
+
+        receipt_id_delete = request.args.get('receipt_id_delete')
+        if receipt_id_delete:
+            utils.del_receipt(receipt_id_delete)
 
         book = utils.read_book(kw=kw)
         sum = 0
