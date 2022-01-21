@@ -1,293 +1,400 @@
 <!-- Header -->
 <header class="header shop">
-    <!-- Topbar -->
-    <div class="topbar">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-md-12 col-12">
-                    <!-- Top Left -->
-                    <div class="top-left">
-                        <ul class="list-main">
-                            <li><i class="ti-headphone-alt"></i> +060 (800) 801-582</li>
-                            <li><i class="ti-email"></i> support@shophub.com</li>
-                        </ul>
-                    </div>
-                    <!--/ End Top Left -->
-                </div>
-                <div class="col-lg-7 col-md-12 col-12">
-                    <!-- Top Right -->
-                    <div class="right-content">
-                        <ul class="list-main">
-                            <li><i class="ti-location-pin"></i> Store location</li>
-                            <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
-                            {% if current_user.is_authenticated %}
-                            <li><i class="ti-user"></i> <a href="{{ url_for('user_detail') }}">{{current_user}}</a></li>
-                            <li><i class="ti-power-off"></i><a href="{{ url_for('user_signout') }}">Logout</a></li>
-                            {% else %}
-                            <li><i class="ti-user"></i> <a href="#">My account</a></li>
-                            <li><i class="ti-power-off"></i><a href="{{ url_for('user_login') }}">Login</a></li>
-                            {% endif %}
-
-                        </ul>
-                    </div>
-                    <!-- End Top Right -->
-                </div>
-            </div>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 col-md-12 col-12">
+          <!-- Top Left -->
+          <div class="top-left">
+            <ul class="list-main">
+              <li><i class="ti-headphone-alt"></i> +060 (800) 801-582</li>
+              <li><i class="ti-email"></i> support@shophub.com</li>
+            </ul>
+          </div>
+          <!--/ End Top Left -->
         </div>
+        <div class="col-lg-7 col-md-12 col-12">
+          <!-- Top Right -->
+          <div class="right-content">
+            <ul class="list-main">
+              <li><i class="ti-location-pin"></i> Store location</li>
+              <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
+              {% if current_user.is_authenticated %}
+              <li>
+                <i class="ti-user"></i>
+                <a href="{{ url_for('user_detail') }}">{{current_user}}</a>
+              </li>
+              <li>
+                <i class="ti-power-off"></i
+                ><a href="{{ url_for('user_signout') }}">Logout</a>
+              </li>
+              {% else %}
+              <li><i class="ti-user"></i> <a href="#">My account</a></li>
+              <li>
+                <i class="ti-power-off"></i
+                ><a href="{{ url_for('user_login') }}">Login</a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+          <!-- End Top Right -->
+        </div>
+      </div>
     </div>
-    <!-- End Topbar -->
-    <div class="middle-inner">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2 col-md-2 col-12">
-                    <!-- Logo -->
-                    <div class="logo">
-                        <a href="{{ url_for('index') }}"><img src="static/images/logo.png" alt="logo"></a>
-                    </div>
-                    <!--/ End Logo -->
-                    <!-- Search Form -->
-                    <div class="search-top">
-                        <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
-                        <!-- Search Form -->
-                        <div class="search-top">
-                            <form class="search-form">
-                                <input type="text" placeholder="Search here..." name="search">
-                                <button value="search" type="submit"><i class="ti-search"></i></button>
-                            </form>
-                        </div>
-                        <!--/ End Search Form -->
-                    </div>
-                    <!--/ End Search Form -->
-                    <div class="mobile-nav"></div>
-                </div>
-                <div class="col-lg-8 col-md-7 col-12">
-                    <div class="search-bar-top">
-                        <div class="search-bar">
-                            <form action="{{ url_for('product_list') }}">
-                                <select name="category_id" selected="selected">
-                                    <option selected="selected" Value=0>All Category</option>
-                                    {% for c in categories %}
-                                        <option value={{c.id}}>{{ c.name }}</option>
-                                    {% endfor %}
-                                </select>
-                                <input name="kw" placeholder="Search Products Here....." type="search">
-                                <button class="btnn"><i class="ti-search"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-12">
-                    <div class="right-bar">
-                        <!-- Search Form -->
-                        <div class="sinlge-bar">
-                            <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                        </div>
-                        <div class="sinlge-bar">
-                            <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
-                        </div>
-                        <div class="sinlge-bar shopping">
-                            <a href="{{ url_for('cart') }}" class="single-icon"><i class="ti-bag"></i> <span class="total-count" id="cartCounter">{{ cart_stats.total_quantity }}</span></a>
-                            <!-- Shopping Item -->
-
-
-                            <div class="shopping-item">
-                                <div class="dropdown-cart-header">
-                                    <span id="cartCounter1">{{ cart_stats.total_quantity }} Items</span>
-                                    <a href="#">View Cart</a>
-                                </div>
-                                <ul class="shopping-list" id="shopping-list">
-                                    {% if session['cart'] %} {% for c in session['cart'].values() %}
-                                    <li id="books{{ c.id }}">
-                                        <a href="#" class="remove" title="Remove this item" onclick="deleteMiniCart({{ c.id }})"><i class="fa fa-remove"></i></a>
-                                        <a class="cart-img" href="#"><img src="{{ c.image }}" alt="{{ c.name }}"></a>
-                                        <h4><a href="#">{{ c.name }}</a></h4>
-                                        <p class="quantity" id="quantity{{ c.id }}">{{ c.quantity }} - <span class="amount">{{ "{:,.0f}".format(c.price) }} VND</span></p>
-                                    </li>
-                                    {% endfor %} {% endif %}
-                                </ul>
-                                <div class="bottom">
-                                    <div class="total">
-                                        <span>Total</span>
-                                        <span class="total-amount" id="amount1">{{ "{:,.0f}".format(cart_stats.total_amount) }} VND</span>
-                                    </div>
-                                    {% if current_user.is_authenticated %}
-                                    <a href="{{ url_for('checkout') }}" class="btn animate">Checkout</a>
-                                    {% else %}
-                                    <a href="{{ url_for('user_login', next='checkout') }}" class="btn animate">Checkout</a>{% endif %}
-                            </div>
-
-                            <!--/ End Shopping Item -->
-                        </div>
-                    </div>
-                </div>
+  </div>
+  <!-- End Topbar -->
+  <div class="middle-inner">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2 col-md-2 col-12">
+          <!-- Logo -->
+          <div class="logo">
+            <a href="{{ url_for('index') }}"
+              ><img src="static/images/logo.png" alt="logo"
+            /></a>
+          </div>
+          <!--/ End Logo -->
+          <!-- Search Form -->
+          <div class="search-top">
+            <div class="top-search">
+              <a href="#0"><i class="ti-search"></i></a>
             </div>
+            <!-- Search Form -->
+            <div class="search-top">
+              <form class="search-form">
+                <input type="text" placeholder="Search here..." name="search" />
+                <button value="search" type="submit">
+                  <i class="ti-search"></i>
+                </button>
+              </form>
+            </div>
+            <!--/ End Search Form -->
+          </div>
+          <!--/ End Search Form -->
+          <div class="mobile-nav"></div>
         </div>
+        <div class="col-lg-8 col-md-7 col-12">
+          <div class="search-bar-top">
+            <div class="search-bar">
+              <form action="{{ url_for('product_list') }}">
+                <select name="category_id" selected="selected">
+                  <option selected="selected" value="0">All Category</option>
+                  {% for c in categories %}
+                  <option value="{{c.id}}">{{ c.name }}</option>
+                  {% endfor %}
+                </select>
+                <input
+                  name="kw"
+                  placeholder="Search Products Here....."
+                  type="search"
+                />
+                <button class="btnn"><i class="ti-search"></i></button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-12">
+          <div class="right-bar">
+            <!-- Search Form -->
+            <div class="sinlge-bar">
+              <a href="#" class="single-icon"
+                ><i class="fa fa-heart-o" aria-hidden="true"></i
+              ></a>
+            </div>
+            <div class="sinlge-bar">
+              <a href="#" class="single-icon"
+                ><i class="fa fa-user-circle-o" aria-hidden="true"></i
+              ></a>
+            </div>
+            <div class="sinlge-bar shopping">
+              <a href="{{ url_for('cart') }}" class="single-icon"
+                ><i class="ti-bag"></i>
+                <span class="total-count" id="cartCounter"
+                  >{{ cart_stats.total_quantity }}</span
+                ></a
+              >
+              <!-- Shopping Item -->
+
+              <div class="shopping-item">
+                <div class="dropdown-cart-header">
+                  <span id="cartCounter1"
+                    >{{ cart_stats.total_quantity }} Items</span
+                  >
+                  <a href="#">View Cart</a>
+                </div>
+                <ul class="shopping-list" id="shopping-list">
+                  {% if session['cart'] %} {% for c in session['cart'].values()
+                  %}
+                  <li id="books{{ c.id }}">
+                    <a
+                      href="#"
+                      class="remove"
+                      title="Remove this item"
+                      onclick="deleteMiniCart({{ c.id }})"
+                      ><i class="fa fa-remove"></i
+                    ></a>
+                    <a class="cart-img" href="#"
+                      ><img src="{{ c.image }}" alt="{{ c.name }}"
+                    /></a>
+                    <h4><a href="#">{{ c.name }}</a></h4>
+                    <p class="quantity" id="quantity{{ c.id }}">
+                      {{ c.quantity }} -
+                      <span class="amount"
+                        >{{ "{:,.0f}".format(c.price) }} VND</span
+                      >
+                    </p>
+                  </li>
+                  {% endfor %} {% endif %}
+                </ul>
+                <div class="bottom">
+                  <div class="total">
+                    <span>Total</span>
+                    <span class="total-amount" id="amount1"
+                      >{{ "{:,.0f}".format(cart_stats.total_amount) }} VND</span
+                    >
+                  </div>
+                  {% if current_user.is_authenticated %}
+                  <a href="{{ url_for('checkout') }}" class="btn animate"
+                    >Checkout</a
+                  >
+                  {% else %}
+                  <a
+                    href="{{ url_for('user_login', next='checkout') }}"
+                    class="btn animate"
+                    >Checkout</a
+                  >{% endif %}
+                </div>
+
+                <!--/ End Shopping Item -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-    <!-- Header Inner -->
-<div class="header-inner">
-        <div class="container">
-            <div class="cat-nav-head">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="all-category">
-                            <h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
-                            <ul class="main-category">
-                                <li><a href="#most-popular-1">New Arrivals <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                    <ul class="mega-menu">
-                                        <li class="single-menu">
-                                            <a href="#" class="title-link">Thiếu nhi</a>
-                                            <div class="image">
-                                                <a href="{{ url_for('book_detail', book_id=6) }}"><img src="{{books[5].image}}" alt="#"></a>
-                                            </div>
-                                            <div class="inner-link">
-                                                <a href="#">Truyện thiếu nhi</a>
-                                                <a href="#">Kiến thức bách khoa</a>
-                                                <a href="#">Kỹ năng sống</a>
-                                                <a href="#">Sách tô màu</a>
-                                            </div>
-                                        </li>
-                                        <li class="single-menu">
-                                            <a href="#" class="title-link">Tuổi teen</a>
-                                            <div class="image">
-                                                <a href="{{ url_for('book_detail', book_id=126) }}"><img src="{{books[125].image}}" alt="#"></a>
-                                            </div>
-                                            <div class="inner-link">
-                                                <a href="#">Tiểu thuyết</a>
-                                                <a href="#">Truyện ngắn</a>
-                                                <a href="#">Light novel</a>
-                                                <a href="#">Trinh thám</a>
-                                            </div>
-                                        </li>
-                                        <li class="single-menu">
-                                            <a href="#" class="title-link">Tâm lý</a>
-                                            <div class="image">
-                                                <a href="{{ url_for('book_detail', book_id=161) }}"><img src="{{books[160].image}}" alt="#"></a>
-                                            </div>
-                                            <div class="inner-link">
-                                                <a href="#">Rèn luyện nhân cách</a>
-                                                <a href="#">Hạt giống tâm hồn</a>
-                                                <a href="#">Kỹ năng giao tiếp</a>
-                                                <a href="#">Kỹ năng sống</a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="main-mega"><a href="#most-popular-2">best selling <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                    <ul class="mega-menu">
-                                        <li class="single-menu">
-                                            <a href="#" class="title-link">Manga-Comics</a>
-                                            <div class="image">
-                                                <a href="{{ url_for('book_detail', book_id=79) }}"><img src="{{books[78].image}}" alt="#"></a>
-                                            </div>
-                                            <div class="inner-link">
-                                                <a href="#">Manga</a>
-                                                <a href="#">Comic</a>
-                                                <a href="#">Marvel-Comic</a>
-                                                <a href="#">DC-Comic</a>
-                                            </div>
-                                        </li>
-                                        <li class="single-menu"> 
-                                            <a href="#" class="title-link">Novels</a>
-                                            <div class="image">
-                                                <a href="{{ url_for('book_detail', book_id=66) }}"><img src="{{books[65].image}}" alt="#"></a>
-                                            </div>
-                                            <div class="inner-link">
-                                                <a href="#">Tiểu thuyết</a>
-                                                <a href="#">Truyện ngắn</a>
-                                                <a href="#">Light novel</a>
-                                                <a href="#">Trinh thám</a>
-                                            </div>
-                                        </li>
-                                        <li class="single-menu">
-                                            <a href="#" class="title-link">Language</a>
-                                            <div class="image">
-                                                <a href="{{ url_for('book_detail', book_id=187) }}"><img src="{{books[186].image}}" alt="#"></a>
-                                            </div>
-                                            <div class="inner-link">
-                                                <a href="#">Tiếng Anh</a>
-                                                <a href="#">Tiếng Nhật</a>
-                                                <a href="#">Tiếng Hoa</a>
-                                                <a href="#">Tiếng Hàn</a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                                {% for c in range(8) %}
-                                <li style="height: 52px"><form action="/products" style = "height: 100%"><button name = "category_id" value = "{{categories[c].id}}"
-                                    style="    
-                                    width: 100%;
-                                    height: 100%;
-                                    text-align: left;
-                                    background-color: white;
-                                    border: none;
-                                    padding: 2% 9%;">{{categories[c].name}}</button></form></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-9 col-12">
-                        <div class="menu-area">
-                            <!-- Main Menu -->
-                            <nav class="navbar navbar-expand-lg">
-                                <div class="navbar-collapse">
-                                    <div class="nav-inner">
-                                        <ul class="nav main-menu menu navbar-nav">
-                                            <li class="active"><a href="#">Home</a></li>
-                                            <li><a href="{{ url_for('product_list') }}">Products</a></li>
-                                            <li><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="{{ url_for('cart') }}">Cart</a></li>
-                                                    {% if current_user.is_authenticated %}
-                                                    <li><a href="{{ url_for('checkout') }}">Checkout</a></li>
-                                                    {% else %}
-                                                    <li><a href="{{ url_for('user_login', next='checkout') }}">Checkout</a></li>{% endif %}
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Blog<i class="ti-angle-down"></i></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="{{ url_for('blog') }}">Blog Single Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#footer">Contact Us</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </nav>
-                            <!--/ End Main Menu -->
-                        </div>
-                    </div>
-                </div>
+  </div>
+  <!-- Header Inner -->
+  <div class="header-inner">
+    <div class="container">
+      <div class="cat-nav-head">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="all-category">
+              <h3 class="cat-heading">
+                <i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES
+              </h3>
+              <ul class="main-category">
+                <li>
+                  <a href="#most-popular-1"
+                    >New Arrivals
+                    <i class="fa fa-angle-right" aria-hidden="true"></i
+                  ></a>
+                  <ul class="mega-menu">
+                    <li class="single-menu">
+                      <a href="#" class="title-link">Thiếu nhi</a>
+                      <div class="image">
+                        <a href="{{ url_for('book_detail', book_id=6) }}"
+                          ><img src="{{books[5].image}}" alt="#"
+                        /></a>
+                      </div>
+                      <div class="inner-link">
+                        <a href="#">Truyện thiếu nhi</a>
+                        <a href="#">Kiến thức bách khoa</a>
+                        <a href="#">Kỹ năng sống</a>
+                        <a href="#">Sách tô màu</a>
+                      </div>
+                    </li>
+                    <li class="single-menu">
+                      <a href="#" class="title-link">Tuổi teen</a>
+                      <div class="image">
+                        <a href="{{ url_for('book_detail', book_id=126) }}"
+                          ><img src="{{books[125].image}}" alt="#"
+                        /></a>
+                      </div>
+                      <div class="inner-link">
+                        <a href="#">Tiểu thuyết</a>
+                        <a href="#">Truyện ngắn</a>
+                        <a href="#">Light novel</a>
+                        <a href="#">Trinh thám</a>
+                      </div>
+                    </li>
+                    <li class="single-menu">
+                      <a href="#" class="title-link">Tâm lý</a>
+                      <div class="image">
+                        <a href="{{ url_for('book_detail', book_id=161) }}"
+                          ><img src="{{books[160].image}}" alt="#"
+                        /></a>
+                      </div>
+                      <div class="inner-link">
+                        <a href="#">Rèn luyện nhân cách</a>
+                        <a href="#">Hạt giống tâm hồn</a>
+                        <a href="#">Kỹ năng giao tiếp</a>
+                        <a href="#">Kỹ năng sống</a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <li class="main-mega">
+                  <a href="#most-popular-2"
+                    >best selling
+                    <i class="fa fa-angle-right" aria-hidden="true"></i
+                  ></a>
+                  <ul class="mega-menu">
+                    <li class="single-menu">
+                      <a href="#" class="title-link">Manga-Comics</a>
+                      <div class="image">
+                        <a href="{{ url_for('book_detail', book_id=79) }}"
+                          ><img src="{{books[78].image}}" alt="#"
+                        /></a>
+                      </div>
+                      <div class="inner-link">
+                        <a href="#">Manga</a>
+                        <a href="#">Comic</a>
+                        <a href="#">Marvel-Comic</a>
+                        <a href="#">DC-Comic</a>
+                      </div>
+                    </li>
+                    <li class="single-menu">
+                      <a href="#" class="title-link">Novels</a>
+                      <div class="image">
+                        <a href="{{ url_for('book_detail', book_id=66) }}"
+                          ><img src="{{books[65].image}}" alt="#"
+                        /></a>
+                      </div>
+                      <div class="inner-link">
+                        <a href="#">Tiểu thuyết</a>
+                        <a href="#">Truyện ngắn</a>
+                        <a href="#">Light novel</a>
+                        <a href="#">Trinh thám</a>
+                      </div>
+                    </li>
+                    <li class="single-menu">
+                      <a href="#" class="title-link">Language</a>
+                      <div class="image">
+                        <a href="{{ url_for('book_detail', book_id=187) }}"
+                          ><img src="{{books[186].image}}" alt="#"
+                        /></a>
+                      </div>
+                      <div class="inner-link">
+                        <a href="#">Tiếng Anh</a>
+                        <a href="#">Tiếng Nhật</a>
+                        <a href="#">Tiếng Hoa</a>
+                        <a href="#">Tiếng Hàn</a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                {% for c in range(8) %}
+                <li style="height: 52px">
+                  <form action="/products" style="height: 100%">
+                    <button
+                      name="category_id"
+                      value="{{categories[c].id}}"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        text-align: left;
+                        background-color: white;
+                        border: none;
+                        padding: 2% 9%;
+                      "
+                    >
+                      {{categories[c].name}}
+                    </button>
+                  </form>
+                </li>
+                {% endfor %}
+              </ul>
             </div>
+          </div>
+          <div class="col-lg-9 col-12">
+            <div class="menu-area">
+              <!-- Main Menu -->
+              <nav class="navbar navbar-expand-lg">
+                <div class="navbar-collapse">
+                  <div class="nav-inner">
+                    <ul class="nav main-menu menu navbar-nav">
+                      <li class="active"><a href="#">Home</a></li>
+                      <li>
+                        <a href="{{ url_for('product_list') }}">Products</a>
+                      </li>
+                      <li>
+                        <a href="#"
+                          >Shop<i class="ti-angle-down"></i
+                          ><span class="new">New</span></a
+                        >
+                        <ul class="dropdown">
+                          <li><a href="{{ url_for('cart') }}">Cart</a></li>
+                          {% if current_user.is_authenticated %}
+                          <li>
+                            <a href="{{ url_for('checkout') }}">Checkout</a>
+                          </li>
+                          {% else %}
+                          <li>
+                            <a
+                              href="{{ url_for('user_login', next='checkout') }}"
+                              >Checkout</a
+                            >
+                          </li>
+                          {% endif %}
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">Blog<i class="ti-angle-down"></i></a>
+                        <ul class="dropdown">
+                          <li>
+                            <a href="{{ url_for('blog') }}"
+                              >Blog Single Sidebar</a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a href="#footer">Contact Us</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+              <!--/ End Main Menu -->
+            </div>
+          </div>
         </div>
-</div>
-    <!--/ End Header Inner -->
+      </div>
+    </div>
+  </div>
+  <!--/ End Header Inner -->
 </header>
 <!--/ End Header -->
 <!-- Slider Area -->
 <section class="hero-slider">
-    <!-- Single Slider -->
-    <div class="single-slider">
-        <div class="container">
-            <div class="row no-gutters">
-                <div class="col-lg-9 offset-lg-3 col-12">
-                    <div class="text-inner">
-                        <div class="row">
-                            <div class="col-lg-7 col-12">
-                                <div class="hero-text">
-                                    <h1><span>UP TO 50% OFF </span>Lunar New<br> Year</h1>
-                                    <p>Instantly get discount code Lunar New Year <br> Promotion for [shopping/service] online channel.</p>
-                                    <div class="button">
-                                        <a href="#" class="btn">Shop Now!</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  <!-- Single Slider -->
+  <div class="single-slider">
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="col-lg-9 offset-lg-3 col-12">
+          <div class="text-inner">
+            <div class="row">
+              <div class="col-lg-7 col-12">
+                <div class="hero-text">
+                  <h1>
+                    <span>UP TO 50% OFF </span>Lunar New<br />
+                    Year
+                  </h1>
+                  <p>
+                    Instantly get discount code Lunar New Year <br />
+                    Promotion for [shopping/service] online channel.
+                  </p>
+                  <div class="button">
+                    <a href="#" class="btn">Shop Now!</a>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    <!--/ End Single Slider -->
+  </div>
+  <!--/ End Single Slider -->
 </section>
 <!--/ End Slider Area -->

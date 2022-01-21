@@ -45,12 +45,14 @@ def read_book(kw=None):
 
     return books.all()
 
+
 def read_book_from_import():
     return db.session.query(Book.name, Category.name, Book.author, Import.quantities, Import.update_date)\
         .join(Book, Book.id.__eq__(Import.book_id))\
         .join(Category, Category.id.__eq__(Book.category_id))\
         .order_by(-Import.id)\
         .all()
+
 
 def get_book(book_id):
     return Book.query.get(book_id)
@@ -96,6 +98,7 @@ def get_receiptdetails_by_id(receipt_detail_id):
 
 def read_receiptdetails_by_receipt_id(receipt_id):
     return ReceiptDetail.query.filter(ReceiptDetail.receipt_id == receipt_id).all()
+
 
 def count_receipt():
     return Receipt.query.count()
@@ -381,6 +384,7 @@ def del_receipt_by_rule(time):
     for r in receipts:
         if(datetime.datetime.now() > (r.created_date + datetime.timedelta(hours=time.value))):
             del_receipt(receipt_id=r.id)
+
 
 def send_email(info):
     EMAIL_ADDRESS = '1951052195thong@ou.edu.vn'

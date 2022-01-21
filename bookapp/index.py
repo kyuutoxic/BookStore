@@ -37,7 +37,7 @@ def admin_login():
     return redirect('/admin')
 
 
-#Log user
+# Log user
 @login.user_loader
 def user_load(user_id):
     return utils.get_user_by_id(user_id=user_id)
@@ -49,7 +49,7 @@ def index():
     return render_template("index.html")
 
 
-#Trang sản phản
+# Trang sản phản
 @app.route("/products")
 def product_list():
     category_id = request.args.get('category_id')
@@ -63,7 +63,7 @@ def product_list():
                            products=products, pages=math.ceil(counter/app.config['PAGE_SIZE']), page=page, name_cate=utils.get_name_cate(category_id=category_id))
 
 
-#Trang chi tiết sản phẩm
+# Trang chi tiết sản phẩm
 @app.route('/books/<int:book_id>')
 def book_detail(book_id):
     book = utils.get_book_by_id(book_id=book_id)
@@ -74,7 +74,7 @@ def book_detail(book_id):
     return render_template('book-detail.html', book=book, language=language, counter=counter, cate_name=cate_name, parent_name=parent_name)
 
 
-#Đăng nhập Client
+# Đăng nhập Client
 @app.route('/login', methods=["GET", "POST"])
 def user_login():
     err_msg = ''
@@ -139,7 +139,7 @@ def user_signout():
     return redirect(url_for('index'))
 
 
-#Trang giỏ hàng
+# Trang giỏ hàng
 @app.route('/cart')
 def cart():
 
@@ -147,7 +147,7 @@ def cart():
                            cart_stats=utils.cart_stats(session.get('cart')))
 
 
-#API giỏ hàng
+# API giỏ hàng
 @app.route('/api/add-to-cart', methods=['post'])
 def add_to_cart():
     data = request.json
@@ -435,7 +435,7 @@ def change_password():
     return render_template('changepassword.html', err_msg=err_msg)
 
 
-#Trang đổi avatar
+# Trang đổi avatar
 @app.route('/change-avatar', methods=['get', 'post'])
 def change_avatar():
     err_msg = ""

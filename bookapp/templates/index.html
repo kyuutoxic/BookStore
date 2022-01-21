@@ -1,218 +1,347 @@
-{% extends 'layout/base.html' %} {% block title %}Home{% endblock %} {% block header %} {% include 'layout/home-header.html' %} {% endblock %} {% block content %}
+{% extends 'layout/base.html' %} {% block title %}Home{% endblock %} {% block
+header %} {% include 'layout/home-header.html' %} {% endblock %} {% block
+content %}
 <!-- Start Most Popular -->
 <div id="toast"></div>
 <div class="product-area most-popular section" id="most-popular-1">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-title">
-                    <h2>Trending Books</h2>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h2>Trending Books</h2>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="owl-carousel popular-slider">
-                    <!-- Start Single Product -->
-                    {% for b in books %}
-                    <div class="single-product">
-                        <div class="product-img">
-                            <a href="{{ url_for('book_detail', book_id=b.id) }}">
-                                <img class="default-img" src="{{ b.image }}" alt="{{ b.name }}">
-                                <span class="out-of-stock">Hot</span>
-                            </a>
-                            <div class="button-head">
-                                <div class="product-action">
-                                    <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                    <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                    <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
-                                </div>
-                                <div class="product-action-2">
-                                    <a title="Add to cart" href="#" onclick="addToCart({{ b.id }}, '{{ b.name }}', {{ b.price }}, '{{ b.image }}');miniCart({{ b.id }}, '{{ b.name }}', {{ b.price }}, '{{ b.image }}');showSuccessToast();">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="{{ url_for('book_detail', book_id=b.id) }}">{{ b.name }}</a></h3>
-                            <div class="product-price">
-                                <!-- <span class="old">{{ "{:,.0f}".format(b.price) }} VND</span> -->
-                                <span>{{ "{:,.0f}".format(b.price) }} VND</span>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    <!-- End Single Product -->
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="owl-carousel popular-slider">
+          <!-- Start Single Product -->
+          {% for b in books %}
+          <div class="single-product">
+            <div class="product-img">
+              <a href="{{ url_for('book_detail', book_id=b.id) }}">
+                <img
+                  class="default-img"
+                  src="{{ b.image }}"
+                  alt="{{ b.name }}"
+                />
+                <span class="out-of-stock">Hot</span>
+              </a>
+              <div class="button-head">
+                <div class="product-action">
+                  <a
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                    title="Quick View"
+                    href="#"
+                    ><i class="ti-eye"></i><span>Quick Shop</span></a
+                  >
+                  <a title="Wishlist" href="#"
+                    ><i class="ti-heart"></i><span>Add to Wishlist</span></a
+                  >
+                  <a title="Compare" href="#"
+                    ><i class="ti-bar-chart-alt"></i
+                    ><span>Add to Compare</span></a
+                  >
+                </div>
+                <div class="product-action-2">
+                  <a
+                    title="Add to cart"
+                    href="#"
+                    onclick="addToCart({{ b.id }}, '{{ b.name }}', {{ b.price }}, '{{ b.image }}');miniCart({{ b.id }}, '{{ b.name }}', {{ b.price }}, '{{ b.image }}');showSuccessToast();"
+                    >Add to cart</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="product-content">
+              <h3>
+                <a href="{{ url_for('book_detail', book_id=b.id) }}"
+                  >{{ b.name }}</a
+                >
+              </h3>
+              <div class="product-price">
+                <span>{{ "{:,.0f}".format(b.price) }} VND</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <!-- End Single Product -->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- End Most Popular Area -->
 
 <!-- Start Most Popular -->
 <div class="product-area most-popular section" id="most-popular-2">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-title">
-                    <h2>New Books</h2>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h2>New Books</h2>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="owl-carousel popular-slider">
-                    <!-- Start Single Product -->
-                    {% for b in books %}
-                    <div class="single-product">
-                        <div class="product-img">
-                            <a href="{{ url_for('book_detail', book_id=b.id) }}">
-                                <img class="default-img" src="{{ b.image }}" alt="{{ b.name }}">
-                                <span class="new">New</span>
-                            </a>
-                            <div class="button-head">
-                                <div class="product-action">
-                                    <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                    <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                    <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
-                                </div>
-                                <div class="product-action-2">
-                                    <a title="Add to cart" href="#" onclick="addToCart({{ b.id }}, '{{ b.name }}', {{ b.price }}, '{{ b.image }}');miniCart({{ b.id }}, '{{ b.name }}', {{ b.price }}, '{{ b.image }}');showSuccessToast();">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="{{ url_for('book_detail', book_id=b.id) }}">{{ b.name }}</a></h3>
-                            <div class="product-price">
-                                <!-- <span class="old">{{ "{:,.0f}".format(b.price) }} VND</span> -->
-                                <span>{{ "{:,.0f}".format(b.price) }} VND</span>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    <!-- End Single Product -->
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="owl-carousel popular-slider">
+          <!-- Start Single Product -->
+          {% for b in books %}
+          <div class="single-product">
+            <div class="product-img">
+              <a href="{{ url_for('book_detail', book_id=b.id) }}">
+                <img
+                  class="default-img"
+                  src="{{ b.image }}"
+                  alt="{{ b.name }}"
+                />
+                <span class="new">New</span>
+              </a>
+              <div class="button-head">
+                <div class="product-action">
+                  <a
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                    title="Quick View"
+                    href="#"
+                    ><i class="ti-eye"></i><span>Quick Shop</span></a
+                  >
+                  <a title="Wishlist" href="#"
+                    ><i class="ti-heart"></i><span>Add to Wishlist</span></a
+                  >
+                  <a title="Compare" href="#"
+                    ><i class="ti-bar-chart-alt"></i
+                    ><span>Add to Compare</span></a
+                  >
+                </div>
+                <div class="product-action-2">
+                  <a
+                    title="Add to cart"
+                    href="#"
+                    onclick="addToCart({{ b.id }}, '{{ b.name }}', {{ b.price }}, '{{ b.image }}');miniCart({{ b.id }}, '{{ b.name }}', {{ b.price }}, '{{ b.image }}');showSuccessToast();"
+                    >Add to cart</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="product-content">
+              <h3>
+                <a href="{{ url_for('book_detail', book_id=b.id) }}"
+                  >{{ b.name }}</a
+                >
+              </h3>
+              <div class="product-price">
+                <span>{{ "{:,.0f}".format(b.price) }} VND</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <!-- End Single Product -->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- End Most Popular Areaaaaaa -->
 <!-- Start Most Popular -->
 <div class="product-area most-popular section">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-title">
-                    <h2>Books</h2>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h2>Books</h2>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="owl-carousel popular-slider">
-                    <!-- Start Single Product -->
-                    {% for b in books %}
-                    <div class="single-product">
-                        <div class="product-img">
-                            <a href="{{ url_for('book_detail', book_id=b.id) }}">
-                                <img class="default-img" src="{{ b.image }}" alt="{{ b.name }}">
-                            </a>
-                            <div class="button-head">
-                                <div class="product-action">
-                                    <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                    <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                    <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
-                                </div>
-                                <div class="product-action-2">
-                                    <a title="Add to cart" href="#" onclick="addToCart({{ b.id }}, '{{ b.name }}', {{ b.price }}, '{{ b.image }}');miniCart({{ b.id }}, '{{ b.name }}', {{ b.price }}, '{{ b.image }}'); showSuccessToast();">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="{{ url_for('book_detail', book_id=b.id) }}">{{ b.name }}</a></h3>
-                            <div class="product-price">
-                                <!-- <span class="old">{{ "{:,.0f}".format(b.price) }} VND</span> -->
-                                <span>{{ "{:,.0f}".format(b.price) }} VND</span>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    <!-- End Single Product -->
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="owl-carousel popular-slider">
+          <!-- Start Single Product -->
+          {% for b in books %}
+          <div class="single-product">
+            <div class="product-img">
+              <a href="{{ url_for('book_detail', book_id=b.id) }}">
+                <img
+                  class="default-img"
+                  src="{{ b.image }}"
+                  alt="{{ b.name }}"
+                />
+              </a>
+              <div class="button-head">
+                <div class="product-action">
+                  <a
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                    title="Quick View"
+                    href="#"
+                    ><i class="ti-eye"></i><span>Quick Shop</span></a
+                  >
+                  <a title="Wishlist" href="#"
+                    ><i class="ti-heart"></i><span>Add to Wishlist</span></a
+                  >
+                  <a title="Compare" href="#"
+                    ><i class="ti-bar-chart-alt"></i
+                    ><span>Add to Compare</span></a
+                  >
+                </div>
+                <div class="product-action-2">
+                  <a
+                    title="Add to cart"
+                    href="#"
+                    onclick="addToCart({{ b.id }}, '{{ b.name }}', {{ b.price }}, '{{ b.image }}');miniCart({{ b.id }}, '{{ b.name }}', {{ b.price }}, '{{ b.image }}'); showSuccessToast();"
+                    >Add to cart</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="product-content">
+              <h3>
+                <a href="{{ url_for('book_detail', book_id=b.id) }}"
+                  >{{ b.name }}</a
+                >
+              </h3>
+              <div class="product-price">
+                <span>{{ "{:,.0f}".format(b.price) }} VND</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <!-- End Single Product -->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- End Most Popular Area -->
 
 <section class="section free-version-banner">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-8 offset-md-2 col-xs-12">
-                <div class="section-title mb-60">
-                    <span class="text-white wow fadeInDown" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;">ESHOP’S BIG BOOK SALES</span>
-                    <h2 class="text-white wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">HUGE selection of popular categories <br> for the child.</h2>
-                    <p class="text-white wow fadeInUp" data-wow-delay=".6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">A Book Is Proof That Humans Are Capable Of Working Magic. <br> Bookworm Will Rule The World, As Soon As We Finish One More Chapter.</p>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8 offset-md-2 col-xs-12">
+        <div class="section-title mb-60">
+          <span
+            class="text-white wow fadeInDown"
+            data-wow-delay=".2s"
+            style="
+              visibility: visible;
+              animation-delay: 0.2s;
+              animation-name: fadeInDown;
+            "
+            >ESHOP’S BIG BOOK SALES</span
+          >
+          <h2
+            class="text-white wow fadeInUp"
+            data-wow-delay=".4s"
+            style="
+              visibility: visible;
+              animation-delay: 0.4s;
+              animation-name: fadeInUp;
+            "
+          >
+            HUGE selection of popular categories <br />
+            for the child.
+          </h2>
+          <p
+            class="text-white wow fadeInUp"
+            data-wow-delay=".6s"
+            style="
+              visibility: visible;
+              animation-delay: 0.6s;
+              animation-name: fadeInUp;
+            "
+          >
+            A Book Is Proof That Humans Are Capable Of Working Magic. <br />
+            Bookworm Will Rule The World, As Soon As We Finish One More Chapter.
+          </p>
 
-                    <div class="button">
-                        <a href="{{ url_for('product_list') }}" target="_blank" rel="nofollow" class="btn wow fadeInUp" data-wow-delay=".8s">Purchase Now</a>
-                    </div>
-                </div>
-            </div>
+          <div class="button">
+            <a
+              href="{{ url_for('product_list') }}"
+              target="_blank"
+              rel="nofollow"
+              class="btn wow fadeInUp"
+              data-wow-delay=".8s"
+              >Purchase Now</a
+            >
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
-
 
 <!-- Start Shop Blog  -->
 <section class="shop-blog section">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-title">
-                    <h2>From Our Blog</h2>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h2>From Our Blog</h2>
         </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-6 col-12">
-                <!-- Start Single Blog  -->
-                <div class="shop-single-blog">
-                    <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/400x400/9df78eab33525d08d6e5fb8d27136e95/i/m/image_173814.jpg" alt="#">
-                    <div class="content">
-                        <p class="date">Mar 05, 2020</p>
-                        <a href="{{ url_for('blog') }}" class="title">Top 10 best economic books of the month</a>
-                        <a href="{{ url_for('blog') }}" class="more-btn">Continue Reading</a>
-                    </div>
-                </div>
-                <!-- End Single Blog  -->
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <!-- Start Single Blog  -->
-                <div class="shop-single-blog">
-                    <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/400x400/9df78eab33525d08d6e5fb8d27136e95/o/m/omdiet-quy-2canh-buom-khuyet.jpg" alt="#">
-                    <div class="content">
-                        <p class="date">June 09, 2020</p>
-                        <a href="{{ url_for('blog') }}" class="title">Top 10 best manga-comics of the month</a>
-                        <a href="{{ url_for('blog') }}" class="more-btn">Continue Reading</a>
-                    </div>
-                </div>
-                <!-- End Single Blog  -->
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <!-- Start Single Blog  -->
-                <div class="shop-single-blog">
-                    <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/400x400/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_36793.jpg" alt="#">
-                    <div class="content">
-                        <p class="date">Jan 11, 2020</p>
-                        <a href="{{ url_for('blog') }}" class="title">Top 10 best novels of the month</a>
-                        <a href="{{ url_for('blog') }}" class="more-btn">Continue Reading</a>
-                    </div>
-                </div>
-                <!-- End Single Blog  -->
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-12">
+        <!-- Start Single Blog  -->
+        <div class="shop-single-blog">
+          <img
+            src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/400x400/9df78eab33525d08d6e5fb8d27136e95/i/m/image_173814.jpg"
+            alt="#"
+          />
+          <div class="content">
+            <p class="date">Mar 05, 2020</p>
+            <a href="{{ url_for('blog') }}" class="title"
+              >Top 10 best economic books of the month</a
+            >
+            <a href="{{ url_for('blog') }}" class="more-btn"
+              >Continue Reading</a
+            >
+          </div>
+        </div>
+        <!-- End Single Blog  -->
+      </div>
+      <div class="col-lg-4 col-md-6 col-12">
+        <!-- Start Single Blog  -->
+        <div class="shop-single-blog">
+          <img
+            src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/400x400/9df78eab33525d08d6e5fb8d27136e95/o/m/omdiet-quy-2canh-buom-khuyet.jpg"
+            alt="#"
+          />
+          <div class="content">
+            <p class="date">June 09, 2020</p>
+            <a href="{{ url_for('blog') }}" class="title"
+              >Top 10 best manga-comics of the month</a
+            >
+            <a href="{{ url_for('blog') }}" class="more-btn"
+              >Continue Reading</a
+            >
+          </div>
+        </div>
+        <!-- End Single Blog  -->
+      </div>
+      <div class="col-lg-4 col-md-6 col-12">
+        <!-- Start Single Blog  -->
+        <div class="shop-single-blog">
+          <img
+            src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/400x400/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_36793.jpg"
+            alt="#"
+          />
+          <div class="content">
+            <p class="date">Jan 11, 2020</p>
+            <a href="{{ url_for('blog') }}" class="title"
+              >Top 10 best novels of the month</a
+            >
+            <a href="{{ url_for('blog') }}" class="more-btn"
+              >Continue Reading</a
+            >
+          </div>
+        </div>
+        <!-- End Single Blog  -->
+      </div>
+    </div>
+  </div>
 </section>
 <!-- End Shop Blog  -->
 

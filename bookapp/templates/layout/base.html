@@ -1,63 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <!-- Meta Tag -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name='copyright' content=''>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="copyright" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <!-- Title Tag  -->
-    <title>
-        {% block title %} {% endblock %}
-    </title>
-    <link rel="icon" href="https://lms.ou.edu.vn/assets/images/favicon.ico">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="icon" href="https://lms.ou.edu.vn/assets/images/favicon.ico" />
     <!-- Web Font -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+      rel="stylesheet"
+    />
     <!-- StyleSheet -->
     {% block js %}{% endblock %} {% block css %}{% endblock %}
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/client/bootstrap.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/client/bootstrap.css') }}"
+    />
     <!-- Magnific Popup -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/client/magnific-popup.min.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/client/magnific-popup.min.css') }}"
+    />
     <!-- Own Font Awesome -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/client/font-awesome.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/client/font-awesome.css') }}"
+    />
     <!-- New Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <!-- Fancybox -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/client/jquery.fancybox.min.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/client/jquery.fancybox.min.css') }}"
+    />
     <!-- Themify Icons -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/client/themify-icons.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/client/themify-icons.css') }}"
+    />
     <!-- Nice Select CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/client/niceselect.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/client/niceselect.css') }}"
+    />
     <!-- Animate CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/client/animate.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/client/animate.css') }}"
+    />
     <!-- Flex Slider CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/client/flex-slider.min.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/client/flex-slider.min.css') }}"
+    />
     <!-- Owl Carousel -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/client/owl-carousel.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/client/owl-carousel.css') }}"
+    />
     <!-- Slicknav -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/client/slicknav.min.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/client/slicknav.min.css') }}"
+    />
 
     <!-- Eshop StyleSheet -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/client/reset.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/client/responsive.css') }}">
-</head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/client/reset.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/client/responsive.css') }}"
+    />
+  </head>
 
-<body onload="addActiveNav(); addActive()">
+  <body onload="addActiveNav(); addActive()">
     <!-- Preloader -->
     <div class="preloader">
-        <div class="preloader-inner">
-            <div class="preloader-icon">
-                <span></span>
-                <span></span>
-            </div>
+      <div class="preloader-inner">
+        <div class="preloader-icon">
+          <span></span>
+          <span></span>
         </div>
+      </div>
     </div>
     <!-- End Preloader -->
-    {% block header %} {% endblock %} {% block content %}{% endblock %} {% block footer %} {% include 'layout/footer.html' %} {% endblock %}
+    {% block header %} {% endblock %} {% block content %}{% endblock %} {% block
+    footer %} {% include 'layout/footer.html' %} {% endblock %}
 
     <!-- Jquery -->
     <script src="{{ url_for('static', filename='js/client/jquery.min.js') }}"></script>
@@ -92,6 +141,5 @@
     <script src="{{ url_for('static', filename='js/client/active.js') }}"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-</body>
-
+  </body>
 </html>

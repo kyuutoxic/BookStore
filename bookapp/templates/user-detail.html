@@ -1,42 +1,65 @@
-{% extends 'layout/base.html' %} {% block title %}User Detail{% endblock %} {% block css %} 
-{% endblock %} {% block header %} {% include 'layout/header.html' %} {% endblock %} {% block content %}
+{% extends 'layout/base.html' %} {% block title %}User Detail{% endblock %} {%
+block css %} {% endblock %} {% block header %} {% include 'layout/header.html'
+%} {% endblock %} {% block content %}
 <div class="gird-user">
-    <div class="saomabietduoc"></div>
-    <div class="saomabietduoc-2"></div>
-    <div class="user-info">
-        <div class="user-info__avt__avt">
-            <a href="{{ url_for('change_avatar') }}" class="user-info__opt_1" style="color: white;">
-                <div class="user-info__avt">
-                    <img src="{{ current_user.avatar }}" alt="">
-                </div>
-            </a>
+  <div class="saomabietduoc"></div>
+  <div class="saomabietduoc-2"></div>
+  <div class="user-info">
+    <div class="user-info__avt__avt">
+      <a
+        href="{{ url_for('change_avatar') }}"
+        class="user-info__opt_1"
+        style="color: white"
+      >
+        <div class="user-info__avt">
+          <img src="{{ current_user.avatar }}" alt="" />
         </div>
-        
-        <div class="user-info__info">
-            <form method="post" class="user-info__form">
-                <div>
-                    <span><strong>ID:</strong></span>
-                    <input type = "text" name = "id" value="{{ current_user.id }}"/>
-                </div>
-                <div>
-                    <span><strong>First name:</strong></span>
-                    <input type = "text" name = "first_name" value="{{ current_user.first_name }}"/>
-                </div>
-                <div>
-                    <span><strong>Last name:</strong></span>
-                    <input type = "text" name = "last_name" value="{{ current_user.last_name }}"/>
-                </div>
-                <div>
-                    <span><strong>Email:</strong></span>
-                    <input type = "email" name = "email" value="{{ current_user.email }}"/>
-                </div>
-                <input type = "submit" class="btn" value="Update" style="margin-bottom: 15px;"/>
-            </form>
-            <a href="{{ url_for('change_password') }}" class="user-info__opt" style="color: black;"><h4><strong><em>* Change password</em></strong></h4></a>
-        </div>       
-    </div>   
+      </a>
+    </div>
+
+    <div class="user-info__info">
+      <form method="post" class="user-info__form">
+        <div>
+          <span><strong>ID:</strong></span>
+          <input type="text" name="id" value="{{ current_user.id }}" />
+        </div>
+        <div>
+          <span><strong>First name:</strong></span>
+          <input
+            type="text"
+            name="first_name"
+            value="{{ current_user.first_name }}"
+          />
+        </div>
+        <div>
+          <span><strong>Last name:</strong></span>
+          <input
+            type="text"
+            name="last_name"
+            value="{{ current_user.last_name }}"
+          />
+        </div>
+        <div>
+          <span><strong>Email:</strong></span>
+          <input type="email" name="email" value="{{ current_user.email }}" />
+        </div>
+        <input
+          type="submit"
+          class="btn"
+          value="Update"
+          style="margin-bottom: 15px"
+        />
+      </form>
+      <a
+        href="{{ url_for('change_password') }}"
+        class="user-info__opt"
+        style="color: black"
+        ><h4>
+          <strong><em>* Change password</em></strong>
+        </h4></a
+      >
+    </div>
+  </div>
 </div>
-
-
 
 {% endblock %}

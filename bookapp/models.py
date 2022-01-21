@@ -62,7 +62,6 @@ class Category(BaseModel):
         'parent_category.id'), nullable=False)
 
     books = relationship("Book", backref="category", lazy=True)
-    # children_book = relationship('Children_Book', backref="children_category", lazy=True)
 
     def __str__(self):
         return self.name
@@ -73,7 +72,6 @@ class ParentCategory(BaseModel):
 
     name = Column(String(50), nullable=False)
     category = relationship('Category', backref="parent_category", lazy=True)
-    # parent_book = relationship("Parent_Book", backref="parent_category", lazy=True)
 
     def __str__(self):
         return self.name

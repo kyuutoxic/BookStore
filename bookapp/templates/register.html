@@ -1,95 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register</title>
-  <link href="{{ url_for('static', filename='css/register.css') }}" rel="stylesheet" />       
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-
-</head>
-<body>
-  {% if err_msg %}
-  <div class="alert alert-danger text-center">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link
+      href="{{ url_for('static', filename='css/register.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    {% if err_msg %}
+    <div class="alert alert-danger text-center">
       <h4>{{ err_msg }}</h4>
-  </div>
-  {% endif %}
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-10 col-xl-9 mx-auto">
-        <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
-          <div class="card-img-left d-none d-md-flex">
-            <!-- Background image for card set in CSS! -->
-          </div>
-          <div class="card-body p-4 p-sm-5">
-            <h5 class="card-title text-center mb-5 fw-light fs-5">Register</h5>
-            <form method="post" action="{{url_for('user_register')}}" enctype="multipart/form-data">
-              <div class="form-floating mb-3">
-                <label for="firstname">First name</label>
-                  <input type="text" class="form-control" id="firstname" placeholder="First name" name="firstname" required autofocus>
-              </div>
+    </div>
+    {% endif %}
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-xl-9 mx-auto">
+          <div
+            class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden"
+          >
+            <div class="card-img-left d-none d-md-flex">
+              <!-- Background image for card set in CSS! -->
+            </div>
+            <div class="card-body p-4 p-sm-5">
+              <h5 class="card-title text-center mb-5 fw-light fs-5">
+                Register
+              </h5>
+              <form
+                method="post"
+                action="{{url_for('user_register')}}"
+                enctype="multipart/form-data"
+              >
+                <div class="form-floating mb-3">
+                  <label for="firstname">First name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstname"
+                    placeholder="First name"
+                    name="firstname"
+                    required
+                    autofocus
+                  />
+                </div>
 
-              <div class="form-floating mb-3">
-                <label for="lastname">Last name</label>
-                  <input type="text" class="form-control" id="lastname" placeholder="Last name" name="lastname" required autofocus>
-              </div>
+                <div class="form-floating mb-3">
+                  <label for="lastname">Last name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastname"
+                    placeholder="Last name"
+                    name="lastname"
+                    required
+                    autofocus
+                  />
+                </div>
 
-              <div class="form-floating mb-3">
-                <label for="floatingInputUsername">Username</label>
-                <input type="text" class="form-control" id="floatingInputUsername" placeholder="myusername" name="username" required autofocus>
-              </div>
+                <div class="form-floating mb-3">
+                  <label for="floatingInputUsername">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="floatingInputUsername"
+                    placeholder="myusername"
+                    name="username"
+                    required
+                    autofocus
+                  />
+                </div>
 
-              <div class="form-floating mb-3">
-                <label for="floatingInputEmail">Email address</label>
-                <input type="email" class="form-control" id="floatingInputEmail" name="email" placeholder="name@example.com" required autofocus>
-              </div>
+                <div class="form-floating mb-3">
+                  <label for="floatingInputEmail">Email address</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="floatingInputEmail"
+                    name="email"
+                    placeholder="name@example.com"
+                    required
+                    autofocus
+                  />
+                </div>
 
-              <hr>
+                <hr />
 
-              <div class="form-floating mb-3">
-                <label for="floatingPassword">Password</label>
-                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required autofocus>
-              </div>
+                <div class="form-floating mb-3">
+                  <label for="floatingPassword">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="floatingPassword"
+                    name="password"
+                    placeholder="Password"
+                    required
+                    autofocus
+                  />
+                </div>
 
-              <div class="form-floating mb-3">
-                <label for="floatingPasswordConfirm">Confirm Password</label>
-                <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm Password" name="passwordConfirm" required autofocus>
-              </div>
+                <div class="form-floating mb-3">
+                  <label for="floatingPasswordConfirm">Confirm Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="floatingPasswordConfirm"
+                    placeholder="Confirm Password"
+                    name="passwordConfirm"
+                    required
+                    autofocus
+                  />
+                </div>
 
-              <hr>
+                <hr />
 
-              <div class="form-floating mb-3">
-                <label for="avatar">Avatar</label>
-                <input type="file" class="form-control" id="avatar" placeholder="avatar" name="avatar">
-              </div>
+                <div class="form-floating mb-3">
+                  <label for="avatar">Avatar</label>
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="avatar"
+                    placeholder="avatar"
+                    name="avatar"
+                  />
+                </div>
 
-              <div class="d-grid mb-2">
-                <input type="submit" class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" value="Register">
-              </div>
+                <div class="d-grid mb-2">
+                  <input
+                    type="submit"
+                    class="btn btn-lg btn-primary btn-login fw-bold text-uppercase"
+                    value="Register"
+                  />
+                </div>
 
-              <a class="d-block text-center mt-2 small" href="{{ url_for('user_login') }}">Have an account? Sign In</a>
+                <a
+                  class="d-block text-center mt-2 small"
+                  href="{{ url_for('user_login') }}"
+                  >Have an account? Sign In</a
+                >
 
-              <hr class="my-4">
+                <hr class="my-4" />
 
-              <div class="d-grid mb-2">
-                <button class="btn btn-lg btn-google btn-login fw-bold text-uppercase" type="submit">
-                  <i class="fab fa-google me-2"></i> Sign up with Google
-                </button>
-              </div>
+                <div class="d-grid mb-2">
+                  <button
+                    class="btn btn-lg btn-google btn-login fw-bold text-uppercase"
+                    type="submit"
+                  >
+                    <i class="fab fa-google me-2"></i> Sign up with Google
+                  </button>
+                </div>
 
-              <div class="d-grid">
-                <button class="btn btn-lg btn-facebook btn-login fw-bold text-uppercase" type="submit">
-                  <i class="fab fa-facebook-f me-2"></i> Sign up with Facebook
-                </button>
-              </div>
-
-            </form>
+                <div class="d-grid">
+                  <button
+                    class="btn btn-lg btn-facebook btn-login fw-bold text-uppercase"
+                    type="submit"
+                  >
+                    <i class="fab fa-facebook-f me-2"></i> Sign up with Facebook
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>

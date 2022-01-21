@@ -67,7 +67,7 @@ class MyAdminIndexView(AdminIndexView):
     @expose('/')
     def index(self):
         return self.render('admin/index.html',
-                           stats=utils.category_stats(), parent=utils.read_parentCategory(), count_receipt=utils.count_receipt(), count_cus = utils.count_cus())
+                           stats=utils.category_stats(), parent=utils.read_parentCategory(), count_receipt=utils.count_receipt(), count_cus=utils.count_cus())
 
 
 class Imports(StockkeeperView):

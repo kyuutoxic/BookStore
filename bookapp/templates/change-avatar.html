@@ -1,32 +1,53 @@
-{% extends 'layout/base.html' %} {% block title %}Change avatar{% endblock %} {% block css %} 
-{% endblock %} {% block header %} {% include 'layout/header.html' %} {% endblock %} {% block content %}
-
-{% if err_msg %}
+{% extends 'layout/base.html' %} {% block title %}Change avatar{% endblock %} {%
+block css %} {% endblock %} {% block header %} {% include 'layout/header.html'
+%} {% endblock %} {% block content %} {% if err_msg %}
 <div class="alert alert-danger text-center">
   <h4>{{ err_msg }}</h4>
 </div>
-{% endif %} 
+{% endif %}
 <div class="gird-user">
   <div class="user-info">
-      <div class="user-info__avt__avt">
-          <a href="{{ url_for('change_avatar') }}" class="user-info__opt" style="color: white;">
-              <div class="user-info__avt">
-                  <img src="{{ current_user.avatar }}" alt="">
-              </div>
-          </a>
-      </div>
-      <a href="{{ url_for('user_detail') }}" style="margin-left:50px;"><strong><em>&#60;&#60;   User Detail</em></strong></a>
-      <div class="user-info__info">
-          <form method="post" class="user-info__form" enctype="multipart/form-data" style="flex-direction: row !important;">
-              <div style="display: none;">
-                  <span><strong>ID:</strong></span>
-                  <input type = "text" name = "id" value="{{ current_user.id }}"/>
-              </div>
-              <input type="file" id="avatar" placeholder="avatar" name="avatar" style="width:60%;border-radius:0;">
-              <br>
-              <input type = "submit" class="btn" value="Update" style="margin-bottom: 15px;"/>
-          </form>
-      </div>       
-  </div>   
+    <div class="user-info__avt__avt">
+      <a
+        href="{{ url_for('change_avatar') }}"
+        class="user-info__opt"
+        style="color: white"
+      >
+        <div class="user-info__avt">
+          <img src="{{ current_user.avatar }}" alt="" />
+        </div>
+      </a>
+    </div>
+    <a href="{{ url_for('user_detail') }}" style="margin-left: 50px"
+      ><strong><em>&#60;&#60; User Detail</em></strong></a
+    >
+    <div class="user-info__info">
+      <form
+        method="post"
+        class="user-info__form"
+        enctype="multipart/form-data"
+        style="flex-direction: row !important"
+      >
+        <div style="display: none">
+          <span><strong>ID:</strong></span>
+          <input type="text" name="id" value="{{ current_user.id }}" />
+        </div>
+        <input
+          type="file"
+          id="avatar"
+          placeholder="avatar"
+          name="avatar"
+          style="width: 60%; border-radius: 0"
+        />
+        <br />
+        <input
+          type="submit"
+          class="btn"
+          value="Update"
+          style="margin-bottom: 15px"
+        />
+      </form>
+    </div>
+  </div>
 </div>
 {% endblock %}

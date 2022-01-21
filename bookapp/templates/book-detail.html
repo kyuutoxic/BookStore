@@ -1,77 +1,104 @@
-{% extends 'layout/base.html' %} {% block title %}Book Details{% endblock %} {% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/book-detail.css') }}"> {% endblock %} {% block header %} {% include 'layout/header.html' %} {% endblock %} {% block content %}
+{% extends 'layout/base.html' %} {% block title %}Book Details{% endblock %} {%
+block css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/book-detail.css') }}"
+/>
+{% endblock %} {% block header %} {% include 'layout/header.html' %} {% endblock
+%} {% block content %}
 <div class="container">
-    <!-- product -->
-    <div id="toast"></div>
-    <div class="product-content product-wrap clearfix product-deatil">
-        <div class="row">
-            <div class="col-md-5 col-sm-12 col-xs-12">
-                <div class="product-image item-detail">
-                    <div id="myCarousel-2" class="carousel slide">
-                        <div class="carousel-inner">
-                            <!-- Slide 1 -->
-                            <div class="item active">
-                                <img src="{{book.image}}" class="img-responsive" alt="{{book.image}}" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <!-- product -->
+  <div id="toast"></div>
+  <div class="product-content product-wrap clearfix product-deatil">
+    <div class="row">
+      <div class="col-md-5 col-sm-12 col-xs-12">
+        <div class="product-image item-detail">
+          <div id="myCarousel-2" class="carousel slide">
+            <div class="carousel-inner">
+              <!-- Slide 1 -->
+              <div class="item active">
+                <img
+                  src="{{book.image}}"
+                  class="img-responsive"
+                  alt="{{book.image}}"
+                />
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
-                <h2 class="name">
-                    {{book.name}}
-                    <!-- <i class="fa fa-star fa-2x text-primary"></i>
+      <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
+        <h2 class="name">
+          {{book.name}}
+          <!-- <i class="fa fa-star fa-2x text-primary"></i>
                     <i class="fa fa-star fa-2x text-primary"></i>
                     <i class="fa fa-star fa-2x text-primary"></i>
                     <i class="fa fa-star fa-2x text-primary"></i>
                     <i class="fa fa-star fa-2x text-muted"></i> -->
-                    <!-- <span class="fa fa-2x"><h5>(109) Votes</h5></span>
+          <!-- <span class="fa fa-2x"><h5>(109) Votes</h5></span>
                     <a href="javascript:void(0);">109 customer reviews</a> -->
-                </h2>
-                <hr />
-                <h3 class="price-container">
-                    {{"{:,.0f}".format(book.price)}} VND
-                    <small>*includes tax</small>
-                </h3>
-                <div class="certified">
-                    <ul>
-                        <li>
-                            <a href="javascript:void(0);">Delivery time<span>7 Working Days</span></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);">Certified<span>Quality Assured</span></a>
-                        </li>
-                    </ul>
-                </div>
-                <hr />
-                <div class="description description-tabs">
-                    <ul id="myTab">
-                        <li>Category: <span>{{parent_name.name}} </span>-><span> {{cate_name.name}}</span></li>
-                        <li>Author: {{book.author}}</li>
-                        <li>Publisher: {{book.publisher}}</li>
-                        <li>Language: {{language}}</li>
-                        <li>Pages: {{book.num_pages}}</li>
-                        <li>Quantity: {{book.quantity}}</li>
-                    </ul>
-                </div>
-                <hr />
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-6 btn-group pull-right">
-                        <button class="btn btn-white btn-default " onclick="addToCart({{ book.id }}, '{{ book.name }}', {{ book.price }}, '{{ book.image }}'), miniCart({{ book.id }}, '{{ book.name }}', {{ book.price }}, '{{ book.image }}'); showSuccessToast()">Add to cart ({{"{:,.0f}".format(book.price)}} VND)</button>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-6">
-                        <div class="btn-group ">
-                            <button class="btn btn-white btn-default"><i class="fa fa-star"></i> Add to wishlist</button>
-                            <button class="btn btn-white btn-default"><i class="fa fa-envelope"></i> Contact Seller</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </h2>
+        <hr />
+        <h3 class="price-container">
+          {{"{:,.0f}".format(book.price)}} VND
+          <small>*includes tax</small>
+        </h3>
+        <div class="certified">
+          <ul>
+            <li>
+              <a href="javascript:void(0);"
+                >Delivery time<span>7 Working Days</span></a
+              >
+            </li>
+            <li>
+              <a href="javascript:void(0);"
+                >Certified<span>Quality Assured</span></a
+              >
+            </li>
+          </ul>
         </div>
+        <hr />
+        <div class="description description-tabs">
+          <ul id="myTab">
+            <li>
+              Category: <span>{{parent_name.name}} </span>-><span>
+                {{cate_name.name}}</span
+              >
+            </li>
+            <li>Author: {{book.author}}</li>
+            <li>Publisher: {{book.publisher}}</li>
+            <li>Language: {{language}}</li>
+            <li>Pages: {{book.num_pages}}</li>
+            <li>Quantity: {{book.quantity}}</li>
+          </ul>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-6 btn-group pull-right">
+            <button
+              class="btn btn-white btn-default"
+              onclick="addToCart({{ book.id }}, '{{ book.name }}', {{ book.price }}, '{{ book.image }}'), miniCart({{ book.id }}, '{{ book.name }}', {{ book.price }}, '{{ book.image }}'); showSuccessToast()"
+            >
+              Add to cart ({{"{:,.0f}".format(book.price)}} VND)
+            </button>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="btn-group">
+              <button class="btn btn-white btn-default">
+                <i class="fa fa-star"></i> Add to wishlist
+              </button>
+              <button class="btn btn-white btn-default">
+                <i class="fa fa-envelope"></i> Contact Seller
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- end product -->
-    <!-- <div>
+  </div>
+  <!-- end product -->
+  <!-- <div>
         <form method="post">
             <input type="text" placeholder="Viet gi do di...." class="form-control">
             <input type="submit" class="btn btn-danger btn-primary right" value="Gui binh luan">
@@ -81,55 +108,72 @@
 
 <!-- Start Blog Single -->
 <section class="blog-single section">
-    <div class="container">
-        <div class="blog-single-main">
-            <div class="row">
-                {% if current_user.is_authenticated %}
+  <div class="container">
+    <div class="blog-single-main">
+      <div class="row">
+        {% if current_user.is_authenticated %}
 
-                <div class="col-12">
-                    <div class="reply">
-                        <div class="reply-head">
-                            <h2 class="reply-title">Leave a Comment</h2>
-                            <!-- Comment Form -->
-                            <form class="form" action="#">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label>Your Message<span>*</span></label>
-                                            <textarea name="content" placeholder="" id="commentContent"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <input type="button" value="Post comment" class="btn" onclick="addComment({{book.id}})" style="color: #fff; background: #333;">
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- End Comment Form -->
-                        </div>
+        <div class="col-12">
+          <div class="reply">
+            <div class="reply-head">
+              <h2 class="reply-title">Leave a Comment</h2>
+              <!-- Comment Form -->
+              <form class="form" action="#">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label>Your Message<span>*</span></label>
+                      <textarea
+                        name="content"
+                        placeholder=""
+                        id="commentContent"
+                      ></textarea>
                     </div>
+                  </div>
+                  <div class="col-12">
+                    <input
+                      type="button"
+                      value="Post comment"
+                      class="btn"
+                      onclick="addComment({{book.id}})"
+                      style="color: #fff; background: #333"
+                    />
+                  </div>
                 </div>
-                {% else %}
-                <a href="{{ url_for('user_login', next='book_detail', book_id=book.id) }}"> Dang nhap de binh luan </a> {% endif %}
-                <div class="col-12">
-                    <div class="comments">
-                        <h3 class="comment-title" >Comments (<span id="comment-title">{{counter}}</span>)</h3>
-                        <div id="comment">
-
-                        </div>
-                    </div>
-                </div>
-                <a class="page-link" href="javascript:;" onclick="loadComments({{book.id}})">Xem them</a>
-
+              </form>
+              <!-- End Comment Form -->
             </div>
+          </div>
         </div>
+        {% else %}
+        <a
+          href="{{ url_for('user_login', next='book_detail', book_id=book.id) }}"
+        >
+        Sign in to comment
+        </a>
+        {% endif %}
+        <div class="col-12">
+          <div class="comments">
+            <h3 class="comment-title">
+              Comments (<span id="comment-title">{{counter}}</span>)
+            </h3>
+            <div id="comment"></div>
+          </div>
+        </div>
+        <a
+          class="page-link"
+          href="javascript:;"
+          onclick="loadComments({{book.id}})"
+          >Read more</a>
+      </div>
     </div>
+  </div>
 </section>
 
-
 <script>
-    window.onload = function() {
-        loadComments({{book.id}})
-    }
+  window.onload = function() {
+      loadComments({{book.id}})
+  }
 </script>
 
 {% endblock %}
