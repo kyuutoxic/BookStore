@@ -117,7 +117,7 @@ class Receipt(BaseModel):
     details = relationship('ReceiptDetail', backref='receipt', lazy=True)
     phone_number = Column(String(50))
     address_id = Column(Integer, ForeignKey('address.id'))
-    active = Column(Boolean, default=False)
+    active = Column(Integer, default=0)
 
 
 class ReceiptDetail(BaseModel):

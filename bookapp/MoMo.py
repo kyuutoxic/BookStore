@@ -8,9 +8,9 @@ def momo(amount):
     #thanh toan momo test
     #parameters send to MoMo get get payUrl
     endpoint = "https://test-payment.momo.vn/v2/gateway/api/create"
-    partnerCode = "MOMO"
-    accessKey = "F8BBA842ECF85"
-    secretKey = "K951B6PE1waDMi640xX08PD3vg6EkVlz"
+    partnerCode = "MOMOBKUN20180529"
+    accessKey = "klm05TvNBzhg7h7j"
+    secretKey = "at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa"
     orderInfo = "Thanh toán đơn hàng"
     redirectUrl = "http://127.0.0.1:5000/returnmomo"
     ipnUrl = "http://127.0.0.1:5000/notimomo"

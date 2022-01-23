@@ -76,15 +76,15 @@ def add_receipt(user_id, cus_name=None):
 
 def read_receipt_by_active():
     return db.session.query(Receipt.id)\
-        .filter(Receipt.active == False).all()
+        .filter(Receipt.active == 0).all()
 
 def get_receipt_by_active_and_id_user(id):
     return db.session.query(Receipt.id)\
-        .filter(Receipt.active == None and Receipt.user_id == id).all()
+        .filter(Receipt.active.__eq__(2) and Receipt.user_id.__eq__(id)).all()
 
 def change_active_true_by_receipt_id(id):
     a = Receipt.query.get(id)
-    a.active = True
+    a.active = 1
     db.session.commit()
 
 
@@ -216,7 +216,7 @@ def add_receipts(cart, cus_name=None, phone_number=None, address_id=None, opt='o
                 db.session.add(detail)
         else:
             receipt = Receipt(user=current_user, cus_name=cus_name,
-                              phone_number=phone_number, address_id=address_id, active=None)
+                              phone_number=phone_number, address_id=address_id, active=2)
             db.session.add(receipt)
             db.session.commit()
             for c in cart.values():
@@ -464,3 +464,10 @@ def change_avatar(id, avatar):
 
 def count_cus():
     return User.query.filter(User.role == UserRole.CUSTOMER).count()
+
+if __name__ == '__main__':
+    r = get_receipt_by_active_and_id_user(12)
+    for i in r:
+        print(i)
+        if(get_receipt_by_id(i).active == 2):
+            del_receipt(i.id)

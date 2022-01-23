@@ -335,6 +335,12 @@ def get_comments(book_id, qttcomment):
 def checkout():
     city = utils.load_city()
 
+    current_id = session.get('current_id')
+    if not current_id:
+        current_id = current_user.id
+    else:
+        current_id = current_user.id
+    session['current_id'] = current_id
     if request.method.__eq__('POST'):
         cus_name = request.form['name']
         phone_number = request.form['number']
@@ -357,7 +363,7 @@ def checkout():
                     street_name=street_name, district_id=district_id, city_id=city_id)
                 if address_id != 0:
                     r = utils.add_receipts(session.get(
-                        'cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address_id)
+                    'cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address_id)
                     a = MoMo.momo(total)
                     check_string = a['requestId'] + a['amount'] + a['orderInfo'] + a['orderId'] + a['partnerCode']
                     check_str = session.get('check_str')
@@ -479,6 +485,7 @@ def change_avatar():
 
 @app.route('/returnmomo')
 def returnmomo():
+    notimomo()
     msg = ""
     check_str = session.get('check_str')
     check_string = request.args.get('requestId') + request.args.get('amount') + request.args.get('orderInfo') + request.args.get('orderId') + request.args.get('partnerCode')
@@ -492,14 +499,21 @@ def returnmomo():
 
 @app.route('/notimomo')
 def notimomo():
+    r = utils.get_receipt_by_active_and_id_user(int(session.get('current_id')))
     check_str = session.get('check_str')
     check_string = request.args.get('requestId') + request.args.get('amount') + request.args.get('orderInfo') + request.args.get('orderId') + request.args.get('partnerCode')
-    if(check_str != check_string and request.args.get('resultCode')!=0):
-        r = utils.get_receipt_by_active_and_id_user(current_user.id)
-        if(r.active == None):
+    if(request.args.get('resultCode')!=0 or check_str != check_string):
+        for i in r:
+            if(utils.get_receipt_by_id(i).active == 2):
+                utils.del_receipt(i.id)
+    elif(check_str == check_string and request.args.get('resultCode')==0):
+        if(r.active == 2):
             utils.send_email(info=r)
             utils.change_active_true_by_receipt_id(r.id)
             del session['cart']
+    return render_template('notimomo.html')
+        
+
 
 if __name__ == '__main__':
     app.run(debug=True)
