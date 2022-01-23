@@ -78,6 +78,15 @@ def read_receipt_by_active():
     return db.session.query(Receipt.id)\
         .filter(Receipt.active == False).all()
 
+def get_receipt_by_active_and_id_user(id):
+    return db.session.query(Receipt.id)\
+        .filter(Receipt.active == None and Receipt.user_id == id).all()
+
+def change_active_true_by_receipt_id(id):
+    a = Receipt.query.get(id)
+    a.active = True
+    db.session.commit()
+
 
 def add_receiptdetails(receipt_id, book_id, quantity, unit_price):
     receipt_details = ReceiptDetail(
@@ -207,7 +216,7 @@ def add_receipts(cart, cus_name=None, phone_number=None, address_id=None, opt='o
                 db.session.add(detail)
         else:
             receipt = Receipt(user=current_user, cus_name=cus_name,
-                              phone_number=phone_number, address_id=address_id, active=True)
+                              phone_number=phone_number, address_id=address_id, active=None)
             db.session.add(receipt)
             db.session.commit()
             for c in cart.values():

@@ -1,0 +1,17 @@
+{% extends 'layout/base.html' %}
+ {% block title %}Checkout{% endblock %}
+
+{%block css %}
+{% endblock %} 
+
+{% block header %}
+{% include 'layout/header.html'%} 
+{% endblock %} 
+
+{% block content %} 
+{% if current_user.is_authenticated %}
+<h4>{{ msg }}</h4>
+{% else %}
+{{ url_for('user_login', next='checkout') }}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,70 @@
+import json
+import urllib.request
+import uuid
+import hmac
+import hashlib
+
+def momo(amount):
+    #thanh toan momo test
+    #parameters send to MoMo get get payUrl
+    endpoint = "https://test-payment.momo.vn/v2/gateway/api/create"
+    partnerCode = "MOMO"
+    accessKey = "F8BBA842ECF85"
+    secretKey = "K951B6PE1waDMi640xX08PD3vg6EkVlz"
+    orderInfo = "Thanh toán đơn hàng"
+    redirectUrl = "http://127.0.0.1:5000/returnmomo"
+    ipnUrl = "http://127.0.0.1:5000/notimomo"
+    amount = str(amount)
+    orderId = str(uuid.uuid4())
+    requestId = str(uuid.uuid4())
+    requestType = "captureWallet"
+    extraData = "" #pass empty value or Encode base64 JsonString
+
+    #before sign HMAC SHA256 with format: accessKey=$accessKey&amount=$amount&extraData=$extraData&ipnUrl=$ipnUrl&orderId=$orderId&orderInfo=$orderInfo&partnerCode=$partnerCode&redirectUrl=$redirectUrl&requestId=$requestId&requestType=$requestType
+    rawSignature = "accessKey="+accessKey+"&amount="+amount+"&extraData="+extraData+"&ipnUrl="+ipnUrl+"&orderId="+orderId+"&orderInfo="+orderInfo+"&partnerCode="+partnerCode+"&redirectUrl="+redirectUrl+"&requestId="+requestId+"&requestType="+requestType
+    #signature
+    h = hmac.new(bytes(secretKey, 'utf-8'), bytes(rawSignature, 'utf-8'), hashlib.sha256)
+    signature = h.hexdigest()
+    #json object send to MoMo endpoint
+    data = {
+            'partnerCode' : partnerCode,
+            'partnerName' : "Test",
+            'storeId' : "MomoTestStore",
+            'requestId' : requestId,
+            'amount' : amount,
+            'orderId' : orderId,
+            'orderInfo' : orderInfo,
+            'redirectUrl' : redirectUrl,
+            'ipnUrl' : ipnUrl,
+            'lang' : "vi",
+            'extraData' : extraData,
+            'requestType' : requestType,
+            'signature' : signature
+    }
+    data = json.dumps(data)
+    clen = len(data)
+    req = urllib.request.Request(endpoint, data.encode('utf-8'), {'Content-Type': 'application/json', 'Content-Length': clen})
+    f = urllib.request.urlopen(req)
+    response = f.read()
+    f.close()
+    return {
+            'payUrl' : json.loads(response)['payUrl'],
+            'signature' : signature,
+            'data' : data,
+            'dataencode' : data.encode('utf-8'),
+            'req' : req,
+            'f' : response
+    }
+
+if __name__ == '__main__':
+        print(momo(5000)['data'])
+        print("\n")
+        print(momo(5000)['payUrl'])
+        print("\n")
+        print(momo(5000)['signature'])
+        print("\n")
+        print(momo(5000)['dataencode'])
+        print("\n")
+        print(momo(5000)['req'])
+        print("\n")
+        print(momo(5000)['f'])

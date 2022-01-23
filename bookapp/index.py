@@ -11,6 +11,12 @@ import cloudinary
 import math
 import smtplib
 import cloudinary.uploader
+import json
+import urllib.request
+import uuid
+import hmac
+import hashlib
+import MoMo
 
 
 # Dữ liệu sài chung
@@ -335,11 +341,12 @@ def checkout():
         district_id = request.form['district_name']
         street_name = request.form['address']
         opt = request.form['opt']
+        cart = session.get('cart')
+        total = utils.cart_stats(cart)['total_amount']
         if opt == "offline":
             r = utils.add_receipts(session.get(
                 'cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=None)
             utils.send_email(info=r)
-            cart = session.get('cart')
             if cart:
                 del session['cart']
             return redirect(url_for('index'))
@@ -350,15 +357,14 @@ def checkout():
                 if address_id != 0:
                     r = utils.add_receipts(session.get(
                         'cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address_id)
-                    utils.send_email(info=r)
+                    return redirect(MoMo.momo(total)['payUrl'])
                 else:
                     address = utils.add_address(
                         street_name=street_name, district_id=district_id, city_id=city_id)
                     r = utils.add_receipts(session.get(
-                        'cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address.id)
-                    utils.send_email(info=r)
+                    'cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address.id)
+                    return redirect(MoMo.momo(total)['payUrl'])
 
-                cart = session.get('cart')
                 if cart:
                     del session['cart']
                 return redirect(url_for('index'))
@@ -457,6 +463,31 @@ def change_avatar():
 
     return render_template('change-avatar.html', err_msg=err_msg)
 
+
+@app.route('/returnmomo')
+def returnmomo():
+    msg = ""
+    total = utils.cart_stats(cart)['total_amount']
+    a = request.args.get('signature')
+    b = MoMo.momo(total)['signature']
+    if(a == b):
+        msg = "Thanh toán thành công!"
+    elif (a != b):
+        msg = "Request không hợp lệ"
+    elif (request.args.get('errorCode')==0):
+        msg = "Thanh toán thất bại!"
+    return render_template('returnmomo.html', msg=msg)
+
+@app.route('/notimomo')
+def notimomo():
+    total = utils.cart_stats(cart)['total_amount']
+    a = request.args.get('signature')
+    b = MoMo.momo(total)['signature']
+    if(a == b):
+        r = utils.get_receipt_by_active_and_id_user(current_user.id)
+        if(r.active == None):
+            utils.send_email(info=r)
+            utils.change_active_true_by_receipt_id(r.id)
 
 if __name__ == '__main__':
     app.run(debug=True)
