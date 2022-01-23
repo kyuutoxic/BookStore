@@ -1,5 +1,5 @@
 {% extends 'layout/base.html' %}
- {% block title %}Checkout{% endblock %}
+ {% block title %}Return from momo{% endblock %}
 
 {%block css %}
 {% endblock %} 
@@ -10,7 +10,7 @@
 
 {% block content %} 
 {% if current_user.is_authenticated %}
-<h4>{{ msg }}</h4>
+<h4 class="text-center" style="margin-top: 20px;">{{ msg }}</h4>
 {% else %}
 {{ url_for('user_login', next='checkout') }}
 {% endif %}

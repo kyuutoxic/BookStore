@@ -29,6 +29,7 @@ def common_response():
     }
 
 
+
 # Đặng nhập Admin
 @app.route('/admin-login', methods=['post'])
 def admin_login():
@@ -357,17 +358,29 @@ def checkout():
                 if address_id != 0:
                     r = utils.add_receipts(session.get(
                         'cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address_id)
-                    return redirect(MoMo.momo(total)['payUrl'])
+                    a = MoMo.momo(total)
+                    check_string = a['requestId'] + a['amount'] + a['orderInfo'] + a['orderId'] + a['partnerCode']
+                    check_str = session.get('check_str')
+                    if not check_str:
+                        check_str = check_string
+                    else:
+                        check_str = check_string
+                    session['check_str'] = check_str
+                    return redirect(a['payUrl'])
                 else:
                     address = utils.add_address(
                         street_name=street_name, district_id=district_id, city_id=city_id)
                     r = utils.add_receipts(session.get(
                     'cart'), cus_name=cus_name, phone_number=phone_number, opt=opt, address_id=address.id)
-                    return redirect(MoMo.momo(total)['payUrl'])
-
-                if cart:
-                    del session['cart']
-                return redirect(url_for('index'))
+                    a = MoMo.momo(total)
+                    check_string = a['requestId'] + a['amount'] + a['orderInfo'] + a['orderId'] + a['partnerCode']
+                    check_str = session.get('check_str')
+                    if not check_str:
+                        check_str = check_string
+                    else:
+                        check_str = check_string
+                    session['check_str'] = check_str
+                    return redirect(a['payUrl'])
 
     return render_template('checkout.html', city=city)
 
@@ -467,27 +480,26 @@ def change_avatar():
 @app.route('/returnmomo')
 def returnmomo():
     msg = ""
-    total = utils.cart_stats(cart)['total_amount']
-    a = request.args.get('signature')
-    b = MoMo.momo(total)['signature']
-    if(a == b):
-        msg = "Thanh toán thành công!"
-    elif (a != b):
-        msg = "Request không hợp lệ"
-    elif (request.args.get('errorCode')==0):
+    check_str = session.get('check_str')
+    check_string = request.args.get('requestId') + request.args.get('amount') + request.args.get('orderInfo') + request.args.get('orderId') + request.args.get('partnerCode')
+    if  (check_str != check_string):
+        msg = "Request không hợp lệ!!"
+    elif (request.args.get('resultCode')!=0):
         msg = "Thanh toán thất bại!"
+    else:
+        msg = "Thanh toán thành công!!"
     return render_template('returnmomo.html', msg=msg)
 
 @app.route('/notimomo')
 def notimomo():
-    total = utils.cart_stats(cart)['total_amount']
-    a = request.args.get('signature')
-    b = MoMo.momo(total)['signature']
-    if(a == b):
+    check_str = session.get('check_str')
+    check_string = request.args.get('requestId') + request.args.get('amount') + request.args.get('orderInfo') + request.args.get('orderId') + request.args.get('partnerCode')
+    if(check_str != check_string and request.args.get('resultCode')!=0):
         r = utils.get_receipt_by_active_and_id_user(current_user.id)
         if(r.active == None):
             utils.send_email(info=r)
             utils.change_active_true_by_receipt_id(r.id)
+            del session['cart']
 
 if __name__ == '__main__':
     app.run(debug=True)

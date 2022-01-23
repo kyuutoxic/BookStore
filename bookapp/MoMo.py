@@ -49,22 +49,10 @@ def momo(amount):
     f.close()
     return {
             'payUrl' : json.loads(response)['payUrl'],
-            'signature' : signature,
-            'data' : data,
-            'dataencode' : data.encode('utf-8'),
-            'req' : req,
-            'f' : response
+            'requestId' : requestId,
+            'amount' : amount,
+            'orderInfo' : orderInfo,
+            'orderId': orderId,
+            'partnerCode' : partnerCode
     }
 
-if __name__ == '__main__':
-        print(momo(5000)['data'])
-        print("\n")
-        print(momo(5000)['payUrl'])
-        print("\n")
-        print(momo(5000)['signature'])
-        print("\n")
-        print(momo(5000)['dataencode'])
-        print("\n")
-        print(momo(5000)['req'])
-        print("\n")
-        print(momo(5000)['f'])
