@@ -53,6 +53,5 @@ def momo(amount):
             'amount' : amount,
             'orderInfo' : orderInfo,
             'orderId': orderId,
-            'partnerCode' : partnerCode
+            'partnerCode' : partnerCode,
     }
-

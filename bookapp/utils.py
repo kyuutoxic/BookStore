@@ -466,8 +466,7 @@ def count_cus():
     return User.query.filter(User.role == UserRole.CUSTOMER).count()
 
 if __name__ == '__main__':
-    r = get_receipt_by_active_and_id_user(12)
+    r = get_receipt_by_active_and_id_user(10)
     for i in r:
-        print(i)
-        if(get_receipt_by_id(i).active == 2):
-            del_receipt(i.id)
+            if(get_receipt_by_id(i).active == 2):
+                change_active_true_by_receipt_id(i.id)

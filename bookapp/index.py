@@ -491,7 +491,7 @@ def returnmomo():
     check_string = request.args.get('requestId') + request.args.get('amount') + request.args.get('orderInfo') + request.args.get('orderId') + request.args.get('partnerCode')
     if  (check_str != check_string):
         msg = "Request không hợp lệ!!"
-    elif (request.args.get('resultCode')!=0):
+    elif (request.args.get('resultCode')!="0"):
         msg = "Thanh toán thất bại!"
     else:
         msg = "Thanh toán thành công!!"
@@ -502,15 +502,16 @@ def notimomo():
     r = utils.get_receipt_by_active_and_id_user(int(session.get('current_id')))
     check_str = session.get('check_str')
     check_string = request.args.get('requestId') + request.args.get('amount') + request.args.get('orderInfo') + request.args.get('orderId') + request.args.get('partnerCode')
-    if(request.args.get('resultCode')!=0 or check_str != check_string):
+    if(request.args.get('resultCode')!="0" or check_str != check_string):
         for i in r:
             if(utils.get_receipt_by_id(i).active == 2):
                 utils.del_receipt(i.id)
-    elif(check_str == check_string and request.args.get('resultCode')==0):
-        if(r.active == 2):
-            utils.send_email(info=r)
-            utils.change_active_true_by_receipt_id(r.id)
-            del session['cart']
+    elif(check_str == check_string and request.args.get('resultCode')=="0"):
+        for i in r:
+            if(utils.get_receipt_by_id(i).active == 2):
+                utils.send_email(info=utils.get_receipt_by_id(i))
+                utils.change_active_true_by_receipt_id(i)
+                del session['cart']
     return render_template('notimomo.html')
         
 
